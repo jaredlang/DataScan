@@ -13,24 +13,21 @@ import threading
 import Queue
 import logging
 
-# logger
-class LogHandler(object):
-    format = '%(levelname)s %(message)s'
-    files = {
-        'ERROR': 'error.log',
-        'CRITICAL': 'error.log',
-        'WARN': 'warn.log',
-    }
-    def write(self, msg):
-        type_ = msg[:msg.index(' ')]
-        with open(self.files.get(type_, 'log.log'), 'r+') as f:
-            f.write(msg)
+logger = logging.getLogger()
+# handler = logging.StreamHandler()
+handler = logging.FileHandler(r'C:\Users\kdb086\Documents\DataScan\file_scan_MOZGIS_2a.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
 
-logging.basicConfig(format=LogHandler.format, stream=LogHandler())
 
 # constants
 EXCLUDED_FOLDERS = [
     r'\sent',
+    r'\VENDOR',
+    r'\WORKING',
+    r'\arcgis_files', # 3a
 ]
 
 FOLDERTYPE_DICT = {
@@ -39,12 +36,12 @@ FOLDERTYPE_DICT = {
 }
 
 DATATYPE_DICT = {
-    'gis': ['.shp', '.lyr', '.kmz'],
+    'gis': ['.shp', '.lyr', '.kmz', '.kml', '.mdb'],
     'doc': ['.pdf', '.doc', '.docx', '.msg'],
     'excel': ['.xls', '.xlsx', '.csv'],
     'cad': ['.dwg', '.dgn'],
     'video': ['.ts', '.vob', '.mts', '.asf', '.mpg', '.mpeg'],
-    'image': ['.png', '.jpg', '.tif', '.img', '.rrd', '.ecw'],
+    'image': ['.png', '.jpg', '.bmp', '.tif', '.img', '.rrd', '.ecw'],
     'lidar': ['.las', '.bil', '.flt', '.qtt', '.xyzi', '.txt'],
     'zip': ['.zip'],
     'geophysical': ['.sgy', '.xyz', '.xtf', '.vel', '.grd'],
@@ -69,9 +66,9 @@ def bytesInKMGT(bytesize):
 
 def prn_stats(result_dict):
     for dt in result_dict:
-        print dt + ' -'
-        print '\t count: ' + str(result_dict[dt]['count'])
-        print '\t size: ' + bytesInKMGT(result_dict[dt]['size'])
+        logger.info(dt + ' -')
+        logger.info('\t count: ' + str(result_dict[dt]['count']))
+        logger.info('\t size: ' + bytesInKMGT(result_dict[dt]['size']))
 
 
 def scan_data(root_folder, result_queue):
@@ -80,11 +77,15 @@ def scan_data(root_folder, result_queue):
     localdata.ds_dict = {}
     for localdata.dirpath, localdata.dirnames, localdata.filenames in os.walk(root_folder):
         # skip any unwanted folders
-        for excld in EXCLUDED_FOLDERS:
-            if localdata.dirpath.lower().find(excld) > -1:
-                continue
+        localdata.is_folder_excluded = False
+        for localdata.excld in EXCLUDED_FOLDERS:
+            if localdata.dirpath.lower().find(localdata.excld.lower()) > -1:
+                localdata.is_folder_excluded = True
+                break
+        if localdata.is_folder_excluded == True:
+            continue
 
-        print '[%s] dirpath = %s' % (this_thread.getName(), localdata.dirpath)
+        logger.info('[%s] dirpath = %s' % (this_thread.getName(), localdata.dirpath))
 
         localdata.fldrname, localdata.dirname = os.path.split(localdata.dirpath)
         localdata.dirname = localdata.dirname.lower()
@@ -94,10 +95,10 @@ def scan_data(root_folder, result_queue):
             for dt in FOLDERTYPE_DICT[ft]:
                 # dirname ending with dt
                 if localdata.dirname.endswith(dt) == True:
-                    if dt not in localdata.ds_dict.keys():
-                        localdata.ds_dict[dt] = {'size': 0, 'count': 0}
+                    if ft not in localdata.ds_dict.keys():
+                        localdata.ds_dict[ft] = {'size': 0, 'count': 0}
                     localdata.is_data_composite = True
-                    localdata.ds_dict[dt]['count'] += 1
+                    localdata.ds_dict[ft]['count'] += 1
                     localdata.total_size = 0
                     for f in os.listdir(localdata.dirpath):
                         localdata.fp = os.path.join(localdata.dirpath, f)
@@ -105,8 +106,8 @@ def scan_data(root_folder, result_queue):
                             try:
                                 localdata.total_size += os.path.getsize(localdata.fp)
                             except:
-                                print 'can\'t open ' + localdata.fp
-                    localdata.ds_dict[dt]['size'] += localdata.total_size
+                                logger.info('can\'t open ' + localdata.fp)
+                    localdata.ds_dict[ft]['size'] += localdata.total_size
                     break
 
         if localdata.is_data_composite == True:
@@ -114,23 +115,23 @@ def scan_data(root_folder, result_queue):
             continue
 
         for dirname in localdata.dirnames:
-            # print 'sub folder: ' + dirname
+            # logger.info('sub folder: ' + dirname
             None
         for localdata.fname in localdata.filenames:
-            # print 'file name: ' + localdata.fname
+            # logger.info('file name: ' + localdata.fname
             localdata.fnm, localdata.fext = os.path.splitext(localdata.fname)
             localdata.fext = localdata.fext.lower()
             for dt in DATATYPE_DICT:
                 if localdata.fext in DATATYPE_DICT[dt]:
                     if dt == 'gis':
-                        print 'gis data found in %s' % localdata.dirpath
+                        logger.info('gis data found in %s' % localdata.dirpath)
                     if dt not in localdata.ds_dict.keys():
                         localdata.ds_dict[dt] = {'size': 0, 'count': 0}
                     localdata.fp = os.path.join(localdata.dirpath, localdata.fname)
                     try:
                         localdata.ds_dict[dt]['size'] += os.path.getsize(localdata.fp)
                     except:
-                        print 'can\'t open %s' % localdata.fp
+                        logger.info('can\'t open %s' % localdata.fp)
                     localdata.ds_dict[dt]['count'] += 1
                     break
 
@@ -162,20 +163,20 @@ def scan_data_mr(root_folder):
             else:
                 datastats_dict[dt]['size'] += entry['size']
                 datastats_dict[dt]['count'] += entry['count']
-    # print out final result
+    # logger.info(out final result
     prn_stats(datastats_dict)
 
 
 if __name__ == '__main__':
     start_time = datetime.datetime.now()
-    print 'start at %s' % start_time
+    logger.info('start at %s' % start_time)
 
-    scan_data_mr(r'G:\\')
+    scan_data_mr(r'P:\\')
 
     end_time = datetime.datetime.now()
-    print 'complete at %s' % end_time
+    logger.info('complete at %s' % end_time)
 
-    print 'time elapsed: %s' % (end_time - start_time)
+    logger.info('time elapsed: %s' % (end_time - start_time))
 
 
 
