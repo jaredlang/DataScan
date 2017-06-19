@@ -7,7 +7,8 @@ import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-HEADERS = ["Name", "Data Source", "Layer Type", "Verified?", "Loaded?", "SDE Name", "SDE Path", "Livelink Link"]
+HEADERS = ["Name", "Data Source", "Layer Type", "Verified?", "Loaded?", "SDE Name", "SDE Path",
+           "Livelink Link", "Definition Query", "Description"]
 
 LDRV_LL_PATHS = [{"LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
                    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33642312&objAction=browse&viewType=1"
@@ -38,7 +39,7 @@ def verify_layer_dataSource(lyr, lyrType):
 
 
 def write_to_workbook(wbPath, dsList, sheetName=None):
-    wb = Workbook()
+    wb = Workbook(write_only = True)
     ws1 = wb.active
     ws1.title = "dataSource"
 
@@ -51,9 +52,15 @@ def write_to_workbook(wbPath, dsList, sheetName=None):
         for c in dsList[r]:
             # TODO: add style to cell? 
             h = HEADERS.index(c)
-            ws1.cell(row=r+2, column=h+1, value=dsList[r][HEADERS[h]])
+            if h > -1:
+                ws1.cell(row=r+2, column=h+1, value=dsList[r][HEADERS[h]])
+            else:
+                print('Invalid header [%s] in xls [%s]' % (c, mxdPath))
             
     wb.save(filename = wbPath)
+    wb.close()
+    
+    del wb
 
 
 def scan_layers_in_mxd(mxdPath):
@@ -85,13 +92,23 @@ def scan_layers_in_mxd(mxdPath):
                      # get the layer data source
                      ds = lyr.dataSource
                      print('%-60s%s' % (lyr.name,ds))
+                     # get the layer def query
+                     defQry = ""
+                     if lyr.supports("DEFINITIONQUERY") == True:
+                         defQry = lyr.definitionQuery
+                     # get the layer description
+                     dspt = ""
+                     if lyr.supports("DESCRIPTION") == True:
+                         dspt = lyr.description
+                     #
                      # verify the layer data source
                      verified = verify_layer_dataSource(ds, lyrType)
                      # get the Livelink path
                      llPath = find_Livelink_path(ds)
                      #
                      dsList.append({"Name": lyr.name, "Data Source": ds, "Layer Type": lyrType,
-                                    "Verified?": verified, "Livelink Link": llPath})
+                                    "Verified?": verified, "Definition Query": defQry, "Description": despt,
+                                    "Livelink Link": llPath})
              except:
                  print('%-60s%s' % (lyr.name,">>> failed to retrieve info " + lyrType))
      except:
@@ -120,9 +137,8 @@ def scan_mxd_in_folder(mxdFolder, xlsFolder):
                  
 if __name__ == "__main__":
     if len(sys.argv) < 2 and len(sys.argv) > 3:
-        print("scan_mxds mxd_folder [xlsx_folder]")
+        print("scan_mxds mxd_folder [xls_folder]")
     else:
-        original_folder = None
         if len(sys.argv) == 3:
             xlsFolder = sys.argv[2]
         scan_mxd_in_folder(sys.argv[1], xlsFolder)
