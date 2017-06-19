@@ -1,14 +1,17 @@
 import sys
 import os
 from arcpy import mapping
+from openpyxl import Workbook
 from openpyxl import load_workbook
 import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-HEADERS = ["Name", "Data Source", "Layer Type", "Verified?", "Loaded?", "SDE Name", "SDE Path",
+HEADERS = ["Name", "Data Source", "Layer Type", "Verified?", "Loaded?", "SDE Name", "SDE Conn",
            "Livelink Link", "Definition Query", "Description"]
+
+HEADERS_FOR_UPDATE = ["Loaded?", "SDE Name", "SDE Conn"]
 
 DATA_SOURCES = [{
         "LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
@@ -36,6 +39,63 @@ DATA_TARGETS = [{
     }]
 
 
+DATA_CATEGORIES = [{
+    "Key": "BIO",
+    "Name": "BIOLOGICAL"
+}, {
+    "Key": "BND",
+    "Name": "BOUND"
+}, {
+    "Key": "BND",
+    "Name": "BOUND"
+}, {
+    "Key": "ELV",
+    "Name": "BATHY"
+}, {
+    "Key": "ELV",
+    "Name": "ELEV"
+}, {
+    "Key": "ELV",
+    "Name": "ELEV"
+}, {
+    "Key": "FAU",
+    "Name": "FAULTS"
+}, {
+    "Key": "GEOL",
+    "Name": "GEOLOGY"
+}, {
+    "Key": "GET",
+    "Name": "GEOTECH"
+}, {
+    "Key": "GET",
+    "Name": "GEOTECH"
+}, {
+    "Key": "GPH",
+    "Name": "GEOPHYSICS"
+}, {
+    "Key": "HYD",
+    "Name": "HYDROLOGY"
+}, {
+    "Key": "LAND",
+    "Name": "LAND"
+}, {
+    "Key": "REF",
+    "Name": "REFERENCE"
+}, {
+    "Key": "STR",
+    "Name": "STRUCTURE"
+}, {
+    "Key": "TRN",
+    "Name": "TRANS"
+}, {
+    "Key": "VEN",
+    "Name": "VENDOR"
+}, {
+    "Key": "WELL",
+    "Name": "WELL"
+}]
+
+
 def get_source_type(lDrvPath):
     for cvt in DATA_SOURCES:
         if lDrvPath.find(cvt["LDrv"]) == 0:
@@ -47,6 +107,29 @@ def get_target_connection(target):
     for cvt in DATA_TARGETS:
         if cvt["Target"] == target:
             return cvt["Connection"]
+    return None
+
+
+def guess_target_name(lDrvPath):
+    target_source = get_source_type(lDrvPath)
+    if target_source == "LNG":
+        return None
+    elif target_source == "MOZGIS":
+        # parse the path
+        for ds in DATA_SOURCES:
+            if ds["Source"] == "MOZGIS":
+                lDrvPath = lDrvPath.replace(ds["LDrv"], "")
+        parts = lDrvPath.split("\\")
+        category = parts[0]
+        dataFormat = parts[1]
+        if category not in ["WORKING"]:
+            if dataFormat == 'gdb':
+                return parts[-1]
+            elif dataFormat == 'shapefiles':
+                for c in DATA_CATEGORIES:
+                    if c["Name"] == category:
+                        category = c["Key"]
+                return category + "_" + os.path.splitext(parts[-1])[0]
     return None
 
 
@@ -73,23 +156,17 @@ def read_from_workbook(wbPath, sheetName=None):
     return dsList
 
 
-def write_to_workbook(wbPath, dsList, sheetName=None):
-    wb = Workbook(write_only = True)
-    ws1 = wb.active
-    ws1.title = "dataSource"
-
-    # headers
-    headers_for_update = ["Loaded?"]
+def update_status_in_workbook(wbPath, dsList, sheetName=None):
+    wb = load_workbook(filename = wbPath)
+    ws1 = wb["dataSource"]
 
     # content
+    s = 2 # skip the first 2 rows
     for r in range(0, len(dsList)):
         for c in dsList[r]:
-            # TODO: add style to cell?
-            h = headers_for_update.index(c)
-            if h > -1:
-                ws1.cell(row=r+2, column=h+1, value=dsList[r][headers_for_update[h]])
-            else:
-                print('Invalid header [%s] in xls [%s]' % (c, mxdPath))
+            for u in HEADERS_FOR_UPDATE:
+                h = HEADERS.index(u)
+                ws1.cell(row=r+s+1, column=h+1, value=dsList[r][HEADERS[h]])
 
     wb.save(filename = wbPath)
     wb.close()
@@ -97,44 +174,77 @@ def write_to_workbook(wbPath, dsList, sheetName=None):
     del wb
 
 
-def load_layers_in_xls(wbPath):
+def load_layers_in_xls(wbPath, overwrite):
+    if overwrite == "overwrite":
+        arcpy.env.Overwrite = True
+    else:
+        arcpy.env.Overwrite = False
+
     dsList = read_from_workbook(wbPath)
     for ds in dsList:
-        if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
-            if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
-                if ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
+        if ds["Loaded?"] not in ["LOADED", 'EXIST']:
+            if ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
+                if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
                     tgt_conn = get_target_connection(get_source_type(ds["Data Source"]))
-                    print('%-60s%s' % (ds["Name"],"load to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
-                    # TODO: upload the actual data
-                    #
-                    ds["Loaded?"] = 'YES'
+                    if tgt_conn is not None:
+                        ds["SDE Conn"] = tgt_conn
+                        if ds["SDE Name"] is None:
+                            ds["SDE Name"] = guess_target_name(ds["Data Source"])
+                        if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
+                            if len(ds["SDE Name"]) > 30:
+                                print('%-60s%s' % (ds["Name"],"*** name too long [%s]" % ds["SDE Name"]))
+                                ds["Loaded?"] = "NAME TOO LONG"
+                            elif overwrite != "overwrite" or arcpy.Exists(tgt_conn + "\\" + ds["SDE Name"]) == True:
+                                print('%-60s%s' % (ds["Name"],"*** existing layer"))
+                                ds["Loaded?"] = 'EXIST'
+                            else:
+                                    print('%-60s%s' % (ds["Name"],"loading to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
+                                    # upload the actual data
+                                    try:
+                                        arcpy.CopyFeatures_management(ds["Data Source"], tgt_conn + "\\" + ds["SDE Name"])
+                                        print('%-60s%s' % (" ","^^^ LOADED"))
+                                        ds["Loaded?"] = 'LOADED'
+                                    except:
+                                        print('%-60s%s' % (" ",">>> FAILED"))
+                                        ds["Loaded?"] = 'FAILED'
+                        else:
+                            print('%-60s%s' % (ds["Name"],"*** no target name"))
+                            ds["Loaded?"] = "NO TARGET NAME"
+                    else:
+                        print('%-60s%s' % (ds["Name"],"*** no target SDE"))
+                        ds["Loaded?"] = "NO TARGET SDE"
                 else:
-                    print('%-60s%s' % (ds["Name"],"*** skip non-feature layer"))
-                    ds["Loaded?"] = "NON-FEATURE"
+                    print('%-60s%s' % (ds["Name"],"*** invalid layer"))
+                    ds["Loaded?"] = "INVALID"
             else:
-                print('%-60s%s' % (ds["Name"],"*** skip layer with no target SDE"))
-                ds["Loaded?"] = "NO TARGET"
+                print('%-60s%s' % (ds["Name"],"*** non-feature layer"))
+                ds["Loaded?"] = "NON-FEATURE"
         else:
-            print('%-60s%s' % (ds["Name"],"*** skip invalid layer"))
-            ds["Loaded?"] = "INVALID"
+            print('%-60s%s' % (ds["Name"],"*** existing layer"))
+            # ds["Loaded?"] = 'EXIST'
 
     return dsList
 
 
-def load_layers_in_folder(xlsFolder):
+def load_layers_in_folder(xlsFolder, overwrite):
     for root, dirs, files in os.walk(xlsFolder):
         # walk through all files
         for fname in files:
             if fname.endswith(".xlsx"):
-                 xlsPath = os.path.join(root, fname)
-                 print('\nThe xlsx file: %s' % xlsPath)
-                 dsList = load_layers_in_xls(xlsPath)
-                 # TODO: update the Loaded? column in xls
-                 #
+                # read from a xls file
+                xlsPath = os.path.join(root, fname)
+                print('\nThe xlsx file: %s' % xlsPath)
+                dsList = load_layers_in_xls(xlsPath, overwrite)
+                # update status in the xls file
+                update_status_in_workbook(xlsPath, dsList)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("import_data_to_sde xls_folder")
+    if len(sys.argv) < 2 and len(sys.argv) > 3:
+        print("import_data_to_sde xls_folder [overwrite]")
     else:
-        load_layers_in_folder(sys.argv[1])
+        overwrite = None
+        if len(sys.argv) == 3:
+            overwrite = sys.argv[2]
+        load_layers_in_folder(sys.argv[1], overwrite)
+
