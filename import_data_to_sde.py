@@ -180,6 +180,9 @@ WORD_SHORTHANDS = [{
     "Key": "MB",
     "Name": "Mamba"
 }, {
+    "Key": "Prop",
+    "Name": "Proposed"
+}, {
     "Key": "Onsh",
     "Name": "Onshore"
 }, {
@@ -213,6 +216,12 @@ WORD_SHORTHANDS = [{
     "Key": "Rplc",
     "Name": "Replacement"
 }, {
+    "Key": "Proj",
+    "Name": "Project"
+}, {
+    "Key": "Indu",
+    "Name": "Industrial"
+}, {
     "Key": "Sec",
     "Name": "Section"
 }, {
@@ -225,10 +234,10 @@ WORD_SHORTHANDS = [{
     "Key": "Vtx",
     "Name": "Vertex"
 }, {
-    "Key": "",
+    "Key": "Zn",
     "Name": "Zone"
 }, {
-    "Key": "",
+    "Key": "Zn",
     "Name": "Zones"
 }]
 
