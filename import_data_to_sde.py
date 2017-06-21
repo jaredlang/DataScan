@@ -52,10 +52,7 @@ DATA_CATEGORIES = [{
     "Key": "ELV",
     "Name": "BATHY"
 }, {
-    "Key": "ELV",
-    "Name": "ELEV"
-}, {
-    "Key": "ELV",
+    "Key": "ELEV",
     "Name": "ELEV"
 }, {
     "Key": "FAU",
@@ -88,7 +85,7 @@ DATA_CATEGORIES = [{
     "Key": "STR",
     "Name": "STRUCT"
 }, {
-    "Key": "TRN",
+    "Key": "TRAN",
     "Name": "TRANS"
 }, {
     "Key": "VEN",
@@ -96,6 +93,137 @@ DATA_CATEGORIES = [{
 }, {
     "Key": "WELL",
     "Name": "WELL"
+}]
+
+WORD_SHORTHANDS = [{
+    "Key": "ADRO",
+    "Name": "Aerodrome"
+}, {
+    "Key": "",
+    "Name": "Area"
+}, {
+    "Key": "Lyt",
+    "Name": "Layout"
+}, {
+    "Key": "Ln",
+    "Name": "Line"
+}, {
+    "Key": "Bndy",
+    "Name": "Boundary"
+}, {
+    "Key": "Coord",
+    "Name": "Coordinate"
+}, {
+    "Key": "Crdr",
+    "Name": "Corridor"
+}, {
+    "Key": "Ctr",
+    "Name": "Contour"
+}, {
+    "Key": "Cesn",
+    "Name": "Concession"
+}, {
+    "Key": "Conti",
+    "Name": "Continental"
+}, {
+    "Key": "Charz",
+    "Name": "Characterization"
+}, {
+    "Key": "Ctlg",
+    "Name": "Catalog"
+}, {
+    "Key": "Drg",
+    "Name": "Dredge"
+}, {
+    "Key": "Fac",
+    "Name": "Facilities"
+}, {
+    "Key": "GeoPhy",
+    "Name": "Geophysical"
+}, {
+    "Key": "GF",
+    "Name": "Golfinho"
+}, {
+    "Key": "Ofld",
+    "Name": "Offloading"
+}, {
+    "Key": "Opn",
+    "Name": "Operation"
+}, {
+    "Key": "Opt",
+    "Name": "Option"
+}, {
+    "Key": "Otln",
+    "Name": "Outline"
+}, {
+    "Key": "PB",
+    "Name": "PalmaBay"
+}, {
+    "Key": "Pt",
+    "Name": "Point"
+}, {
+    "Key": "Ln",
+    "Name": "Line"
+}, {
+    "Key": "PR",
+    "Name": "Prosperidade"
+}, {
+    "Key": "PB",
+    "Name": "PalmaBay"
+}, {
+    "Key": "PLN",
+    "Name": "Pipeline"
+}, {
+    "Key": "Espm",
+    "Name": "Escarpment"
+}, {
+    "Key": "MB",
+    "Name": "Mamba"
+}, {
+    "Key": "Onsh",
+    "Name": "Onshore"
+}, {
+    "Key": "Ofsh",
+    "Name": "Offshore"
+}, {
+    "Key": "Rst",
+    "Name": "Resettlement"
+}, {
+    "Key": "Alt",
+    "Name": "Alternate"
+}, {
+    "Key": "Bch",
+    "Name": "Beach"
+}, {
+    "Key": "Ldg",
+    "Name": "Landing"
+}, {
+    "Key": "Term",
+    "Name": "Terminal"
+}, {
+    "Key": "Vlg",
+    "Name": "Village"
+}, {
+    "Key": "Rplc",
+    "Name": "Replacement"
+}, {
+    "Key": "Sec",
+    "Name": "Section"
+}, {
+    "Key": "Stg",
+    "Name": "Storage"
+}, {
+    "Key": "Vtx",
+    "Name": "Vertices"
+}, {
+    "Key": "Vtx",
+    "Name": "Vertex"
+}, {
+    "Key": "",
+    "Name": "Zone"
+}, {
+    "Key": "",
+    "Name": "Zones"
 }]
 
 
