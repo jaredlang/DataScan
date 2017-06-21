@@ -122,14 +122,22 @@ def guess_target_name(lDrvPath):
         parts = lDrvPath.split("\\")
         category = parts[0]
         dataFormat = parts[1]
+        dataName = None
         if category not in ["WORKING"]:
             if dataFormat == 'gdb':
-                return parts[-1]
+                dataName = parts[-1]
             elif dataFormat == 'shapefiles':
-                for c in DATA_CATEGORIES:
-                    if c["Name"] == category:
-                        category = c["Key"]
-                return category + "_" + os.path.splitext(parts[-1])[0]
+                dataName = os.path.splitext(parts[-1])[0]
+            else:
+                break
+            for c in DATA_CATEGORIES:
+                if c["Name"] == category:
+                    dataKey = c["Key"]
+                    if dataName.find(dataKey) == 0:
+                        return dataName
+                    else:
+                        return dataKey + "_" + dataName
+
     return None
 
 
@@ -174,12 +182,7 @@ def update_status_in_workbook(wbPath, dsList, sheetName=None):
     del wb
 
 
-def load_layers_in_xls(wbPath, overwrite):
-    if overwrite == "overwrite":
-        arcpy.env.Overwrite = True
-    else:
-        arcpy.env.Overwrite = False
-
+def load_layers_in_xls(wbPath, test):
     dsList = read_from_workbook(wbPath)
     for ds in dsList:
         if ds["Loaded?"] not in ["LOADED", 'EXIST']:
@@ -194,19 +197,23 @@ def load_layers_in_xls(wbPath, overwrite):
                             if len(ds["SDE Name"]) > 30:
                                 print('%-60s%s' % (ds["Name"],"*** name too long [%s]" % ds["SDE Name"]))
                                 ds["Loaded?"] = "NAME TOO LONG"
-                            elif overwrite != "overwrite" or arcpy.Exists(tgt_conn + "\\" + ds["SDE Name"]) == True:
+                            elif arcpy.Exists(tgt_conn + "\\" + ds["SDE Name"]) == True:
                                 print('%-60s%s' % (ds["Name"],"*** existing layer"))
                                 ds["Loaded?"] = 'EXIST'
                             else:
                                     print('%-60s%s' % (ds["Name"],"loading to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
                                     # upload the actual data
-                                    try:
-                                        arcpy.CopyFeatures_management(ds["Data Source"], tgt_conn + "\\" + ds["SDE Name"])
-                                        print('%-60s%s' % (" ","^^^ LOADED"))
-                                        ds["Loaded?"] = 'LOADED'
-                                    except:
-                                        print('%-60s%s' % (" ",">>> FAILED"))
-                                        ds["Loaded?"] = 'FAILED'
+                                    if test == "test":
+                                        print('%-60s%s' % (" ","^^^ TESTED"))
+                                        ds["Loaded?"] = 'TESTED'
+                                    else:
+                                        try:
+                                            arcpy.CopyFeatures_management(ds["Data Source"], tgt_conn + "\\" + ds["SDE Name"])
+                                            print('%-60s%s' % (" ","^^^ LOADED"))
+                                            ds["Loaded?"] = 'LOADED'
+                                        except:
+                                            print('%-60s%s' % (" ",">>> FAILED"))
+                                            ds["Loaded?"] = 'FAILED'
                         else:
                             print('%-60s%s' % (ds["Name"],"*** no target name"))
                             ds["Loaded?"] = "NO TARGET NAME"
@@ -226,7 +233,7 @@ def load_layers_in_xls(wbPath, overwrite):
     return dsList
 
 
-def load_layers_in_folder(xlsFolder, overwrite):
+def load_layers_in_folder(xlsFolder, test):
     for root, dirs, files in os.walk(xlsFolder):
         # walk through all files
         for fname in files:
@@ -234,17 +241,17 @@ def load_layers_in_folder(xlsFolder, overwrite):
                 # read from a xls file
                 xlsPath = os.path.join(root, fname)
                 print('\nThe xlsx file: %s' % xlsPath)
-                dsList = load_layers_in_xls(xlsPath, overwrite)
+                dsList = load_layers_in_xls(xlsPath, test)
                 # update status in the xls file
                 update_status_in_workbook(xlsPath, dsList)
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2 and len(sys.argv) > 3:
-        print("import_data_to_sde xls_folder [overwrite]")
+        print("import_data_to_sde xls_folder [test]")
     else:
-        overwrite = None
+        test = None
         if len(sys.argv) == 3:
-            overwrite = sys.argv[2]
-        load_layers_in_folder(sys.argv[1], overwrite)
+            test = sys.argv[2]
+        load_layers_in_folder(sys.argv[1], test)
 
