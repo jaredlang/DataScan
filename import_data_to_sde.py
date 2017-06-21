@@ -198,6 +198,12 @@ WORD_SHORTHANDS = [{
     "Key": "Ldg",
     "Name": "Landing"
 }, {
+    "Key": "Dispo",
+    "Name": "Disposal"
+}, {
+    "Key": "Pote",
+    "Name": "Potential"
+}, {
     "Key": "Term",
     "Name": "Terminal"
 }, {
