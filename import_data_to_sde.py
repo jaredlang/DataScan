@@ -76,6 +76,9 @@ DATA_CATEGORIES = [{
     "Key": "HYD",
     "Name": "HYDROLOGY"
 }, {
+    "Key": "INF",
+    "Name": "INFRASTRUCT"
+}, {
     "Key": "LAND",
     "Name": "LAND"
 }, {
@@ -83,7 +86,7 @@ DATA_CATEGORIES = [{
     "Name": "REFERENCE"
 }, {
     "Key": "STR",
-    "Name": "STRUCTURE"
+    "Name": "STRUCT"
 }, {
     "Key": "TRN",
     "Name": "TRANS"
@@ -128,8 +131,9 @@ def guess_target_name(lDrvPath):
                 dataName = parts[-1]
             elif dataFormat == 'shapefiles':
                 dataName = os.path.splitext(parts[-1])[0]
+                dataName = dataName.replace(' ', '_')
             else:
-                break
+                return None
             for c in DATA_CATEGORIES:
                 if c["Name"] == category:
                     dataKey = c["Key"]
