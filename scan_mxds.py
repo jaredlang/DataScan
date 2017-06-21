@@ -1,5 +1,7 @@
 import sys
 import os
+import re
+from datetime import datetime
 from arcpy import mapping
 from openpyxl import Workbook
 import logging
@@ -10,18 +12,20 @@ logger = logging.getLogger(__name__)
 HEADERS = ["Name", "Data Source", "Layer Type", "Verified?", "Loaded?", "SDE Name", "SDE Conn",
            "Livelink Link", "Definition Query", "Description"]
 
-LDRV_LL_PATHS = [{"LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
-                   "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33642312&objAction=browse&viewType=1"
-                  }, {
-                    "LDrv": "L:\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
-                    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33642312&objAction=browse&viewType=1"
-                  }, {
-                    "LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\Mozambique LNG\\",
-                    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33638511&objAction=browse&viewType=1"
-                  }, {
-                    "LDrv": "L:\\SharedData\\Houston\\Mozambique LNG\\",
-                    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33638511&objAction=browse&viewType=1"
-                  }]
+LDRV_LL_PATHS = [{
+    "LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
+    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33642312&objAction=browse&viewType=1"
+  }, {
+    "LDrv": "L:\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
+    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33642312&objAction=browse&viewType=1"
+  }, {
+    "LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\Mozambique LNG\\",
+    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33638511&objAction=browse&viewType=1"
+  }, {
+    "LDrv": "L:\\SharedData\\Houston\\Mozambique LNG\\",
+    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33638511&objAction=browse&viewType=1"
+  }]
+
 
 def find_Livelink_path(lDrvPath):
     for cvt in LDRV_LL_PATHS:
@@ -120,24 +124,49 @@ def scan_layers_in_mxd(mxdPath):
      return dsList
 
 
-def scan_mxd_in_folder(mxdFolder, xlsFolder):
+def scan_mxd_in_folder(mxdFolder, xlsFolder, date_filters):
+
+    # parse date filters
+    lower_date = None
+    upper_date = None
+    if date_filters is not None:
+        dfs = re.split('<', date_filters)
+        if len(dfs) == 2:
+            if dfs[0] is not None and len(dfs[0]) > 0:
+                lower_date = datetime.datetime.strptime(dfs[0], "%Y/%m/%d")
+            if dfs[1] is not None and len(dfs[1]) > 0:
+                upper_date = datetime.datetime.strptime(dfs[1], "%Y/%m/%d")
+
+    # walk through all files
     for root, dirs, files in os.walk(mxdFolder):
-        # walk through all files
         for fname in files:
             if fname.endswith(".mxd"):
-                 mxdPath = os.path.join(root, fname)
-                 print('\nThe mxd file: %s' % mxdPath)
-                 dsList = scan_layers_in_mxd(mxdPath)
-                 wbFolder = root.replace(mxdFolder, xlsFolder)
-                 if not os.path.exists(wbFolder):
-                     os.makedirs(wbFolder)
-                 wbFilePath = os.path.join(wbFolder, fname + ".xlsx")
-                 print('\nThe xlsx file: %s' % wbFilePath)
-                 write_to_workbook(wbFilePath, dsList)
+                mxdPath = os.path.join(root, fname)
+                modified_time = datetime.datetime.fromtimestamp(os.stat(mxdPath).st_mtime)
+                # check against the filter
+                is_filter_met = True
+                if lower_date is not None:
+                    is_filter_met = modified_time >= lower_date
+                if upper_date is not None:
+                    is_filter_met = is_filter_met and modified_time <= upper_date
+                # work on the mxd file
+                if is_filter_met == True:
+                    print('\nThe mxd file: %s' % mxdPath)
+                    dsList = scan_layers_in_mxd(mxdPath)
+                    wbFolder = root.replace(mxdFolder, xlsFolder)
+                    if not os.path.exists(wbFolder):
+                        os.makedirs(wbFolder)
+                    wbFilePath = os.path.join(wbFolder, fname + ".xlsx")
+                    print('\nThe xlsx file: %s' % wbFilePath)
+                    write_to_workbook(wbFilePath, dsList)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("scan_mxds mxd_folder xls_folder")
+    if len(sys.argv) < 3 and len(sys.argv) > 4:
+        print("scan_mxds mxd_folder xls_folder [date_filter ex. 2016/2/19<]")
     else:
-        scan_mxd_in_folder(sys.argv[1], sys.argv[2])
+        date_filters = None
+        if len(sys.argv) == 4:
+            date_filters = sys.argv[3]
+        scan_mxd_in_folder(sys.argv[1], sys.argv[2], date_filters)
+
