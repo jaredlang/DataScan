@@ -105,17 +105,17 @@ DATA_CATEGORIES = [{
 }]
 
 WORD_SHORTHANDS = [{
+    "Key": "Archae",
+    "Name": "Archaelogical"
+}, {
     "Key": "ADRO",
     "Name": "Aerodrome"
 }, {
-    "Key": "",
+    "Key": "", # omit
     "Name": "Area"
 }, {
     "Key": "Lyt",
     "Name": "Layout"
-}, {
-    "Key": "Ln",
-    "Name": "Line"
 }, {
     "Key": "Bndy",
     "Name": "Boundary"
@@ -126,14 +126,44 @@ WORD_SHORTHANDS = [{
     "Key": "Coord",
     "Name": "Coordinates"
 }, {
+    "Key": "RefPt",
+    "Name": "ReferencePt"
+}, {
+    "Key": "RefPt",
+    "Name": "ReferencePts"
+}, {
+    "Key": "GeoRef",
+    "Name": "Georeferenced"
+}, {
     "Key": "Crdr",
     "Name": "Corridor"
 }, {
-    "Key": "Ctr",
+    "Key": "Ctur",
     "Name": "Contour"
+}, {
+    "Key": "Ctur5m",
+    "Name": "Contours5m"
+}, {
+    "Key": "Ctur1m",
+    "Name": "Contours1m"
+}, {
+    "Key": "5mCtur",
+    "Name": "5mContour"
+}, {
+    "Key": "5mCtur",
+    "Name": "5mContours"
+}, {
+    "Key": "1mCtur",
+    "Name": "1mContour"
+}, {
+    "Key": "1mCtur",
+    "Name": "1mContours"
 }, {
     "Key": "Cesn",
     "Name": "Concession"
+}, {
+    "Key": "Const",
+    "Name": "Construction"
 }, {
     "Key": "Conti",
     "Name": "Continental"
@@ -146,6 +176,9 @@ WORD_SHORTHANDS = [{
 }, {
     "Key": "Drg",
     "Name": "Dredge"
+}, {
+    "Key": "DrgDspo",
+    "Name": "DredgeDisposal"
 }, {
     "Key": "Fac",
     "Name": "Facilities"
@@ -165,8 +198,14 @@ WORD_SHORTHANDS = [{
     "Key": "Opt",
     "Name": "Option"
 }, {
+    "Key": "Opt1",
+    "Name": "Option1"
+}, {
     "Key": "Otln",
     "Name": "Outline"
+}, {
+    "Key": "RainMntr",
+    "Name": "RainMonitoring"
 }, {
     "Key": "PB",
     "Name": "PalmaBay"
@@ -174,11 +213,26 @@ WORD_SHORTHANDS = [{
     "Key": "Pt",
     "Name": "Point"
 }, {
+    "Key": "Pt",
+    "Name": "Points"
+}, {
     "Key": "Ln",
     "Name": "Line"
 }, {
+    "Key": "Ln",
+    "Name": "Lines"
+}, {
     "Key": "PR",
     "Name": "Prosperidade"
+}, {
+    "Key": "GfnoPLN",
+    "Name": "GolfinhoPipeline"
+}, {
+    "Key": "MbaPLN",
+    "Name": "MambaPipeline"
+}, {
+    "Key": "PioCmp",
+    "Name": "PioneerCamp"
 }, {
     "Key": "PB",
     "Name": "PalmaBay"
@@ -210,14 +264,29 @@ WORD_SHORTHANDS = [{
     "Key": "Bch",
     "Name": "Beach"
 }, {
+    "Key": "Dev",
+    "Name": "Development"
+}, {
+    "Key": "Deply",
+    "Name": "Deployment"
+}, {
     "Key": "Ldg",
     "Name": "Landing"
 }, {
     "Key": "Dspo",
     "Name": "Disposal"
 }, {
+    "Key": "DspoArea",
+    "Name": "DisposalArea"
+}, {
     "Key": "Pote",
     "Name": "Potential"
+}, {
+    "Key": "Rd",
+    "Name": "Road"
+}, {
+    "Key": "Rd",
+    "Name": "Roads"
 }, {
     "Key": "Term",
     "Name": "Terminal"
@@ -228,11 +297,26 @@ WORD_SHORTHANDS = [{
     "Key": "Rplc",
     "Name": "Replacement"
 }, {
+    "Key": "RplcLand",
+    "Name": "ReplacementLand"
+}, {
+    "Key": "RplcVlg",
+    "Name": "ReplacementVillage"
+}, {
+    "Key": "VegiClear",
+    "Name": "VegetationClearance"
+}, {
+    "Key": "Moz",
+    "Name": "Mozambique"
+}, {
     "Key": "Proj",
     "Name": "Project"
 }, {
     "Key": "Indu",
     "Name": "Industrial"
+}, {
+    "Key": "Intl",
+    "Name": "International"
 }, {
     "Key": "Sec",
     "Name": "Section"
