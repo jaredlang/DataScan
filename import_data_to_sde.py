@@ -1,5 +1,6 @@
 import sys
 import os
+import xml.etree.ElementTree as ET
 from arcpy import mapping
 from openpyxl import Workbook
 from openpyxl import load_workbook
@@ -8,334 +9,56 @@ import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-HEADERS = ["Name", "Data Source", "Layer Type", "Verified?", "Loaded?", "SDE Name", "SDE Conn",
-           "Livelink Link", "Definition Query", "Description"]
+HEADERS = []
+HEADERS_FOR_UPDATE = []
 
-HEADERS_FOR_UPDATE = ["Loaded?", "SDE Name", "SDE Conn"]
+DATA_SOURCES = []
+DATA_TARGETS = []
 
-DATA_SOURCES = [{
-        "LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
-        "Source": "MOZGIS"
-    }, {
-        "LDrv": "L:\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
-        "Source": "MOZGIS"
-    }, {
-        "LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\Mozambique LNG\\",
-        "Source": "LNG"
-    }, {
-        "LDrv": "L:\\SharedData\\Houston\\Mozambique LNG\\",
-        "Source": "LNG"
-    }, {
-        "LDrv": "\\\\anadarko.com\\expdata\\Houston\\gngdata\\raster_depot",
-        "Source": "Raster_Depot"
-    }]
+DATA_CATEGORIES = []
+WORD_SHORTHANDS = []
 
-DATA_TARGETS = [{
-        "Connection": r"C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_GIS.sde",
-        "Target": "MOZGIS"
-    }, {
-        "Connection": r"C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_LNG.sde",
-        "Target": "LNG"
-    }]
+def load_config(configFile):
+    tree = ET.parse(configFile)
+    root = tree.getroot()
 
+    for child in root.iter('header'):
+        HEADERS.append(child.attrib['name'])
+        if 'update' in child.attrib.keys() and child.attrib['update'] == 'Y':
+            HEADERS_FOR_UPDATE.append(child.attrib['name'])
+    # print HEADERS
+    # print HEADERS_FOR_UPDATE
 
-DATA_CATEGORIES = [{
-    "Key": "BIO",
-    "Name": "BIOLOGICAL"
-}, {
-    "Key": "BND",
-    "Name": "BOUND"
-}, {
-    "Key": "ELV",
-    "Name": "BATHY"
-}, {
-    "Key": "ELV",
-    "Name": "ELEV"
-}, {
-    "Key": "ELEV",
-    "Name": "ELEV"
-}, {
-    "Key": "FAU",
-    "Name": "FAULTS"
-}, {
-    "Key": "GEOL",
-    "Name": "GEOLOGY"
-}, {
-    "Key": "GET",
-    "Name": "GEOTECH"
-}, {
-    "Key": "GET",
-    "Name": "GEOTECH"
-}, {
-    "Key": "GPH",
-    "Name": "GEOPHYSICS"
-}, {
-    "Key": "HYD",
-    "Name": "HYDRO"
-}, {
-    "Key": "HYD",
-    "Name": "HYDROLOGY"
-}, {
-    "Key": "INF",
-    "Name": "INFRASTRUCT"
-}, {
-    "Key": "LAND",
-    "Name": "LAND"
-}, {
-    "Key": "LSE",
-    "Name": "LEASE"
-}, {
-    "Key": "REF",
-    "Name": "REFERENCE"
-}, {
-    "Key": "STR",
-    "Name": "STRUCT"
-}, {
-    "Key": "TRN",
-    "Name": "TRANS"
-}, {
-    "Key": "TRAN",
-    "Name": "TRANS"
-}, {
-    "Key": "VEN",
-    "Name": "VENDOR"
-}, {
-    "Key": "WELL",
-    "Name": "WELL"
-}]
+    for child in root.iter('source'):
+        DATA_SOURCES.append({
+            'name':child.attrib['name'],
+            'Source':child.attrib['name'],
+            'LDrv':child.attrib['path']
+        })
+    # print DATA_SOURCES
 
-WORD_SHORTHANDS = [{
-    "Key": "Archae",
-    "Name": "Archaelogical"
-}, {
-    "Key": "ADRO",
-    "Name": "Aerodrome"
-}, {
-    "Key": "", # omit
-    "Name": "Area"
-}, {
-    "Key": "Lyt",
-    "Name": "Layout"
-}, {
-    "Key": "Bndy",
-    "Name": "Boundary"
-}, {
-    "Key": "Coord",
-    "Name": "Coordinate"
-}, {
-    "Key": "Coord",
-    "Name": "Coordinates"
-}, {
-    "Key": "RefPt",
-    "Name": "ReferencePt"
-}, {
-    "Key": "RefPt",
-    "Name": "ReferencePts"
-}, {
-    "Key": "GeoRef",
-    "Name": "Georeferenced"
-}, {
-    "Key": "Crdr",
-    "Name": "Corridor"
-}, {
-    "Key": "Ctur",
-    "Name": "Contour"
-}, {
-    "Key": "Ctur5m",
-    "Name": "Contours5m"
-}, {
-    "Key": "Ctur1m",
-    "Name": "Contours1m"
-}, {
-    "Key": "5mCtur",
-    "Name": "5mContour"
-}, {
-    "Key": "5mCtur",
-    "Name": "5mContours"
-}, {
-    "Key": "1mCtur",
-    "Name": "1mContour"
-}, {
-    "Key": "1mCtur",
-    "Name": "1mContours"
-}, {
-    "Key": "Cesn",
-    "Name": "Concession"
-}, {
-    "Key": "Const",
-    "Name": "Construction"
-}, {
-    "Key": "Conti",
-    "Name": "Continental"
-}, {
-    "Key": "Charz",
-    "Name": "Characterization"
-}, {
-    "Key": "Ctlg",
-    "Name": "Catalog"
-}, {
-    "Key": "Drg",
-    "Name": "Dredge"
-}, {
-    "Key": "DrgDspo",
-    "Name": "DredgeDisposal"
-}, {
-    "Key": "Fac",
-    "Name": "Facilities"
-}, {
-    "Key": "GeoPhy",
-    "Name": "Geophysical"
-}, {
-    "Key": "GF",
-    "Name": "Golfinho"
-}, {
-    "Key": "Ofld",
-    "Name": "Offloading"
-}, {
-    "Key": "Opn",
-    "Name": "Operation"
-}, {
-    "Key": "Opt",
-    "Name": "Option"
-}, {
-    "Key": "Opt1",
-    "Name": "Option1"
-}, {
-    "Key": "Otln",
-    "Name": "Outline"
-}, {
-    "Key": "RainMntr",
-    "Name": "RainMonitoring"
-}, {
-    "Key": "PB",
-    "Name": "PalmaBay"
-}, {
-    "Key": "Pt",
-    "Name": "Point"
-}, {
-    "Key": "Pt",
-    "Name": "Points"
-}, {
-    "Key": "Ln",
-    "Name": "Line"
-}, {
-    "Key": "Ln",
-    "Name": "Lines"
-}, {
-    "Key": "PR",
-    "Name": "Prosperidade"
-}, {
-    "Key": "GfnoPLN",
-    "Name": "GolfinhoPipeline"
-}, {
-    "Key": "MbaPLN",
-    "Name": "MambaPipeline"
-}, {
-    "Key": "PioCmp",
-    "Name": "PioneerCamp"
-}, {
-    "Key": "PB",
-    "Name": "PalmaBay"
-}, {
-    "Key": "PLN",
-    "Name": "Pipeline"
-}, {
-    "Key": "Espm",
-    "Name": "Escarpment"
-}, {
-    "Key": "MB",
-    "Name": "Mamba"
-}, {
-    "Key": "Prop",
-    "Name": "Proposed"
-}, {
-    "Key": "Onsh",
-    "Name": "Onshore"
-}, {
-    "Key": "Ofsh",
-    "Name": "Offshore"
-}, {
-    "Key": "Rst",
-    "Name": "Resettlement"
-}, {
-    "Key": "Alt",
-    "Name": "Alternate"
-}, {
-    "Key": "Bch",
-    "Name": "Beach"
-}, {
-    "Key": "Dev",
-    "Name": "Development"
-}, {
-    "Key": "Deply",
-    "Name": "Deployment"
-}, {
-    "Key": "Ldg",
-    "Name": "Landing"
-}, {
-    "Key": "Dspo",
-    "Name": "Disposal"
-}, {
-    "Key": "DspoArea",
-    "Name": "DisposalArea"
-}, {
-    "Key": "Pote",
-    "Name": "Potential"
-}, {
-    "Key": "Rd",
-    "Name": "Road"
-}, {
-    "Key": "Rd",
-    "Name": "Roads"
-}, {
-    "Key": "Term",
-    "Name": "Terminal"
-}, {
-    "Key": "Vlg",
-    "Name": "Village"
-}, {
-    "Key": "Rplc",
-    "Name": "Replacement"
-}, {
-    "Key": "RplcLand",
-    "Name": "ReplacementLand"
-}, {
-    "Key": "RplcVlg",
-    "Name": "ReplacementVillage"
-}, {
-    "Key": "VegiClear",
-    "Name": "VegetationClearance"
-}, {
-    "Key": "Moz",
-    "Name": "Mozambique"
-}, {
-    "Key": "Proj",
-    "Name": "Project"
-}, {
-    "Key": "Indu",
-    "Name": "Industrial"
-}, {
-    "Key": "Intl",
-    "Name": "International"
-}, {
-    "Key": "Sec",
-    "Name": "Section"
-}, {
-    "Key": "Stg",
-    "Name": "Storage"
-}, {
-    "Key": "Vtx",
-    "Name": "Vertices"
-}, {
-    "Key": "Vtx",
-    "Name": "Vertex"
-}, {
-    "Key": "Zn",
-    "Name": "Zone"
-}, {
-    "Key": "Zn",
-    "Name": "Zones"
-}]
+    for child in root.iter('target'):
+        target = {}
+        target['name'] = 'MOZGIS'
+        for sc in child:
+            target[sc.tag] = sc.text
+            DATA_TARGETS.append(target)
+    # print DATA_TARGETS
+
+    for child in root.iter('dataCategory'):
+        DATA_CATEGORIES.append({
+            'Key':child.attrib['key'],
+            'Name':child.attrib['name']
+        })
+    # print DATA_CATEGORIES
+
+    for child in root.iter('shortHand'):
+        WORD_SHORTHANDS.append({
+            'Key':child.attrib['key'],
+            'Name':child.attrib['name'],
+            'Type':child.attrib['type']
+        })
+    # print WORD_SHORTHANDS
 
 
 def get_source_type(lDrvPath):
@@ -345,10 +68,17 @@ def get_source_type(lDrvPath):
     return None
 
 
-def get_target_connection(target):
+def get_sde_connection(target):
     for cvt in DATA_TARGETS:
-        if cvt["Target"] == target:
-            return cvt["Connection"]
+        if cvt["name"] == target:
+            return cvt["sdeConn"]
+    return None
+
+
+def get_raster_connection(target):
+    for cvt in DATA_TARGETS:
+        if cvt["name"] == target:
+            return cvt["rasterDepot"]
     return None
 
 
@@ -458,7 +188,7 @@ def load_layers_in_xls(wbPath, test):
         if ds["Loaded?"] not in ["LOADED", 'EXIST']:
             if ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
                 if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
-                    tgt_conn = get_target_connection(get_source_type(ds["Data Source"]))
+                    tgt_conn = get_sde_connection(get_source_type(ds["Data Source"]))
                     if tgt_conn is not None:
                         ds["SDE Conn"] = tgt_conn
                         if ds["SDE Name"] is None:
@@ -518,11 +248,15 @@ def load_layers_in_folder(xlsFolder, test):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2 and len(sys.argv) > 3:
-        print("import_data_to_sde xls_folder [test]")
+    if len(sys.argv) < 2 and len(sys.argv) > 4:
+        print("import_data_to_sde xls_folder [test] [config_file]")
     else:
         test = None
         if len(sys.argv) == 3:
             test = sys.argv[2]
+        config_file = r'H:\MXD_Scan\config.xml'
+        if len(sys.argv) == 4:
+            config_file = sys.argv[3]
+        load_config(config_file)
         load_layers_in_folder(sys.argv[1], test)
 

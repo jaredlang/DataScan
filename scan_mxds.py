@@ -1,6 +1,7 @@
 import sys
 import os
 import re
+import xml.etree.ElementTree as ET
 from datetime import datetime
 from arcpy import mapping
 from openpyxl import Workbook
@@ -9,22 +10,47 @@ import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-HEADERS = ["Name", "Data Source", "Layer Type", "Verified?", "Loaded?", "SDE Name", "SDE Conn",
-           "Livelink Link", "Definition Query", "Description"]
+HEADERS = []
 
-LDRV_LL_PATHS = [{
-    "LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
-    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33642312&objAction=browse&viewType=1"
-  }, {
-    "LDrv": "L:\\SharedData\\Houston\\IntlDeepW\\MOZAMBIQUE\\MOZGIS\\",
-    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33642312&objAction=browse&viewType=1"
-  }, {
-    "LDrv": "\\\\anadarko.com\\world\\SharedData\\Houston\\Mozambique LNG\\",
-    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33638511&objAction=browse&viewType=1"
-  }, {
-    "LDrv": "L:\\SharedData\\Houston\\Mozambique LNG\\",
-    "LL": "http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&objId=33638511&objAction=browse&viewType=1"
-  }]
+DATA_SOURCES = []
+DATA_TARGETS = []
+
+LDRV_LL_PATHS = []
+
+
+def load_config(configFile):
+    tree = ET.parse(configFile)
+    root = tree.getroot()
+
+    for child in root.iter('header'):
+        HEADERS.append(child.attrib['name'])
+    # print HEADERS
+
+    for child in root.iter('source'):
+        DATA_SOURCES.append({
+            'name':child.attrib['name'],
+            'Source':child.attrib['name'],
+            'LDrv':child.attrib['path']
+        })
+    # print DATA_SOURCES
+
+    for child in root.iter('target'):
+        target = {}
+        target['name'] = 'MOZGIS'
+        for sc in child:
+            target[sc.tag] = sc.text
+            DATA_TARGETS.append(target)
+    # print DATA_TARGETS
+
+    for src in DATA_SOURCES:
+        for tgt in DATA_TARGETS:
+            if src['name'] == tgt['name']:
+                LDRV_LL_PATHS.append({
+                    'Name':src['name'],
+                    'LDrv':src['LDrv'],
+                    'LL':tgt['livelink']
+                })
+    # print LDRV_LL_PATHS
 
 
 def find_Livelink_path(lDrvPath):
@@ -162,11 +188,15 @@ def scan_mxd_in_folder(mxdFolder, xlsFolder, date_filters):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3 and len(sys.argv) > 4:
-        print("scan_mxds mxd_folder xls_folder [date_filter ex. 2016/2/19<]")
+    if len(sys.argv) < 3 and len(sys.argv) > 5:
+        print("scan_mxds mxd_folder xls_folder [date_filter ex. 2016/2/19<]  [config_file]")
     else:
         date_filters = None
         if len(sys.argv) == 4:
             date_filters = sys.argv[3]
+        config_file = r'H:\MXD_Scan\config.xml'
+        if len(sys.argv) == 5:
+            config_file = sys.argv[4]
+        load_config(config_file)
         scan_mxd_in_folder(sys.argv[1], sys.argv[2], date_filters)
 

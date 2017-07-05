@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<config>
+	<headers>
+		<header name="Name"/>
+		<header name="Data Source"/>
+		<header name="Layer Type"/>
+		<header name="Verified?"/>
+		<header name="Loaded?" update="Y"/>
+		<header name="SDE Name" update="Y"/>
+		<header name="SDE Conn" update="Y"/>
+		<header name="Livelink Link"/>
+		<header name="Definition Query"/>
+		<header name="Description"/>
+	</headers>
+    <sources>
+        <source name="MOZGIS" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\"/>
+        <source name="MOZGIS" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\"/>
+        <source name="LNG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\"/>
+        <source name="LNG" path="L:\SharedData\Houston\Mozambique LNG\"/>
+        <source name="Raster_Depot" path="\\anadarko.com\expdata\Houston\gngdata\raster_depot\"/>
+    </sources>
+    <targets>
+        <target name="MOZGIS">
+            <sdeConn>C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_GIS.sde</sdeConn>
+            <rasterDepot>\\anadarko.com\expdata\Houston\gngdata\raster_depot1\Mozambique\MOZGIS\</rasterDepot>
+            <livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&amp;objId=33642312&amp;objAction=browse&amp;viewType=1</livelink>
+        </target>
+        <target name="LNG">
+            <sdeConn>C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_LNG.sde</sdeConn>
+            <rasterDepot>\\anadarko.com\expdata\Houston\gngdata\raster_depot1\Mozambique\MozambiqueLNG\</rasterDepot>
+            <livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll?func=ll&amp;objId=33638511&amp;objAction=browse&amp;viewType=1</livelink>
+        </target>
+    </targets>
+    <dataCategories>
+        <dataCategory key="BIO" name="BIOLOGICAL"/>
+        <dataCategory key="BND" name="BOUND"/>
+        <dataCategory key="ELV" name="BATHY"/>
+        <dataCategory key="ELV" name="ELEV"/>
+        <dataCategory key="ELEV" name="ELEV"/>
+        <dataCategory key="FAU" name="FAULTS"/>
+        <dataCategory key="GEOL" name="GEOLOGY"/>
+        <dataCategory key="GET" name="GEOTECH"/>
+        <dataCategory key="GPH" name="GEOPHYSICS"/>
+        <dataCategory key="HYD" name="HYDRO"/>
+        <dataCategory key="HYD" name="HYDROLOGY"/>
+        <dataCategory key="INF" name="INFRASTRUCT"/>
+        <dataCategory key="LAND" name="LAND"/>
+        <dataCategory key="LSE" name="LEASE"/>
+        <dataCategory key="REF" name="REFERENCE"/>
+        <dataCategory key="STR" name="STRUCT"/>
+        <dataCategory key="TRN" name="TRANS"/>
+        <dataCategory key="TRAN" name="TRANS"/>
+        <dataCategory key="VEN" name="VENDOR"/>
+        <dataCategory key="WELL" name="WELL"/>
+    </dataCategories>
+	<shortHands>
+		<shortHand key="Bndy" name="Boundary" type="GIS"/>
+		<shortHand key="Coord" name="Coordinate" type="GIS"/>
+		<shortHand key="Coord" name="Coordinates" type="GIS"/>
+		<shortHand key="RefPt" name="ReferencePt" type="GIS"/>
+		<shortHand key="RefPt" name="ReferencePts" type="GIS"/>
+		<shortHand key="GeoRef" name="Georeferenced" type="GIS"/>
+		<shortHand key="Otln" name="Outline" type="GIS"/>
+		<shortHand key="Crdr" name="Corridor" type="GIS"/>
+		<shortHand key="Ctur" name="Contour" type="GIS"/>
+		<shortHand key="Ctur5m" name="Contours5m" type="GIS"/>
+		<shortHand key="Ctur1m" name="Contours1m" type="GIS"/>
+		<shortHand key="5mCtur" name="5mContours" type="GIS"/>
+		<shortHand key="1mCtur" name="1mContours" type="GIS"/>
+		<shortHand key="Pt" name="Point" type="GIS"/>
+		<shortHand key="Pt" name="Points" type="GIS"/>
+		<shortHand key="Ln" name="Line" type="GIS"/>
+		<shortHand key="Ln" name="Lines" type="GIS"/>
+		<shortHand key="Vtx" name="Vertex" type="GIS"/>
+		<shortHand key="Vtx" name="Vertices" type="GIS"/>
+		<shortHand key="" name="Area" type="GIS"/> <!--omit--> 
+		
+		<shortHand key="GF" name="Golfinho" type="PRJ"/>
+		<shortHand key="PB" name="PalmaBay" type="PRJ"/>
+		<shortHand key="PR" name="Prosperidade" type="PRJ"/>
+		<shortHand key="MB" name="Mamba" type="PRJ"/>
+		<shortHand key="MZ" name="Mozambique" type="PRJ"/>
+		<shortHand key="GfnoPLN" name="GolfinhoPipeline" type="PRJ"/>
+		<shortHand key="MbaPLN" name="MambaPipeline" type="PRJ"/>
+		<shortHand key="PioCmp" name="PioneerCamp" type="PRJ"/>
+		<shortHand key="RainMntr" name="RainMonitoring" type="PRJ"/>
+		<shortHand key="Espm" name="Escarpment" type="PRJ"/>
+		<shortHand key="Rst" name="Resettlement" type="PRJ"/>
+		<shortHand key="Sec" name="Section" type="PRJ"/>
+		<shortHand key="Rplc" name="Replacement" type="PRJ"/>
+		<shortHand key="RplcLand" name="ReplacementLand" type="PRJ"/>
+		<shortHand key="RplcVlg" name="ReplacementVillage" type="PRJ"/>
+		<shortHand key="VegiClear" name="VegetationClearance" type="PRJ"/>
+		<shortHand key="Stg" name="Storage" type="PRJ"/>
+
+		<shortHand key="Archae" name="Archaelogical" type="ORD"/>
+		<shortHand key="ADRO" name="Aerodrome" type="ORD"/>
+		<shortHand key="Cesn" name="Concession" type="ORD"/>
+		<shortHand key="Const" name="Construction" type="ORD"/>
+		<shortHand key="Lyt" name="Layout" type="ORD"/>
+		<shortHand key="Conti" name="Continental" type="ORD"/>
+		<shortHand key="Charz" name="Characterization" type="ORD"/>
+		<shortHand key="Ctlg" name="Catalog" type="ORD"/>
+		<shortHand key="Drg" name="Dredge" type="ORD"/>
+		<shortHand key="DrgDspo" name="DredgeDisposal" type="ORD"/>
+		<shortHand key="Fac" name="Facility" type="ORD"/>
+		<shortHand key="Fac" name="Facilities" type="ORD"/>
+		<shortHand key="GeoPhy" name="Geophysical" type="ORD"/>
+		<shortHand key="Ofld" name="Offloading" type="ORD"/>
+		<shortHand key="Opn" name="Operation" type="ORD"/>
+		<shortHand key="Opt" name="Option" type="ORD"/>
+		<shortHand key="Opt1" name="Option1" type="ORD"/>
+		<shortHand key="PLN" name="Pipeline" type="ORD"/>
+		<shortHand key="Prop" name="Proposed" type="ORD"/>
+		<shortHand key="Onsh" name="Onshore" type="ORD"/>
+		<shortHand key="Ofsh" name="Offshore" type="ORD"/>		
+		<shortHand key="Alt" name="Alternate" type="ORD"/>
+		<shortHand key="Bch" name="Beach" type="ORD"/>
+		<shortHand key="Dev" name="Development" type="ORD"/>
+		<shortHand key="Dply" name="Deployment" type="ORD"/>
+		<shortHand key="Ldg" name="Landing" type="ORD"/>
+		<shortHand key="Dspo" name="Disposal" type="ORD"/>
+		<shortHand key="DspoArea" name="DisposalArea" type="ORD"/>
+		<shortHand key="Pote" name="Potential" type="ORD"/>
+		<shortHand key="Rd" name="Road" type="ORD"/>
+		<shortHand key="Rd" name="Roads" type="ORD"/>
+		<shortHand key="Term" name="Terminal" type="ORD"/>
+		<shortHand key="Vlg" name="Village" type="ORD"/>
+		<shortHand key="Prj" name="Project" type="ORD"/>
+		<shortHand key="Indu" name="Industrial" type="ORD"/>
+		<shortHand key="Intl" name="International" type="ORD"/>
+		<shortHand key="Zn" name="Zone" type="ORD"/>
+		<shortHand key="Zn" name="Zones" type="ORD"/>
+	</shortHands>
+</config>
