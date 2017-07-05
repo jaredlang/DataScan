@@ -46,11 +46,11 @@ DATA_CATEGORIES = [{
     "Key": "BND",
     "Name": "BOUND"
 }, {
-    "Key": "BND",
-    "Name": "BOUND"
-}, {
     "Key": "ELV",
     "Name": "BATHY"
+}, {
+    "Key": "ELV",
+    "Name": "ELEV"
 }, {
     "Key": "ELEV",
     "Name": "ELEV"
@@ -71,6 +71,9 @@ DATA_CATEGORIES = [{
     "Name": "GEOPHYSICS"
 }, {
     "Key": "HYD",
+    "Name": "HYDRO"
+}, {
+    "Key": "HYD",
     "Name": "HYDROLOGY"
 }, {
     "Key": "INF",
@@ -79,11 +82,17 @@ DATA_CATEGORIES = [{
     "Key": "LAND",
     "Name": "LAND"
 }, {
+    "Key": "LSE",
+    "Name": "LEASE"
+}, {
     "Key": "REF",
     "Name": "REFERENCE"
 }, {
     "Key": "STR",
     "Name": "STRUCT"
+}, {
+    "Key": "TRN",
+    "Name": "TRANS"
 }, {
     "Key": "TRAN",
     "Name": "TRANS"
@@ -201,7 +210,7 @@ WORD_SHORTHANDS = [{
     "Key": "Ldg",
     "Name": "Landing"
 }, {
-    "Key": "Dispo",
+    "Key": "Dspo",
     "Name": "Disposal"
 }, {
     "Key": "Pote",
@@ -269,6 +278,7 @@ def guess_target_name(lDrvPath):
         category = parts[0]
         dataFormat = parts[1]
         dataName = None
+        dataKeys = []
         if category not in ["WORKING"]:
             if dataFormat == 'gdb':
                 dataName = parts[-1]
@@ -279,11 +289,19 @@ def guess_target_name(lDrvPath):
                 return None
             for c in DATA_CATEGORIES:
                 if c["Name"] == category:
-                    dataKey = c["Key"]
-                    if dataName.find(dataKey) == 0:
-                        return dataName
-                    else:
-                        return dataKey + "_" + dataName
+                    dataKeys.append(c["Key"])
+            minKey = None
+            keyLen = 0
+            for k in dataKeys:
+                if dataName.find(k) == 0:
+                    return dataName
+                if minKey is None or keyLen > len(k):
+                    minKey = k
+                    keyLen = len(k)
+            if minKey is None:
+                return dataName
+            else:
+                return minKey + "_" + dataName
 
     return None
 
