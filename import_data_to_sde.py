@@ -123,6 +123,9 @@ WORD_SHORTHANDS = [{
     "Key": "Coord",
     "Name": "Coordinate"
 }, {
+    "Key": "Coord",
+    "Name": "Coordinates"
+}, {
     "Key": "Crdr",
     "Name": "Corridor"
 }, {
@@ -306,6 +309,24 @@ def guess_target_name(lDrvPath):
     return None
 
 
+def shorten_target_name(name, maxLen=30):
+    if name is None or len(name) <= maxLen:
+        return name
+    else:
+        nameParts = name.split("_")
+        shortNameParts = list(nameParts)
+        for p in range(0, len(nameParts)):
+            nmPart = nameParts[p].upper()
+            for sh in WORD_SHORTHANDS:
+                if sh["Name"].upper() == nmPart:
+                    shortNameParts[p] = sh["Key"]
+                    break
+            if len("_".join(shortNameParts)) <= maxLen:
+                break
+        shortNameParts = [e for e in shortNameParts if len(e) > 0]
+        return "_".join(shortNameParts)
+
+
 def read_from_workbook(wbPath, sheetName=None):
     wb = load_workbook(filename = wbPath, read_only=True)
     ws = wb["dataSource"]
@@ -359,6 +380,7 @@ def load_layers_in_xls(wbPath, test):
                         if ds["SDE Name"] is None:
                             ds["SDE Name"] = guess_target_name(ds["Data Source"])
                         if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
+                            ds["SDE Name"] = shorten_target_name(ds["SDE Name"])
                             if len(ds["SDE Name"]) > 30:
                                 print('%-60s%s' % (ds["Name"],"*** name too long [%s]" % ds["SDE Name"]))
                                 ds["Loaded?"] = "NAME TOO LONG"
@@ -366,19 +388,19 @@ def load_layers_in_xls(wbPath, test):
                                 print('%-60s%s' % (ds["Name"],"*** existing layer"))
                                 ds["Loaded?"] = 'EXIST'
                             else:
-                                    print('%-60s%s' % (ds["Name"],"loading to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
-                                    # upload the actual data
-                                    if test == "test":
-                                        print('%-60s%s' % (" ","^^^ TESTED"))
-                                        ds["Loaded?"] = 'TESTED'
-                                    else:
-                                        try:
-                                            arcpy.CopyFeatures_management(ds["Data Source"], tgt_conn + "\\" + ds["SDE Name"])
-                                            print('%-60s%s' % (" ","^^^ LOADED"))
-                                            ds["Loaded?"] = 'LOADED'
-                                        except:
-                                            print('%-60s%s' % (" ",">>> FAILED"))
-                                            ds["Loaded?"] = 'FAILED'
+                                print('%-60s%s' % (ds["Name"],"loading to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
+                                # upload the actual data
+                                if test == "test":
+                                    print('%-60s%s' % (" ","^^^ TESTED"))
+                                    ds["Loaded?"] = 'TESTED'
+                                else:
+                                    try:
+                                        arcpy.CopyFeatures_management(ds["Data Source"], tgt_conn + "\\" + ds["SDE Name"])
+                                        print('%-60s%s' % (" ","^^^ LOADED"))
+                                        ds["Loaded?"] = 'LOADED'
+                                    except:
+                                        print('%-60s%s' % (" ",">>> FAILED"))
+                                        ds["Loaded?"] = 'FAILED'
                         else:
                             print('%-60s%s' % (ds["Name"],"*** no target name"))
                             ds["Loaded?"] = "NO TARGET NAME"
