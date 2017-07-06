@@ -1,5 +1,6 @@
 import sys
 import os
+import tempfile
 import xml.etree.ElementTree as ET
 from arcpy import mapping
 from openpyxl import Workbook
@@ -8,6 +9,9 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
+AGS_HOME = arcpy.GetInstallInfo("Desktop")["InstallDir"]
+METADATA_TRANSLATOR = os.path.join(AGS_HOME, r'Metadata/Translator/ARCGIS2FGDC.xml')
 
 HEADERS = []
 HEADERS_FOR_UPDATE = []
@@ -60,6 +64,8 @@ def load_config(configFile):
         })
     # print WORD_SHORTHANDS
 
+    del root
+    del tree
 
 def get_source_type(lDrvPath):
     for cvt in DATA_SOURCES:
@@ -182,6 +188,58 @@ def update_status_in_workbook(wbPath, dsList, sheetName=None):
     del wb
 
 
+def update_sde_metadata(sdeFC, srcFC):
+
+    TEMP_DIR = tempfile.gettempdir()
+    metadataFile = os.path.join(TEMP_DIR, os.path.basename(sdeFC) + '-metadata.xml')
+    migrationText = "- Migrated from the L Drive (%s)" % srcFC
+
+    if os.path.exists(metadataFile):
+        os.remove(metadataFile)
+
+    # A- export the medata from SDE feature class
+    # print 'exporting the metadata of %s to %s' % (sdeFC, metadataFile)
+    arcpy.ExportMetadata_conversion(
+    	Source_Metadata=sdeFC,
+    	Translator=METADATA_TRANSLATOR,
+    	Output_File=metadataFile
+    )
+
+    # B- modify metadata
+    # print 'modifying the metadata file [%s]' % (metadataFile)
+    tree = ET.parse(metadataFile)
+    root = tree.getroot()
+    idinfo = root.find('idinfo')
+    dspt = idinfo.find('descript')
+    # B1- add the element
+    if dspt is None:
+        dspt = ET.SubElement(idinfo, 'descript')
+        ET.SubElement(dspt, 'abstract')
+    else:
+        abstract = dspt.find('abstract')
+        if abstract is None:
+            ET.SubElement(dspt, 'abstract')
+    # B2- modify the element text
+    abstract = dspt.find('abstract')
+    if abstract.text is None:
+        abstract.text = migrationText
+    elif abstract.text.find(migrationText) == -1:
+        abstract.text = abstract.text + migrationText
+
+    tree.write(metadataFile)
+
+    # C- import the modified metadata back to SDE feature class
+    # print 'importing the metadata file [%s] to %s' % (metadataFile, sdeFC)
+    arcpy.ImportMetadata_conversion(
+    	Source_Metadata=metadataFile,
+    	Import_Type="FROM_FGDC",
+    	Target_Metadata=sdeFC,
+    	Enable_automatic_updates="ENABLED"
+    )
+
+    # print 'The metadata of %s is updated' % sdeFC
+
+
 def load_layers_in_xls(wbPath, test):
     dsList = read_from_workbook(wbPath)
     for ds in dsList:
@@ -212,6 +270,10 @@ def load_layers_in_xls(wbPath, test):
                                         arcpy.CopyFeatures_management(ds["Data Source"], tgt_conn + "\\" + ds["SDE Name"])
                                         print('%-60s%s' % (" ","^^^ LOADED"))
                                         ds["Loaded?"] = 'LOADED'
+
+                                        print('%-60s%s' % (ds["Name"],"updating SDE metadata of %s\\%s" % (tgt_conn, ds["SDE Name"])))
+                                        update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds["Data Source"])
+                                        print('%-60s%s' % (" ","^^^ METADATA UPDATED"))
                                     except:
                                         print('%-60s%s' % (" ",">>> FAILED"))
                                         ds["Loaded?"] = 'FAILED'
