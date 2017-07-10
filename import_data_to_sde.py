@@ -192,7 +192,7 @@ def update_sde_metadata(sdeFC, srcFC):
 
     TEMP_DIR = tempfile.gettempdir()
     metadataFile = os.path.join(TEMP_DIR, os.path.basename(sdeFC) + '-metadata.xml')
-    migrationText = "- Migrated from the L Drive (%s)" % srcFC
+    migrationText = " *** Migrated from the L Drive (%s)" % srcFC
 
     if os.path.exists(metadataFile):
         os.remove(metadataFile)
@@ -244,8 +244,39 @@ def load_layers_in_xls(wbPath, test):
     dsList = read_from_workbook(wbPath)
     for ds in dsList:
         if ds["Loaded?"] not in ["LOADED", 'EXIST']:
-            if ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
-                if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
+            if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
+                if ds["Layer Type"] is not None and ds["Layer Type"] == "RasterLayer":
+                    # find out the target workspace and create it if needed
+                    tgt_conn = get_raster_connection(get_source_type(ds["Data Source"]))
+                    if tgt_conn is not None:
+                        tgt_workspace = ds["Data Source"]
+                        for ds in DATA_SOURCES:
+                            tgt_workspace = tgt_workspace.replace(ds["LDrv"], tgt_conn)
+                        ds["SDE Conn"] = os.path.dirname(tgt_workspace)
+                        ds["SDE Name"] = os.path.basename(tgt_workspace)
+                        if os.path.exists(tgt_workspace):
+                            print('%-60s%s' % (ds["Name"],"*** existing layer"))
+                            ds["Loaded?"] = 'EXIST'
+                        else:
+                            try:
+                                if not os.path.exists(ds["SDE Conn"]):
+                                    os.makedirs(ds["SDE Conn"])
+                                # copy data to the target workspace
+                                if test == "test":
+                                    print('%-60s%s' % (" ","^^^ TESTED"))
+                                    ds["Loaded?"] = 'TESTED'
+                                else:
+                                    try:
+                                        arcpy.CopyRaster_management(in_raster=ds["Data Source"], out_rasterdataset=tgt_workspace)
+                                        print('%-60s%s' % (" ","^^^ LOADED"))
+                                        ds["Loaded?"] = 'LOADED'
+                                    except:
+                                        print('%-60s%s' % (" ",">>> FAILED"))
+                                        ds["Loaded?"] = 'FAILED'
+                            except:
+                                print('%-60s%s' % (" ",">>> FAILED"))
+                                ds["Loaded?"] = 'FAILED'
+                elif ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
                     tgt_conn = get_sde_connection(get_source_type(ds["Data Source"]))
                     if tgt_conn is not None:
                         ds["SDE Conn"] = tgt_conn
@@ -284,11 +315,11 @@ def load_layers_in_xls(wbPath, test):
                         print('%-60s%s' % (ds["Name"],"*** no target SDE"))
                         ds["Loaded?"] = "NO TARGET SDE"
                 else:
-                    print('%-60s%s' % (ds["Name"],"*** invalid layer"))
-                    ds["Loaded?"] = "INVALID"
+                    print('%-60s%s' % (ds["Name"],"*** non-feature layer"))
+                    ds["Loaded?"] = "NON-FEATURE"
             else:
-                print('%-60s%s' % (ds["Name"],"*** non-feature layer"))
-                ds["Loaded?"] = "NON-FEATURE"
+                print('%-60s%s' % (ds["Name"],"*** invalid layer"))
+                ds["Loaded?"] = "INVALID"
         else:
             print('%-60s%s' % (ds["Name"],"*** existing layer"))
             # ds["Loaded?"] = 'EXIST'
