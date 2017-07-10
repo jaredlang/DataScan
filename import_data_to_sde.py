@@ -315,8 +315,8 @@ def load_layers_in_xls(wbPath, test):
                         print('%-60s%s' % (ds["Name"],"*** no target SDE"))
                         ds["Loaded?"] = "NO TARGET SDE"
                 else:
-                    print('%-60s%s' % (ds["Name"],"*** non-feature layer"))
-                    ds["Loaded?"] = "NON-FEATURE"
+                    print('%-60s%s' % (ds["Name"],"*** not-supported layer"))
+                    ds["Loaded?"] = "NOT SUPPORTED"
             else:
                 print('%-60s%s' % (ds["Name"],"*** invalid layer"))
                 ds["Loaded?"] = "INVALID"
