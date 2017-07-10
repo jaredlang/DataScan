@@ -315,8 +315,8 @@ def load_layers_in_xls(wbPath, test):
                         print('%-60s%s' % (ds["Name"],"*** no target SDE"))
                         ds["Loaded?"] = "NO TARGET SDE"
                 else:
-                    print('%-60s%s' % (ds["Name"],"*** not-supported layer"))
-                    ds["Loaded?"] = "NOT SUPPORTED"
+                    print('%-60s%s' % (ds["Name"],"*** out of migration scope"))
+                    ds["Loaded?"] = "NOT IN SCOPE"
             else:
                 print('%-60s%s' % (ds["Name"],"*** invalid layer"))
                 ds["Loaded?"] = "INVALID"
