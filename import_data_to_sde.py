@@ -43,10 +43,10 @@ def load_config(configFile):
 
     for child in root.iter('target'):
         target = {}
-        target['name'] = 'MOZGIS'
+        target['name'] = child.attrib["name"]
         for sc in child:
             target[sc.tag] = sc.text
-            DATA_TARGETS.append(target)
+        DATA_TARGETS.append(target)
     # print DATA_TARGETS
 
     for child in root.iter('dataCategory'):
@@ -91,12 +91,13 @@ def get_raster_connection(target):
 def guess_target_name(lDrvPath):
     target_source = get_source_type(lDrvPath)
     if target_source == "LNG":
+        # TODO: come up with a naming convention for the LNG vendor data
         return None
     elif target_source == "MOZGIS":
         # parse the path
-        for ds in DATA_SOURCES:
-            if ds["Source"] == "MOZGIS":
-                lDrvPath = lDrvPath.replace(ds["LDrv"], "")
+        for src in DATA_SOURCES:
+            if src["Source"] == "MOZGIS":
+                lDrvPath = lDrvPath.replace(src["LDrv"], "")
         parts = lDrvPath.split("\\")
         category = parts[0]
         dataFormat = parts[1]
@@ -250,8 +251,8 @@ def load_layers_in_xls(wbPath, test):
                     tgt_conn = get_raster_connection(get_source_type(ds["Data Source"]))
                     if tgt_conn is not None:
                         tgt_workspace = ds["Data Source"]
-                        for ds in DATA_SOURCES:
-                            tgt_workspace = tgt_workspace.replace(ds["LDrv"], tgt_conn)
+                        for src in DATA_SOURCES:
+                            tgt_workspace = tgt_workspace.replace(src["LDrv"], tgt_conn)
                         ds["SDE Conn"] = os.path.dirname(tgt_workspace)
                         ds["SDE Name"] = os.path.basename(tgt_workspace)
                         if os.path.exists(tgt_workspace):
@@ -277,6 +278,8 @@ def load_layers_in_xls(wbPath, test):
                                 print('%-60s%s' % (" ",">>> FAILED"))
                                 ds["Loaded?"] = 'FAILED'
                 elif ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
+                    if get_source_type(ds["Data Source"]) == "LNG":
+                        print "Data Source = LNG"
                     tgt_conn = get_sde_connection(get_source_type(ds["Data Source"]))
                     if tgt_conn is not None:
                         ds["SDE Conn"] = tgt_conn
