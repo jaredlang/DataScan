@@ -189,11 +189,12 @@ def update_status_in_workbook(wbPath, dsList, sheetName=None):
     del wb
 
 
-def update_sde_metadata(sdeFC, srcFC):
+def update_sde_metadata(sdeFC, props, srcType):
 
     TEMP_DIR = tempfile.gettempdir()
     metadataFile = os.path.join(TEMP_DIR, os.path.basename(sdeFC) + '-metadata.xml')
-    migrationText = " *** Migrated from the L Drive (%s)" % srcFC
+    if srcType == "MOZGIS":
+        migrationText = " *** Migrated from the L Drive (%s)" % props["Data Source"]
 
     if os.path.exists(metadataFile):
         os.remove(metadataFile)
@@ -247,7 +248,7 @@ def load_layers_in_xls(wbPath, test):
         if ds["Loaded?"] not in ["LOADED", 'EXIST']:
             if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
                 if ds["Layer Type"] is not None and ds["Layer Type"] == "RasterLayer":
-                    # find out the target workspace and create it if needed
+                    # find out the target workspace
                     tgt_conn = get_raster_connection(get_source_type(ds["Data Source"]))
                     if tgt_conn is not None:
                         tgt_workspace = ds["Data Source"]
@@ -278,9 +279,8 @@ def load_layers_in_xls(wbPath, test):
                                 print('%-60s%s' % (" ",">>> FAILED"))
                                 ds["Loaded?"] = 'FAILED'
                 elif ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
-                    if get_source_type(ds["Data Source"]) == "LNG":
-                        print "Data Source = LNG"
-                    tgt_conn = get_sde_connection(get_source_type(ds["Data Source"]))
+                    srcType = get_source_type(ds["Data Source"])
+                    tgt_conn = get_sde_connection(srcType)
                     if tgt_conn is not None:
                         ds["SDE Conn"] = tgt_conn
                         if ds["SDE Name"] is None:
@@ -306,7 +306,7 @@ def load_layers_in_xls(wbPath, test):
                                         ds["Loaded?"] = 'LOADED'
 
                                         print('%-60s%s' % (ds["Name"],"updating SDE metadata of %s\\%s" % (tgt_conn, ds["SDE Name"])))
-                                        update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds["Data Source"])
+                                        update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds, srcType)
                                         print('%-60s%s' % (" ","^^^ METADATA UPDATED"))
                                     except:
                                         print('%-60s%s' % (" ",">>> FAILED"))
