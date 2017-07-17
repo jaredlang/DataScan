@@ -257,9 +257,9 @@ def load_layers_in_xls(wbPath, test):
                             tgt_workspace = tgt_workspace.replace(src["LDrv"], tgt_conn)
                         ds["SDE Conn"] = os.path.dirname(tgt_workspace)
                         ds["SDE Name"] = os.path.basename(tgt_workspace)
-                        if os.path.exists(tgt_workspace):
-                            print('%-60s%s' % (ds["Name"],"*** existing layer"))
-                            ds["Loaded?"] = 'EXIST'
+                        if os.path.exists(tgt_workspace) or arcpy.Exists(tgt_workspace):
+                                print('%-60s%s' % (ds["Name"],"*** existing layer"))
+                                ds["Loaded?"] = 'EXIST'
                         else:
                             # copy data to the target workspace
                             print('%-60s%s' % (ds["Name"],"loading to Raster Depot as %s" % tgt_workspace))
