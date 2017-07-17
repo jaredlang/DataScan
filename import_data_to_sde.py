@@ -1,6 +1,7 @@
 import sys
 import os
 import tempfile
+import shutil
 import xml.etree.ElementTree as ET
 from arcpy import mapping
 from openpyxl import Workbook
@@ -260,24 +261,29 @@ def load_layers_in_xls(wbPath, test):
                             print('%-60s%s' % (ds["Name"],"*** existing layer"))
                             ds["Loaded?"] = 'EXIST'
                         else:
-                            try:
-                                if not os.path.exists(ds["SDE Conn"]):
-                                    os.makedirs(ds["SDE Conn"])
-                                # copy data to the target workspace
-                                if test == "test":
-                                    print('%-60s%s' % (" ","^^^ TESTED"))
-                                    ds["Loaded?"] = 'TESTED'
+                            # copy data to the target workspace
+                            print('%-60s%s' % (ds["Name"],"loading to Raster Depot as %s" % tgt_workspace))
+                            if test == "test":
+                                print('%-60s%s' % (" ","^^^ TESTED"))
+                                ds["Loaded?"] = 'TESTED'
+                            else:
+                                if ds["SDE Conn"].lower().endswith('.gdb') == True:
+                                    # copy the whole GDB
+                                    if os.path.exists(ds["SDE Conn"]):
+                                        shutil.rmtree(ds["SDE Conn"])
+                                    # arcpy.Copy_management(os.path.dirname(ds["Data Source"]), ds["SDE Conn"])
+                                    shutil.copytree(os.path.dirname(ds["Data Source"]), ds["SDE Conn"])
                                 else:
                                     try:
+                                        if not os.path.exists(ds["SDE Conn"]):
+                                            os.makedirs(ds["SDE Conn"])
+                                        # copy the raster file set
                                         arcpy.CopyRaster_management(in_raster=ds["Data Source"], out_rasterdataset=tgt_workspace)
                                         print('%-60s%s' % (" ","^^^ LOADED"))
                                         ds["Loaded?"] = 'LOADED'
                                     except:
-                                        print('%-60s%s' % (" ",">>> FAILED"))
+                                        print('%-60s%s' % (" ",">>> FAILED to load data"))
                                         ds["Loaded?"] = 'FAILED'
-                            except:
-                                print('%-60s%s' % (" ",">>> FAILED"))
-                                ds["Loaded?"] = 'FAILED'
                 elif ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
                     srcType = get_source_type(ds["Data Source"])
                     tgt_conn = get_sde_connection(srcType)
@@ -309,7 +315,7 @@ def load_layers_in_xls(wbPath, test):
                                         update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds, srcType)
                                         print('%-60s%s' % (" ","^^^ METADATA UPDATED"))
                                     except:
-                                        print('%-60s%s' % (" ",">>> FAILED"))
+                                        print('%-60s%s' % (" ",">>> FAILED to load data"))
                                         ds["Loaded?"] = 'FAILED'
                         else:
                             print('%-60s%s' % (ds["Name"],"*** no target name"))
