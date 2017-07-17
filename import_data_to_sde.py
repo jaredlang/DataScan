@@ -246,92 +246,100 @@ def update_sde_metadata(sdeFC, props, srcType):
 def load_layers_in_xls(wbPath, test):
     dsList = read_from_workbook(wbPath)
     for ds in dsList:
-        if ds["Loaded?"] not in ["LOADED", 'EXIST']:
-            if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
-                if ds["Layer Type"] is not None and ds["Layer Type"] == "RasterLayer":
-                    # find out the target workspace
-                    tgt_conn = get_raster_connection(get_source_type(ds["Data Source"]))
-                    if tgt_conn is not None:
-                        tgt_workspace = ds["Data Source"]
-                        for src in DATA_SOURCES:
-                            tgt_workspace = tgt_workspace.replace(src["LDrv"], tgt_conn)
-                        ds["SDE Conn"] = os.path.dirname(tgt_workspace)
-                        ds["SDE Name"] = os.path.basename(tgt_workspace)
-                        if os.path.exists(tgt_workspace) or arcpy.Exists(tgt_workspace):
-                                print('%-60s%s' % (ds["Name"],"*** existing layer"))
-                                ds["Loaded?"] = 'EXIST'
-                        else:
-                            # copy data to the target workspace
-                            print('%-60s%s' % (ds["Name"],"loading to Raster Depot as %s" % tgt_workspace))
-                            if test == "test":
-                                print('%-60s%s' % (" ","^^^ TESTED"))
-                                ds["Loaded?"] = 'TESTED'
-                            else:
-                                if ds["SDE Conn"].lower().endswith('.gdb') == True:
-                                    # copy the whole GDB
-                                    if os.path.exists(ds["SDE Conn"]):
-                                        shutil.rmtree(ds["SDE Conn"])
-                                    # arcpy.Copy_management(os.path.dirname(ds["Data Source"]), ds["SDE Conn"])
-                                    shutil.copytree(os.path.dirname(ds["Data Source"]), ds["SDE Conn"])
-                                else:
-                                    try:
-                                        if not os.path.exists(ds["SDE Conn"]):
-                                            os.makedirs(ds["SDE Conn"])
-                                        # copy the raster file set
-                                        arcpy.CopyRaster_management(in_raster=ds["Data Source"], out_rasterdataset=tgt_workspace)
-                                        print('%-60s%s' % (" ","^^^ LOADED"))
-                                        ds["Loaded?"] = 'LOADED'
-                                    except:
-                                        print('%-60s%s' % (" ",">>> FAILED to load data"))
-                                        ds["Loaded?"] = 'FAILED'
-                elif ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
-                    srcType = get_source_type(ds["Data Source"])
-                    tgt_conn = get_sde_connection(srcType)
-                    if tgt_conn is not None:
-                        ds["SDE Conn"] = tgt_conn
-                        if ds["SDE Name"] is None:
-                            ds["SDE Name"] = guess_target_name(ds["Data Source"])
-                        if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
-                            ds["SDE Name"] = shorten_target_name(ds["SDE Name"])
-                            if len(ds["SDE Name"]) > 30:
-                                print('%-60s%s' % (ds["Name"],"*** name too long [%s]" % ds["SDE Name"]))
-                                ds["Loaded?"] = "NAME TOO LONG"
-                            elif arcpy.Exists(tgt_conn + "\\" + ds["SDE Name"]) == True:
+        srcType = get_source_type(ds["Data Source"])
+        if srcType is not None:
+            if ds["Loaded?"] not in ["LOADED", 'EXIST']:
+                if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
+                    if ds["Layer Type"] is not None and ds["Layer Type"] == "RasterLayer":
+                        # find out the target workspace
+                        tgt_conn = get_raster_connection(srcType)
+                        if tgt_conn is not None:
+                            tgt_workspace = ds["Data Source"]
+                            for src in DATA_SOURCES:
+                                tgt_workspace = tgt_workspace.replace(src["LDrv"], tgt_conn)
+                            ds["SDE Conn"] = os.path.dirname(tgt_workspace)
+                            ds["SDE Name"] = os.path.basename(tgt_workspace)
+                            if os.path.exists(tgt_workspace) or arcpy.Exists(tgt_workspace):
                                 print('%-60s%s' % (ds["Name"],"*** existing layer"))
                                 ds["Loaded?"] = 'EXIST'
                             else:
-                                print('%-60s%s' % (ds["Name"],"loading to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
-                                # upload the actual data
+                                # copy data to the target workspace
+                                print('%-60s%s' % (ds["Name"],"loading to Raster Depot as %s" % tgt_workspace))
                                 if test == "test":
                                     print('%-60s%s' % (" ","^^^ TESTED"))
                                     ds["Loaded?"] = 'TESTED'
                                 else:
-                                    try:
-                                        arcpy.CopyFeatures_management(ds["Data Source"], tgt_conn + "\\" + ds["SDE Name"])
-                                        print('%-60s%s' % (" ","^^^ LOADED"))
-                                        ds["Loaded?"] = 'LOADED'
-
-                                        print('%-60s%s' % (ds["Name"],"updating SDE metadata of %s\\%s" % (tgt_conn, ds["SDE Name"])))
-                                        update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds, srcType)
-                                        print('%-60s%s' % (" ","^^^ METADATA UPDATED"))
-                                    except:
-                                        print('%-60s%s' % (" ",">>> FAILED to load data"))
-                                        ds["Loaded?"] = 'FAILED'
+                                    if ds["SDE Conn"].lower().endswith('.gdb') == True:
+                                        # copy the whole GDB
+                                        if os.path.exists(ds["SDE Conn"]):
+                                            shutil.rmtree(ds["SDE Conn"])
+                                        # arcpy.Copy_management(os.path.dirname(ds["Data Source"]), ds["SDE Conn"])
+                                        shutil.copytree(os.path.dirname(ds["Data Source"]), ds["SDE Conn"])
+                                    else:
+                                        try:
+                                            if not os.path.exists(ds["SDE Conn"]):
+                                                os.makedirs(ds["SDE Conn"])
+                                            # copy the raster file set
+                                            arcpy.CopyRaster_management(in_raster=ds["Data Source"], out_rasterdataset=tgt_workspace)
+                                            print('%-60s%s' % (" ","^^^ LOADED"))
+                                            ds["Loaded?"] = 'LOADED'
+                                        except:
+                                            print('%-60s%s' % (" ",">>> FAILED to load data"))
+                                            ds["Loaded?"] = 'FAILED'
                         else:
-                            print('%-60s%s' % (ds["Name"],"*** no target name"))
-                            ds["Loaded?"] = "NO TARGET NAME"
+                            print('%-60s%s' % (ds["Name"],"*** no target store"))
+                            ds["Loaded?"] = "NO TARGET STORE"
+
+                    elif ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
+                        tgt_conn = get_sde_connection(srcType)
+                        if tgt_conn is not None:
+                            ds["SDE Conn"] = tgt_conn
+                            if ds["SDE Name"] is None:
+                                ds["SDE Name"] = guess_target_name(ds["Data Source"])
+                            if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
+                                ds["SDE Name"] = shorten_target_name(ds["SDE Name"])
+                                if len(ds["SDE Name"]) > 30:
+                                    print('%-60s%s' % (ds["Name"],"*** name too long [%s]" % ds["SDE Name"]))
+                                    ds["Loaded?"] = "NAME TOO LONG"
+                                elif arcpy.Exists(tgt_conn + "\\" + ds["SDE Name"]) == True:
+                                    print('%-60s%s' % (ds["Name"],"*** existing layer"))
+                                    ds["Loaded?"] = 'EXIST'
+                                else:
+                                    print('%-60s%s' % (ds["Name"],"loading to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
+                                    # upload the actual data
+                                    if test == "test":
+                                        print('%-60s%s' % (" ","^^^ TESTED"))
+                                        ds["Loaded?"] = 'TESTED'
+                                    else:
+                                        try:
+                                            arcpy.CopyFeatures_management(ds["Data Source"], tgt_conn + "\\" + ds["SDE Name"])
+                                            print('%-60s%s' % (" ","^^^ LOADED"))
+                                            ds["Loaded?"] = 'LOADED'
+
+                                            print('%-60s%s' % (ds["Name"],"updating SDE metadata of %s\\%s" % (tgt_conn, ds["SDE Name"])))
+                                            update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds, srcType)
+                                            print('%-60s%s' % (" ","^^^ METADATA UPDATED"))
+                                        except:
+                                            print('%-60s%s' % (" ",">>> FAILED to load data"))
+                                            ds["Loaded?"] = 'FAILED'
+                            else:
+                                print('%-60s%s' % (ds["Name"],"*** no target name"))
+                                ds["Loaded?"] = "NO TARGET NAME"
+                        else:
+                            print('%-60s%s' % (ds["Name"],"*** no target store"))
+                            ds["Loaded?"] = "NO TARGET STORE"
                     else:
-                        print('%-60s%s' % (ds["Name"],"*** no target SDE"))
-                        ds["Loaded?"] = "NO TARGET SDE"
+                        print('%-60s%s' % (ds["Name"],"*** unknown layer type"))
+                        ds["Loaded?"] = "UNKNOWN LAYER"
                 else:
-                    print('%-60s%s' % (ds["Name"],"*** out of migration scope"))
-                    ds["Loaded?"] = "NOT IN SCOPE"
+                    print('%-60s%s' % (ds["Name"],"*** invalid layer"))
+                    ds["Loaded?"] = "INVALID"
             else:
-                print('%-60s%s' % (ds["Name"],"*** invalid layer"))
-                ds["Loaded?"] = "INVALID"
+                print('%-60s%s' % (ds["Name"],"*** existing layer"))
+                # ds["Loaded?"] = 'EXIST'
         else:
-            print('%-60s%s' % (ds["Name"],"*** existing layer"))
-            # ds["Loaded?"] = 'EXIST'
+            print('%-60s%s' % (ds["Name"],"*** out of scope"))
+            ds["Loaded?"] = "NOT IN SCOPE"
 
     return dsList
 
