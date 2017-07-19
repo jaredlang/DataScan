@@ -145,7 +145,10 @@ def shorten_target_name(name, maxLen=30):
                     break
             if len("_".join(shortNameParts)) <= maxLen:
                 break
+        # remove empty ones
         shortNameParts = [e for e in shortNameParts if len(e) > 0]
+        # remove duplicate ones
+        shortNameParts = list(set(shortNameParts))
         return "_".join(shortNameParts)
 
 
