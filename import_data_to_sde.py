@@ -22,6 +22,7 @@ DATA_TARGETS = []
 
 DATA_CATEGORIES = []
 WORD_SHORTHANDS = []
+NAME_CHANGES = []
 
 def load_config(configFile):
     tree = ET.parse(configFile)
@@ -57,6 +58,14 @@ def load_config(configFile):
         })
     # print DATA_CATEGORIES
 
+    for child in root.iter('nameChange'):
+        NAME_CHANGES.append({
+            'Old':child.attrib['old'],
+            'New':child.attrib['new'],
+            'Type':child.attrib['type']
+        })
+    # print NAME_CHANGES
+
     for child in root.iter('shortHand'):
         WORD_SHORTHANDS.append({
             'Key':child.attrib['key'],
@@ -87,6 +96,13 @@ def get_raster_connection(target):
         if cvt["name"] == target:
             return cvt["rasterDepot"]
     return None
+
+
+def change_name(name):
+    for c in NAME_CHANGES:
+        if c["Old"] == name:
+            return c["New"]
+    return name
 
 
 def guess_target_name(lDrvPath):
@@ -148,8 +164,12 @@ def shorten_target_name(name, maxLen=30):
         # remove empty ones
         shortNameParts = [e for e in shortNameParts if len(e) > 0]
         # remove duplicate ones
-        shortNameParts = list(set(shortNameParts))
-        return "_".join(shortNameParts)
+        shortNameParts2 = []
+        for n in range(0, len(shortNameParts)-1):
+            if shortNameParts[n] != shortNameParts[n+1]:
+                shortNameParts2.append(shortNameParts[n])
+        shortNameParts2.append(shortNameParts[-1])
+        return "_".join(shortNameParts2)
 
 
 def read_from_workbook(wbPath, sheetName=None):
@@ -300,7 +320,9 @@ def load_layers_in_xls(wbPath, test):
                             if ds["SDE Name"] is None:
                                 ds["SDE Name"] = guess_target_name(ds["Data Source"])
                             if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
+                                ds["SDE Name"] = change_name(ds["SDE Name"])
                                 ds["SDE Name"] = shorten_target_name(ds["SDE Name"])
+                                ds["SDE Name"] = change_name(ds["SDE Name"])
                                 if len(ds["SDE Name"]) > 30:
                                     print('%-60s%s' % (ds["Name"],"*** name too long [%s]" % ds["SDE Name"]))
                                     ds["Loaded?"] = "NAME TOO LONG"
