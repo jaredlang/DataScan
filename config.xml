@@ -55,6 +55,7 @@
     </dataCategories>
 	<shortHands>
 		<shortHand key="Bndy" name="Boundary" type="GIS"/>
+		<shortHand key="Buf" name="Buffer" type="GIS"/> 
 		<shortHand key="Coord" name="Coordinate" type="GIS"/>
 		<shortHand key="Coord" name="Coordinates" type="GIS"/>
 		<shortHand key="RefPt" name="ReferencePt" type="GIS"/>
@@ -62,11 +63,17 @@
 		<shortHand key="GeoRef" name="Georeferenced" type="GIS"/>
 		<shortHand key="Otln" name="Outline" type="GIS"/>
 		<shortHand key="Crdr" name="Corridor" type="GIS"/>
+		<shortHand key="Ctd" name="centroid" type="GIS"/>
 		<shortHand key="Ctur" name="Contour" type="GIS"/>
 		<shortHand key="Ctur5m" name="Contours5m" type="GIS"/>
+		<shortHand key="Ctur5m" name="Contour5m" type="GIS"/>
 		<shortHand key="Ctur1m" name="Contours1m" type="GIS"/>
+		<shortHand key="Ctur1m" name="Contour1m" type="GIS"/>
+		<shortHand key="50mCtur" name="50mContours" type="GIS"/>
 		<shortHand key="5mCtur" name="5mContours" type="GIS"/>
+		<shortHand key="5mCtur" name="5mContour" type="GIS"/>
 		<shortHand key="1mCtur" name="1mContours" type="GIS"/>
+		<shortHand key="1mCtur" name="1mContour" type="GIS"/>
 		<shortHand key="Pt" name="Point" type="GIS"/>
 		<shortHand key="Pt" name="Points" type="GIS"/>
 		<shortHand key="Ln" name="Line" type="GIS"/>
@@ -74,7 +81,17 @@
 		<shortHand key="Vtx" name="Vertex" type="GIS"/>
 		<shortHand key="Vtx" name="Vertices" type="GIS"/>
 		<shortHand key="" name="Area" type="GIS"/> <!--omit--> 
+		<shortHand key="" name="Areas" type="GIS"/> <!--omit--> 
+		<shortHand key="" name="Map" type="GIS"/> <!--omit--> 
+		<shortHand key="" name="Maps" type="GIS"/> <!--omit--> 
+		<shortHand key="" name="Label" type="GIS"/> <!--omit--> 
+		<shortHand key="" name="Labels" type="GIS"/> <!--omit--> 
+		<shortHand key="S" name="South" type="GIS"/>
+		<shortHand key="N" name="North" type="GIS"/>
+		<shortHand key="W" name="West" type="GIS"/>
+		<shortHand key="E" name="East" type="GIS"/>
 		
+		<shortHand key="Afi" name="Afungi" type="PRJ"/>
 		<shortHand key="GF" name="Golfinho" type="PRJ"/>
 		<shortHand key="PB" name="PalmaBay" type="PRJ"/>
 		<shortHand key="PR" name="Prosperidade" type="PRJ"/>
@@ -87,16 +104,28 @@
 		<shortHand key="Espm" name="Escarpment" type="PRJ"/>
 		<shortHand key="Rst" name="Resettlement" type="PRJ"/>
 		<shortHand key="Sec" name="Section" type="PRJ"/>
+		<shortHand key="TZA" name="Tanzania" type="PRJ"/>
 		<shortHand key="Rplc" name="Replacement" type="PRJ"/>
 		<shortHand key="RplcLand" name="ReplacementLand" type="PRJ"/>
 		<shortHand key="RplcVlg" name="ReplacementVillage" type="PRJ"/>
-		<shortHand key="VegiClear" name="VegetationClearance" type="PRJ"/>
+		<shortHand key="VegiClr" name="VegetationClearance" type="PRJ"/>
 		<shortHand key="Stg" name="Storage" type="PRJ"/>
+		<shortHand key="Mar" name="Marine" type="PRJ"/>
+		<shortHand key="Dem" name="DeminingAreas" type="PRJ"/>
+		<shortHand key="Dem" name="Demining" type="PRJ"/>
+		<shortHand key="Ste" name="Sites" type="PRJ"/>
+		<shortHand key="PowLn" name="Powerline" type="PRJ"/>
 
 		<shortHand key="Archae" name="Archaelogical" type="ORD"/>
 		<shortHand key="ADRO" name="Aerodrome" type="ORD"/>
+		<shortHand key="Addl" name="Additional" type="ORD"/>
+		<shortHand key="Act" name="Activity" type="ORD"/> 		
+		<shortHand key="Act" name="Activities" type="ORD"/> 
 		<shortHand key="Cesn" name="Concession" type="ORD"/>
 		<shortHand key="Const" name="Construction" type="ORD"/>
+		<shortHand key="Compl" name="Completed" type="ORD"/>
+		<shortHand key="Compl" name="Complete" type="ORD"/>
+		<shortHand key="Compl" name="Completion" type="ORD"/>
 		<shortHand key="Lyt" name="Layout" type="ORD"/>
 		<shortHand key="Conti" name="Continental" type="ORD"/>
 		<shortHand key="Charz" name="Characterization" type="ORD"/>
@@ -105,6 +134,9 @@
 		<shortHand key="DrgDspo" name="DredgeDisposal" type="ORD"/>
 		<shortHand key="Fac" name="Facility" type="ORD"/>
 		<shortHand key="Fac" name="Facilities" type="ORD"/>
+		<shortHand key="" name="From" type="ORD"/>
+		<shortHand key="" name="Extracted" type="ORD"/>
+		<shortHand key="Exg" name="Existing" type="ORD"/>
 		<shortHand key="GeoPhy" name="Geophysical" type="ORD"/>
 		<shortHand key="Ofld" name="Offloading" type="ORD"/>
 		<shortHand key="Opn" name="Operation" type="ORD"/>
@@ -113,7 +145,7 @@
 		<shortHand key="PLN" name="Pipeline" type="ORD"/>
 		<shortHand key="Prop" name="Proposed" type="ORD"/>
 		<shortHand key="Onsh" name="Onshore" type="ORD"/>
-		<shortHand key="Ofsh" name="Offshore" type="ORD"/>		
+		<shortHand key="Ofsh" name="Offshore" type="ORD"/>
 		<shortHand key="Alt" name="Alternate" type="ORD"/>
 		<shortHand key="Bch" name="Beach" type="ORD"/>
 		<shortHand key="Dev" name="Development" type="ORD"/>
@@ -124,12 +156,22 @@
 		<shortHand key="Pote" name="Potential" type="ORD"/>
 		<shortHand key="Rd" name="Road" type="ORD"/>
 		<shortHand key="Rd" name="Roads" type="ORD"/>
+		<shortHand key="REFL" name="Reflection" type="ORD"/>
+		<shortHand key="Sft" name="Shift" type="ORD"/>
+		<shortHand key="Tot" name="Total" type="ORD"/>
+		<shortHand key="Resid" name="Residential" type="ORD"/>
 		<shortHand key="Term" name="Terminal" type="ORD"/>
 		<shortHand key="Vlg" name="Village" type="ORD"/>
 		<shortHand key="Prj" name="Project" type="ORD"/>
 		<shortHand key="Indu" name="Industrial" type="ORD"/>
 		<shortHand key="Intl" name="International" type="ORD"/>
-		<shortHand key="Zn" name="Zone" type="ORD"/>
-		<shortHand key="Zn" name="Zones" type="ORD"/>
+		<shortHand key="Isl" name="Islands" type="ORD"/>
+		<shortHand key="Isl" name="Island" type="ORD"/>
+		<shortHand key="Lmt" name="Limits" type="ORD"/>
+		<shortHand key="Lmt" name="Limit" type="ORD"/>
+		<shortHand key="Svy" name="Surveys" type="ORD"/>
+		<shortHand key="Svy" name="Survey" type="ORD"/>
+		<shortHand key="" name="Zone" type="ORD"/>
+		<shortHand key="" name="Zones" type="ORD"/>
 	</shortHands>
 </config>
