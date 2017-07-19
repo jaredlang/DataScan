@@ -315,7 +315,7 @@ def load_layers_in_xls(wbPath, test):
                                             print('%-60s%s' % (" ","^^^ LOADED"))
                                             ds["Loaded?"] = 'LOADED'
                                         except:
-                                            print('%-60s%s' % (" ",">>> FAILED to load data"))
+                                            print('%-60s%s' % (" ",">>> FAILED to load data [" + str(arcpy.GetMessages()) + "]"))
                                             ds["Loaded?"] = 'FAILED'
                         else:
                             print('%-60s%s' % (ds["Name"],"*** no target store"))
@@ -352,8 +352,8 @@ def load_layers_in_xls(wbPath, test):
                                             print('%-60s%s' % (ds["Name"],"updating SDE metadata of %s\\%s" % (tgt_conn, ds["SDE Name"])))
                                             update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds, srcType)
                                             print('%-60s%s' % (" ","^^^ METADATA UPDATED"))
-                                        except:
-                                            print('%-60s%s' % (" ",">>> FAILED to load data"))
+                                        except arcpy.ExecuteError:
+                                            print('%-60s%s' % (" ",">>> FAILED to load data [" + str(arcpy.GetMessages()) + "]"))
                                             ds["Loaded?"] = 'FAILED'
                             else:
                                 print('%-60s%s' % (ds["Name"],"*** no target name"))
