@@ -21,7 +21,7 @@ DATA_SOURCES = []
 DATA_TARGETS = []
 
 DATA_CATEGORIES = []
-WORD_SHORTHANDS = []
+WORD_SHORTCUTS = []
 NAME_CHANGES = []
 
 def load_config(configFile):
@@ -66,13 +66,13 @@ def load_config(configFile):
         })
     # print NAME_CHANGES
 
-    for child in root.iter('shortHand'):
-        WORD_SHORTHANDS.append({
+    for child in root.iter('shortcut'):
+        WORD_SHORTCUTS.append({
             'Key':child.attrib['key'],
             'Name':child.attrib['name'],
-            'Type':child.attrib['type']
+            'Priority':child.attrib['priority']
         })
-    # print WORD_SHORTHANDS
+    # print WORD_SHORTCUTS
 
     del root
     del tree
@@ -153,13 +153,21 @@ def shorten_target_name(name, maxLen=30):
     else:
         nameParts = name.split("_")
         shortNameParts = list(nameParts)
-        for p in range(0, len(nameParts)):
-            nmPart = nameParts[p].upper()
-            for sh in WORD_SHORTHANDS:
-                if sh["Name"].upper() == nmPart:
-                    shortNameParts[p] = sh["Key"]
+        shortcutPriorities = list(set([e['Priority'] for e in WORD_SHORTCUTS if e['Priority'] is not None]))
+        shortcutPriorities.sort()
+        shortcutPriorities.reverse()
+        underLenLimit = False
+        for t in shortcutPriorities:
+            for p in range(0, len(nameParts)):
+                nmPart = nameParts[p].upper()
+                for sh in [e for e in WORD_SHORTCUTS if e['Priority'] == t]:
+                    if sh["Name"].upper() == nmPart:
+                        shortNameParts[p] = sh["Key"]
+                        break
+                underLenLimit = len("_".join(shortNameParts)) <= maxLen
+                if underLenLimit:
                     break
-            if len("_".join(shortNameParts)) <= maxLen:
+            if underLenLimit:
                 break
         # remove empty ones
         shortNameParts = [e for e in shortNameParts if len(e) > 0]

@@ -53,7 +53,9 @@
         <dataCategory key="VEN" name="VENDOR"/>
         <dataCategory key="WELL" name="WELL"/>
     </dataCategories>
-	<nameChanges>
+	<nameChanges>	
+		<nameChange old="BND_RV_VegClr_50mBuffDissolve_20161012" new="BND_RV_VegClr_50mBfD_20161012" type="word"/>
+		<nameChange old="BND_RV_VegClr_50mBuffer_20161012" new="BND_RV_VegClr_50mBuf_20161012" type="word"/>	
 		<nameChange old="STR_DU_CCSJV_Bog_Comp_Flare_Drum_Meg_Storage_P" new="STR_DU_CCSJV_Flare_Drum_Meg_P" type="word"/>
 		<nameChange old="BND_DU_LivelihoodDevelopmentZone_F" new="BND_DU_Livelihood_Dev_F" type="word"/>
 		<nameChange old="INF_AF_ArchaeologicalImportance_F" new="INF_AF_Archae_Importance_F" type="word"/>
@@ -74,6 +76,7 @@
 		<nameChange old="BND_Buffer_200m_VegiClear_20161011" new="BND_VegiClr_Buf_200m_20161011" type="word"/>
 		<nameChange old="INF_Realigned_PowLn_33kv_20160912" new="INF_Realg_PowLn_33kv_20160912" type="word"/>
 		<nameChange old="BND_PB_InstallationActivities_AvoidanceArea_Vtx_P" new="BND_PB_Install_Avoidance_Vtx_P" type="word"/>
+		<nameChange old="BND_PB_InstallationActivities_AvoidanceArea_P" new="BND_PB_Install_Avoidance_P" type="word"/>
 		<nameChange old="BND_Prop_Helipad_HLZ_SouthApproach_20161013" new="BND_Prop_Helipad_HLZ_20161013" type="word"/>
 		<nameChange old="ECO_DU_EnviroInsight_HabitatType_P" new="ECO_DU_EI_HabitatType_P" type="word"/>
 		<nameChange old="INF_AF_ERM_CulturalHeritage_SiteInventory_F" new="INF_AF_ERM_Cult_Heritage_Ste_F" type="word"/>
@@ -84,137 +87,141 @@
 		<nameChange old="BND_RV_VegiClear_50mBuffDissolve_20161012" new="BND_RV_VegiClr_50mBfD_20161012" type="word"/>
 		<nameChange old="BND_RV_VegiClear_50mBuffer_20161012" new="BND_RV_VegiClr_50mBuf_20161012" type="word"/>
 		<nameChange old="BND_DU_ReplacementVill_Section2_BoreholeFd_Buf_200M" new="BND_DU_ReplVlg_S2_BHFd_Buf200M" type="word"/>
-		<nameChange old="BND_Prop_DeminingAreas_ExcludeDemined28June2016" new="BND_Prop_Dem_Exclude_20160628" type="word"/>
+		<nameChange old="BND_Proposed_DeminingAreas_ExcludeDemined28June2016" new="BND_Prop_Dem_Exclude_20160628" type="word"/>
 		<nameChange old="TRN_Patacua_Mganja_NewRdAlignment_GH_20170630" new="TRN_PM_NewRdAlign_GH_20170630" type="word"/>
 		<nameChange old="STR_DU_CCSJV_Bog_Comp_Flare_Drum_Meg_Stg_P" new="STR_DU_CCSJV_Flare_Drum_Meg_P" type="word"/>
 		<nameChange old="ECO_DU_Closed_Berlinia_Orientalis_woodland_forest_No_Longer_Present_AlanWatts_20170306_P" new="ECO_DU_woodland_AW_20170306_P" type="word"/>
 	</nameChanges>
-	<shortHands>
-		<shortHand key="Bndy" name="Boundary" type="GIS"/>
-		<shortHand key="Bnds" name="Bounds" type="GIS"/>
-		<shortHand key="Buf" name="Buffer" type="GIS"/> 
-		<shortHand key="Clp" name="Clipped" type="GIS"/> 
-		<shortHand key="Coord" name="Coordinate" type="GIS"/>
-		<shortHand key="Coord" name="Coordinates" type="GIS"/>
-		<shortHand key="RefPt" name="ReferencePt" type="GIS"/>
-		<shortHand key="RefPt" name="ReferencePts" type="GIS"/>
-		<shortHand key="GeoRef" name="Georeferenced" type="GIS"/>
-		<shortHand key="Otln" name="Outline" type="GIS"/>
-		<shortHand key="Crdr" name="Corridor" type="GIS"/>
-		<shortHand key="Ctd" name="centroid" type="GIS"/>
-		<shortHand key="Ctr" name="center" type="GIS"/>
-		<shortHand key="Ctur" name="Contour" type="GIS"/>
-		<shortHand key="Ctur5m" name="Contours5m" type="GIS"/>
-		<shortHand key="Ctur5m" name="Contour5m" type="GIS"/>
-		<shortHand key="Ctur1m" name="Contours1m" type="GIS"/>
-		<shortHand key="Ctur1m" name="Contour1m" type="GIS"/>
-		<shortHand key="50mCtur" name="50mContours" type="GIS"/>
-		<shortHand key="5mCtur" name="5mContours" type="GIS"/>
-		<shortHand key="5mCtur" name="5mContour" type="GIS"/>
-		<shortHand key="1mCtur" name="1mContours" type="GIS"/>
-		<shortHand key="1mCtur" name="1mContour" type="GIS"/>
-		<shortHand key="Pt" name="Point" type="GIS"/>
-		<shortHand key="Pt" name="Points" type="GIS"/>
-		<shortHand key="Ln" name="Line" type="GIS"/>
-		<shortHand key="Ln" name="Lines" type="GIS"/>
-		<shortHand key="Vtx" name="Vertex" type="GIS"/>
-		<shortHand key="Vtx" name="Vertices" type="GIS"/>
-		<shortHand key="" name="Area" type="GIS"/> <!--omit--> 
-		<shortHand key="" name="Areas" type="GIS"/> <!--omit--> 
-		<shortHand key="" name="Map" type="GIS"/> <!--omit--> 
-		<shortHand key="" name="Maps" type="GIS"/> <!--omit--> 
-		<shortHand key="" name="Label" type="GIS"/> <!--omit--> 
-		<shortHand key="" name="Labels" type="GIS"/> <!--omit--> 
-		<shortHand key="S" name="South" type="GIS"/>
-		<shortHand key="N" name="North" type="GIS"/>
-		<shortHand key="W" name="West" type="GIS"/>
-		<shortHand key="E" name="East" type="GIS"/>
+	<shortcuts>
+		<!-- GIS -->
+		<shortcut key="Bndy" name="Boundary" priority="A"/>
+		<shortcut key="Bnds" name="Bounds" priority="A"/>
+		<shortcut key="Buf" name="Buffer" priority="A"/> 
+		<shortcut key="Clp" name="Clipped" priority="A"/> 
+		<shortcut key="Coord" name="Coordinate" priority="A"/>
+		<shortcut key="Coord" name="Coordinates" priority="A"/>
+		<shortcut key="RefPt" name="ReferencePt" priority="A"/>
+		<shortcut key="RefPt" name="ReferencePts" priority="A"/>
+		<shortcut key="GeoRef" name="Georeferenced" priority="A"/>
+		<shortcut key="Otln" name="Outline" priority="A"/>
+		<shortcut key="Crdr" name="Corridor" priority="A"/>
+		<shortcut key="Ctd" name="centroid" priority="A"/>
+		<shortcut key="Ctr" name="center" priority="A"/>
+		<shortcut key="Ctur" name="Contour" priority="A"/>
+		<shortcut key="Ctur5m" name="Contours5m" priority="A"/>
+		<shortcut key="Ctur5m" name="Contour5m" priority="A"/>
+		<shortcut key="Ctur1m" name="Contours1m" priority="A"/>
+		<shortcut key="Ctur1m" name="Contour1m" priority="A"/>
+		<shortcut key="50cmCtur" name="50cmContours" priority="A"/>
+		<shortcut key="50mCtur" name="50mContours" priority="A"/>
+		<shortcut key="5mCtur" name="5mContours" priority="A"/>
+		<shortcut key="5mCtur" name="5mContour" priority="A"/>
+		<shortcut key="1mCtur" name="1mContours" priority="A"/>
+		<shortcut key="1mCtur" name="1mContour" priority="A"/>
+		<shortcut key="Pt" name="Point" priority="A"/>
+		<shortcut key="Pt" name="Points" priority="A"/>
+		<shortcut key="Ln" name="Line" priority="A"/>
+		<shortcut key="Ln" name="Lines" priority="A"/>
+		<shortcut key="Vtx" name="Vertex" priority="A"/>
+		<shortcut key="Vtx" name="Vertices" priority="A"/>
+		<shortcut key="" name="Area" priority="A"/> <!--omit--> 
+		<shortcut key="" name="Areas" priority="A"/> <!--omit--> 
+		<shortcut key="" name="Map" priority="A"/> <!--omit--> 
+		<shortcut key="" name="Maps" priority="A"/> <!--omit--> 
+		<shortcut key="" name="Label" priority="A"/> <!--omit--> 
+		<shortcut key="" name="Labels" priority="A"/> <!--omit--> 
+		<shortcut key="S" name="South" priority="A"/>
+		<shortcut key="N" name="North" priority="A"/>
+		<shortcut key="W" name="West" priority="A"/>
+		<shortcut key="E" name="East" priority="A"/>
 		
-		<shortHand key="Afg" name="Afungi" type="PRJ"/>
-		<shortHand key="GF" name="Golfinho" type="PRJ"/>
-		<shortHand key="PB" name="PalmaBay" type="PRJ"/>
-		<shortHand key="PR" name="Prosperidade" type="PRJ"/>
-		<shortHand key="MB" name="Mamba" type="PRJ"/>
-		<shortHand key="MZ" name="Mozambique" type="PRJ"/>
-		<shortHand key="GfnoPLN" name="GolfinhoPipeline" type="PRJ"/>
-		<shortHand key="MbaPLN" name="MambaPipeline" type="PRJ"/>
-		<shortHand key="PioCmp" name="PioneerCamp" type="PRJ"/>
-		<shortHand key="RnMntr" name="RainMonitoring" type="PRJ"/>
-		<shortHand key="Espm" name="Escarpment" type="PRJ"/>
-		<shortHand key="Rst" name="Resettlement" type="PRJ"/>
-		<shortHand key="Sec" name="Section" type="PRJ"/>
-		<shortHand key="TZA" name="Tanzania" type="PRJ"/>
-		<shortHand key="Rplc" name="Replacement" type="PRJ"/>
-		<shortHand key="RplLand" name="ReplacementLand" type="PRJ"/>
-		<shortHand key="RplVlg" name="ReplacementVillage" type="PRJ"/>
-		<shortHand key="VegClr" name="VegetationClearance" type="PRJ"/>
-		<shortHand key="Stg" name="Storage" type="PRJ"/>
-		<shortHand key="Mar" name="Marine" type="PRJ"/>
-		<shortHand key="Dem" name="DeminingAreas" type="PRJ"/>
-		<shortHand key="Dem" name="Demining" type="PRJ"/>
-		<shortHand key="Ste" name="Sites" type="PRJ"/>
-		<shortHand key="PowLn" name="Powerline" type="PRJ"/>
-		<shortHand key="AS" name="Airstrip" type="PRJ"/> 
-		<shortHand key="Pfl" name="Profiler" type="PRJ"/> 
-		<shortHand key="Pfl" name="Profile" type="PRJ"/> 
+		<!-- Project -->
+		<shortcut key="Afg" name="Afungi" priority="B"/>
+		<shortcut key="GF" name="Golfinho" priority="B"/>
+		<shortcut key="PB" name="PalmaBay" priority="B"/>
+		<shortcut key="PR" name="Prosperidade" priority="B"/>
+		<shortcut key="MB" name="Mamba" priority="B"/>
+		<shortcut key="MZ" name="Mozambique" priority="B"/>
+		<shortcut key="GfnoPLN" name="GolfinhoPipeline" priority="B"/>
+		<shortcut key="MbaPLN" name="MambaPipeline" priority="B"/>
+		<shortcut key="PioCmp" name="PioneerCamp" priority="B"/>
+		<shortcut key="RnMntr" name="RainMonitoring" priority="B"/>
+		<shortcut key="Espm" name="Escarpment" priority="B"/>
+		<shortcut key="Rst" name="Resettlement" priority="B"/>
+		<shortcut key="Sec" name="Section" priority="B"/>
+		<shortcut key="TZA" name="Tanzania" priority="B"/>
+		<shortcut key="Rplc" name="Replacement" priority="B"/>
+		<shortcut key="RplLand" name="ReplacementLand" priority="B"/>
+		<shortcut key="RplVlg" name="ReplacementVillage" priority="B"/>
+		<shortcut key="VegClr" name="VegetationClearance" priority="B"/>
+		<shortcut key="Stg" name="Storage" priority="B"/>
+		<shortcut key="Mar" name="Marine" priority="B"/>
+		<shortcut key="Dem" name="DeminingAreas" priority="B"/>
+		<shortcut key="Dem" name="Demining" priority="B"/>
+		<shortcut key="Ste" name="Sites" priority="B"/>
+		<shortcut key="PowLn" name="Powerline" priority="B"/>
+		<shortcut key="AS" name="Airstrip" priority="B"/> 
+		<shortcut key="Pfl" name="Profiler" priority="B"/> 
+		<shortcut key="Pfl" name="Profile" priority="B"/> 
 
-		<shortHand key="Archae" name="Archaelogical" type="ORD"/>
-		<shortHand key="ADRO" name="Aerodrome" type="ORD"/>
-		<shortHand key="Addl" name="Additional" type="ORD"/>
-		<shortHand key="Act" name="Activity" type="ORD"/> 
-		<shortHand key="Act" name="Activities" type="ORD"/> 
-		<shortHand key="Cesn" name="Concession" type="ORD"/>
-		<shortHand key="Const" name="Construction" type="ORD"/>
-		<shortHand key="Compl" name="Completed" type="ORD"/>
-		<shortHand key="Compl" name="Complete" type="ORD"/>
-		<shortHand key="Compl" name="Completion" type="ORD"/>
-		<shortHand key="Lyt" name="Layout" type="ORD"/>
-		<shortHand key="Conti" name="Continental" type="ORD"/>
-		<shortHand key="Charz" name="Characterization" type="ORD"/>
-		<shortHand key="Ctlg" name="Catalog" type="ORD"/>
-		<shortHand key="Drg" name="Dredge" type="ORD"/>
-		<shortHand key="DrgDspo" name="DredgeDisposal" type="ORD"/>
-		<shortHand key="Fac" name="Facility" type="ORD"/>
-		<shortHand key="Fac" name="Facilities" type="ORD"/>
-		<shortHand key="" name="From" type="ORD"/>
-		<shortHand key="" name="Extracted" type="ORD"/>
-		<shortHand key="Exg" name="Existing" type="ORD"/>
-		<shortHand key="GeoPhy" name="Geophysical" type="ORD"/>
-		<shortHand key="Ofld" name="Offloading" type="ORD"/>
-		<shortHand key="Opn" name="Operation" type="ORD"/>
-		<shortHand key="Opt" name="Option" type="ORD"/>
-		<shortHand key="Opt1" name="Option1" type="ORD"/>
-		<shortHand key="PLN" name="Pipeline" type="ORD"/>
-		<shortHand key="Prop" name="Proposed" type="ORD"/>
-		<shortHand key="Onsh" name="Onshore" type="ORD"/>
-		<shortHand key="Ofsh" name="Offshore" type="ORD"/>
-		<shortHand key="Alt" name="Alternate" type="ORD"/>
-		<shortHand key="Bch" name="Beach" type="ORD"/>
-		<shortHand key="Dev" name="Development" type="ORD"/>
-		<shortHand key="Dply" name="Deployment" type="ORD"/>
-		<shortHand key="Ldg" name="Landing" type="ORD"/>
-		<shortHand key="Dspo" name="Disposal" type="ORD"/>
-		<shortHand key="DspoArea" name="DisposalArea" type="ORD"/>
-		<shortHand key="Pote" name="Potential" type="ORD"/>
-		<shortHand key="Rd" name="Road" type="ORD"/>
-		<shortHand key="Rd" name="Roads" type="ORD"/>
-		<shortHand key="REFL" name="Reflection" type="ORD"/>
-		<shortHand key="Sft" name="Shift" type="ORD"/>
-		<shortHand key="Tot" name="Total" type="ORD"/>
-		<shortHand key="Resid" name="Residential" type="ORD"/>
-		<shortHand key="Term" name="Terminal" type="ORD"/>
-		<shortHand key="Vlg" name="Village" type="ORD"/>
-		<shortHand key="Prj" name="Project" type="ORD"/>
-		<shortHand key="Indu" name="Industrial" type="ORD"/>
-		<shortHand key="Intl" name="International" type="ORD"/>
-		<shortHand key="Isl" name="Islands" type="ORD"/>
-		<shortHand key="Isl" name="Island" type="ORD"/>
-		<shortHand key="Lmt" name="Limits" type="ORD"/>
-		<shortHand key="Lmt" name="Limit" type="ORD"/>
-		<shortHand key="Svy" name="Surveys" type="ORD"/>
-		<shortHand key="Svy" name="Survey" type="ORD"/>
-		<shortHand key="Veg" name="Vegatation" type="ORD"/>		
-		<shortHand key="" name="Zone" type="ORD"/>
-		<shortHand key="" name="Zones" type="ORD"/>
-	</shortHands>
+		<!-- Ordinary -->
+		<shortcut key="Archae" name="Archaelogical" priority="C"/>
+		<shortcut key="ADRO" name="Aerodrome" priority="C"/>
+		<shortcut key="Addl" name="Additional" priority="C"/>
+		<shortcut key="Act" name="Activity" priority="C"/> 
+		<shortcut key="Act" name="Activities" priority="C"/> 
+		<shortcut key="Cesn" name="Concession" priority="C"/>
+		<shortcut key="Const" name="Construction" priority="C"/>
+		<shortcut key="Compl" name="Completed" priority="C"/>
+		<shortcut key="Compl" name="Complete" priority="C"/>
+		<shortcut key="Compl" name="Completion" priority="C"/>
+		<shortcut key="Lyt" name="Layout" priority="C"/>
+		<shortcut key="Conti" name="Continental" priority="C"/>
+		<shortcut key="Charz" name="Characterization" priority="C"/>
+		<shortcut key="Ctlg" name="Catalog" priority="C"/>
+		<shortcut key="Drg" name="Dredge" priority="C"/>
+		<shortcut key="DrgDspo" name="DredgeDisposal" priority="C"/>
+		<shortcut key="Fac" name="Facility" priority="C"/>
+		<shortcut key="Fac" name="Facilities" priority="C"/>
+		<shortcut key="" name="From" priority="C"/>
+		<shortcut key="" name="Extracted" priority="C"/>
+		<shortcut key="Exg" name="Existing" priority="C"/>
+		<shortcut key="GeoPhy" name="Geophysical" priority="C"/>
+		<shortcut key="Ofld" name="Offloading" priority="C"/>
+		<shortcut key="Opn" name="Operation" priority="C"/>
+		<shortcut key="Opt" name="Option" priority="C"/>
+		<shortcut key="Opt1" name="Option1" priority="C"/>
+		<shortcut key="PLN" name="Pipeline" priority="C"/>
+		<shortcut key="Prop" name="Proposed" priority="C"/>
+		<shortcut key="Onsh" name="Onshore" priority="C"/>
+		<shortcut key="Ofsh" name="Offshore" priority="C"/>
+		<shortcut key="Alt" name="Alternate" priority="C"/>
+		<shortcut key="Bch" name="Beach" priority="C"/>
+		<shortcut key="Dev" name="Development" priority="C"/>
+		<shortcut key="Dply" name="Deployment" priority="C"/>
+		<shortcut key="Ldg" name="Landing" priority="C"/>
+		<shortcut key="Dspo" name="Disposal" priority="C"/>
+		<shortcut key="DspoArea" name="DisposalArea" priority="C"/>
+		<shortcut key="Pote" name="Potential" priority="C"/>
+		<shortcut key="Rd" name="Road" priority="C"/>
+		<shortcut key="Rd" name="Roads" priority="C"/>
+		<shortcut key="REFL" name="Reflection" priority="C"/>
+		<shortcut key="Sft" name="Shift" priority="C"/>
+		<shortcut key="Tot" name="Total" priority="C"/>
+		<shortcut key="Resid" name="Residential" priority="C"/>
+		<shortcut key="Term" name="Terminal" priority="C"/>
+		<shortcut key="Vlg" name="Village" priority="C"/>
+		<shortcut key="Prj" name="Project" priority="C"/>
+		<shortcut key="Indu" name="Industrial" priority="C"/>
+		<shortcut key="Intl" name="International" priority="C"/>
+		<shortcut key="Isl" name="Islands" priority="C"/>
+		<shortcut key="Isl" name="Island" priority="C"/>
+		<shortcut key="Lmt" name="Limits" priority="C"/>
+		<shortcut key="Lmt" name="Limit" priority="C"/>
+		<shortcut key="Svy" name="Surveys" priority="C"/>
+		<shortcut key="Svy" name="Survey" priority="C"/>
+		<shortcut key="Veg" name="Vegatation" priority="C"/>		
+		<shortcut key="" name="Zone" priority="C"/>
+		<shortcut key="" name="Zones" priority="C"/>
+	</shortcuts>
 </config>
