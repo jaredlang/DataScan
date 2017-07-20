@@ -53,14 +53,56 @@
         <dataCategory key="VEN" name="VENDOR"/>
         <dataCategory key="WELL" name="WELL"/>
     </dataCategories>
-	<nameChanges>	
+    <definedNames scope="LNG">
+        <definedName name="AMA1_R_RVPC_const_20161024" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20161024 - RV Construction Phases Shapefile\RV+PC_constr_Phases\RV+PC_constr_Phases.shp"/>
+        <definedName name="ENI_S_ENI_Mamba_Pipeline_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\ENI_Mamba_Pipeline.shp"/>
+        <definedName name="ENI_S_APC_Pipeline_1_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\APC_Pipeline_1.shp"/>
+        <definedName name="ENI_S_APC_Pipeline_2_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\APC_Pipeline_2.shp"/>
+        <definedName name="ENI_S_Proposed_Roads_clip_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Proposed_Roads_clip.shp"/>
+        <definedName name="ENI_S_Security_Fence_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Security_Fence.shp"/>
+        <definedName name="ENI_S_Proposed_Cemetery_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Proposed_Cemetery.shp"/>
+        <definedName name="ENI_S_RV_Section_2_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\RV_Section_2.shp"/>
+        <definedName name="ENI_S_Material_Offloading_Facility_Concession_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Material_Offloading_Facility_Concession.shp"/>
+        <definedName name="ENI_S_Replacement_Village_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Replacement_Village.shp"/>
+        <definedName name="ENI_S_Proposed_Airstrip_Location_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Proposed_Airstrip_Location.shp"/>
+        <definedName name="ENI_S_Initial_DUAT_Boundary_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Initial_DUAT_Boundary.shp"/>
+        <definedName name="ERM_R_Fishing_20140901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Fishing_Areas.shp"/>
+        <definedName name="ERM_R_Archae_Ste_20140901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Archaeology\Sites_of_Archaeological_Importance.shp"/>
+        <definedName name="ERM_R_Fring_Reef_20140901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Lwandle_Technologies\Fringing_Reef.shp"/>
+        <definedName name="ERM_R_Seagr_Habit_20140901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Lwandle_Technologies\Seagrass_Habitat.shp"/>
+        <definedName name="ERM_R_ReplacementVillage_Survey_Area_20160128" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20160128 - Cultural Heritage\ERM_CH_AMA1_RVS_GISDataDelivery_2016-01-27\GIS\ERM_CH_AMA1_RVA_Survey_Geodatabase_2016-01-27.gdb\Report_Data\AMA1_Village_Replacement_Survey_Area"/>
+        <definedName name="EI_R_Wetlands_upd_20160331" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160331 - Critical Habitats-ecological constraints Updated Delivery\Wetlands_updated_2016_UTM37S.shp"/>
+        <definedName name="EI_R_Wetlands_upd_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\Wetlands_updated_UTM37S.shp"/>
+        <definedName name="EI_S_Habit_Sensit_20160401" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Sent\20160401 - Data From EA-MZ-SR0100-RRG-U17-00018-00\Combined_Habitat_Sensitivity.shp"/>
+        <definedName name="EI_R_CH_Faunal_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\Faunal_recordings_UTM37S.shp"/>
+        <definedName name="EI_R_CH_AIP_F_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\AIP_Final_UTM37S.shp"/>
+        <definedName name="EI_R_Const_buf_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\Construction_buffer_zone_UTM37S.shp"/>
+        <definedName name="EI_R_R1F3_Flora_obsv_20141016" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141016 - TBWG Workshop at Irene\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F3_Floraobservationpoints_UTM37S.shp"/>
+        <definedName name="FCT_R_GRAP_Sacred_Sites_20160520" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Fircroft\Sent\20160520_GRAP_Data\GRAP_Data.gdb\Sacred_Sites"/>
+        <definedName name="FCT_R_GRAP_Sacred_TreesPonds_20160520" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Fircroft\Sent\20160520_GRAP_Data\GRAP_Data.gdb\Sacred_TreesPonds_GAS_Heritage_Collection"/>
+        <definedName name="GST_S_GF_Abrupt_Slop_20151110" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Geosyntec\Sent\20151110 - Golfinho Segment, Near Abrupt Slope\Golfinho_Near_Abrupt_Slope_20151110.shp"/>
+        <definedName name="MEP_R_Fish_Scoping_vlg_20131230" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20131230 - Fisheries Data\Scoping villages\Scoping Visit.shp"/>
+        <definedName name="MEP_R_vessel_act_20150527" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20150527 - EA-MZ-SR0504-RRG-U17-00024-00\Export to Tesselations 8_04_15\Vessel Activity Monitoring Update 8_04_15\Shapefiles\Points\vessel activity points.shp"/>
+        <definedName name="TSL_R_CAS_COMMUNAL_ASSETS_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Communal_Survey.gdb\COMMUNAL_ASSETS"/>
+        <definedName name="TSL_R_CAS_FAMILY_CEMETERY_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\FAMILY_CEMETERY"/>
+        <definedName name="TSL_R_CAS_HH_GRAVEYARD_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\GRAVEYARD"/>
+        <definedName name="TSL_R_CAS_HH_20160428" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Tessellations\Received\20160428 - CAS\CAS\Households.gdb\HH"/>
+        <definedName name="TSL_R_CAS_MACHAMBAS_20160428" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Tessellations\Received\20160428 - CAS\CAS\Households.gdb\MACHAMBAS"/>
+        <definedName name="TSL_R_CAS_YUMA_Graves_20160512" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Tessellations\Received\20160512 - CAS\MOZ\DATA_FROM_YUMA.gdb\Point"/>
+    </definedNames>
+    <definedNames scope="MOZGIS">
+        <definedName name="STR_NS_Profile_Points_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profile_Points_20141204.shp"/>
+        <definedName name="STR_NS_Line_of_Sight_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Line_of_Sight.shp"/>
+        <definedName name="STR_NS_Profile_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profiles_20141204.shp"/>
+    </definedNames>
+	<nameChanges scope="MOZGIS">
 		<nameChange old="BND_RV_VegClr_50mBuffDissolve_20161012" new="BND_RV_VegClr_50mBfD_20161012" type="word"/>
-		<nameChange old="BND_RV_VegClr_50mBuffer_20161012" new="BND_RV_VegClr_50mBuf_20161012" type="word"/>	
+		<nameChange old="BND_RV_VegClr_50mBuffer_20161012" new="BND_RV_VegClr_50mBuf_20161012" type="word"/>
 		<nameChange old="STR_DU_CCSJV_Bog_Comp_Flare_Drum_Meg_Storage_P" new="STR_DU_CCSJV_Flare_Drum_Meg_P" type="word"/>
 		<nameChange old="BND_DU_LivelihoodDevelopmentZone_F" new="BND_DU_Livelihood_Dev_F" type="word"/>
 		<nameChange old="INF_AF_ArchaeologicalImportance_F" new="INF_AF_Archae_Importance_F" type="word"/>
 		<nameChange old="FishermenDistributionRoutes_RAP_1_09_2015" new="Fishermen_Dist_Rt_RAP_20150901" type="word"/>
-		<nameChange old="BND_Quelimane_Nsemo_Rd_Markers_Kms" new="BND_QN_Rd_Markers_Kms" type="word"/>	
+		<nameChange old="BND_Quelimane_Nsemo_Rd_Markers_Kms" new="BND_QN_Rd_Markers_Kms" type="word"/>
 		<nameChange old="BND_Quelimane_Nsemo_Profile_IndexGrid_20170626" new="BND_QN_Profile_IdxGrd_20170626" type="word"/>
 		<nameChange old="BND_Patacua_Maganja_Rd_Markers_Kms" new="BND_PM_Rd_Markers_Kms" type="word"/>
 		<nameChange old="BND_Coastline_Polyline_ForVisualization_20170622" new="BND_Coastline_For_Vis_20170622" type="word"/>
@@ -96,8 +138,8 @@
 		<!-- GIS -->
 		<shortcut key="Bndy" name="Boundary" priority="A"/>
 		<shortcut key="Bnds" name="Bounds" priority="A"/>
-		<shortcut key="Buf" name="Buffer" priority="A"/> 
-		<shortcut key="Clp" name="Clipped" priority="A"/> 
+		<shortcut key="Buf" name="Buffer" priority="A"/>
+		<shortcut key="Clp" name="Clipped" priority="A"/>
 		<shortcut key="Coord" name="Coordinate" priority="A"/>
 		<shortcut key="Coord" name="Coordinates" priority="A"/>
 		<shortcut key="RefPt" name="ReferencePt" priority="A"/>
@@ -124,17 +166,17 @@
 		<shortcut key="Ln" name="Lines" priority="A"/>
 		<shortcut key="Vtx" name="Vertex" priority="A"/>
 		<shortcut key="Vtx" name="Vertices" priority="A"/>
-		<shortcut key="" name="Area" priority="A"/> <!--omit--> 
-		<shortcut key="" name="Areas" priority="A"/> <!--omit--> 
-		<shortcut key="" name="Map" priority="A"/> <!--omit--> 
-		<shortcut key="" name="Maps" priority="A"/> <!--omit--> 
-		<shortcut key="" name="Label" priority="A"/> <!--omit--> 
-		<shortcut key="" name="Labels" priority="A"/> <!--omit--> 
+		<shortcut key="" name="Area" priority="A"/> <!--omit-->
+		<shortcut key="" name="Areas" priority="A"/> <!--omit-->
+		<shortcut key="" name="Map" priority="A"/> <!--omit-->
+		<shortcut key="" name="Maps" priority="A"/> <!--omit-->
+		<shortcut key="" name="Label" priority="A"/> <!--omit-->
+		<shortcut key="" name="Labels" priority="A"/> <!--omit-->
 		<shortcut key="S" name="South" priority="A"/>
 		<shortcut key="N" name="North" priority="A"/>
 		<shortcut key="W" name="West" priority="A"/>
 		<shortcut key="E" name="East" priority="A"/>
-		
+
 		<!-- Project -->
 		<shortcut key="Afg" name="Afungi" priority="B"/>
 		<shortcut key="GF" name="Golfinho" priority="B"/>
@@ -160,16 +202,16 @@
 		<shortcut key="Dem" name="Demining" priority="B"/>
 		<shortcut key="Ste" name="Sites" priority="B"/>
 		<shortcut key="PowLn" name="Powerline" priority="B"/>
-		<shortcut key="AS" name="Airstrip" priority="B"/> 
-		<shortcut key="Pfl" name="Profiler" priority="B"/> 
-		<shortcut key="Pfl" name="Profile" priority="B"/> 
+		<shortcut key="AS" name="Airstrip" priority="B"/>
+		<shortcut key="Pfl" name="Profiler" priority="B"/>
+		<shortcut key="Pfl" name="Profile" priority="B"/>
 
 		<!-- Ordinary -->
 		<shortcut key="Archae" name="Archaelogical" priority="C"/>
 		<shortcut key="ADRO" name="Aerodrome" priority="C"/>
 		<shortcut key="Addl" name="Additional" priority="C"/>
-		<shortcut key="Act" name="Activity" priority="C"/> 
-		<shortcut key="Act" name="Activities" priority="C"/> 
+		<shortcut key="Act" name="Activity" priority="C"/>
+		<shortcut key="Act" name="Activities" priority="C"/>
 		<shortcut key="Cesn" name="Concession" priority="C"/>
 		<shortcut key="Const" name="Construction" priority="C"/>
 		<shortcut key="Compl" name="Completed" priority="C"/>
@@ -200,6 +242,8 @@
 		<shortcut key="Dev" name="Development" priority="C"/>
 		<shortcut key="Dply" name="Deployment" priority="C"/>
 		<shortcut key="Ldg" name="Landing" priority="C"/>
+		<shortcut key="Loc" name="Location" priority="C"/>
+		<shortcut key="Loc" name="Locations" priority="C"/>
 		<shortcut key="Dspo" name="Disposal" priority="C"/>
 		<shortcut key="DspoArea" name="DisposalArea" priority="C"/>
 		<shortcut key="Pote" name="Potential" priority="C"/>
@@ -220,7 +264,7 @@
 		<shortcut key="Lmt" name="Limit" priority="C"/>
 		<shortcut key="Svy" name="Surveys" priority="C"/>
 		<shortcut key="Svy" name="Survey" priority="C"/>
-		<shortcut key="Veg" name="Vegatation" priority="C"/>		
+		<shortcut key="Veg" name="Vegatation" priority="C"/>
 		<shortcut key="" name="Zone" priority="C"/>
 		<shortcut key="" name="Zones" priority="C"/>
 	</shortcuts>

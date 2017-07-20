@@ -24,6 +24,8 @@ DATA_CATEGORIES = []
 WORD_SHORTCUTS = []
 NAME_CHANGES = []
 
+DEFINED_NAMES = {}
+
 def load_config(configFile):
     tree = ET.parse(configFile)
     root = tree.getroot()
@@ -74,6 +76,17 @@ def load_config(configFile):
         })
     # print WORD_SHORTCUTS
 
+    for child in root.iter('definedNames'):
+        scope = child.attrib['scope']
+        if scope not in DEFINED_NAMES.keys():
+            DEFINED_NAMES[scope] = []
+        for nm in child.iter('definedName'):
+            DEFINED_NAMES[scope].append({
+                'Name':nm.attrib['name'],
+                'Path':nm.attrib['path']
+            })
+    # print DEFINED_NAMES
+
     del root
     del tree
 
@@ -107,6 +120,10 @@ def change_name(name):
 
 def guess_target_name(lDrvPath):
     target_source = get_source_type(lDrvPath)
+    # scan the defined names
+    for nm in DEFINED_NAMES[target_source]:
+        if nm['Path'].lower() == lDrvPath.lower():
+            return nm['Name']
     if target_source == "LNG":
         # TODO: come up with a naming convention for the LNG vendor data
         return None
@@ -225,8 +242,7 @@ def update_sde_metadata(sdeFC, props, srcType):
 
     TEMP_DIR = tempfile.gettempdir()
     metadataFile = os.path.join(TEMP_DIR, os.path.basename(sdeFC) + '-metadata.xml')
-    if srcType == "MOZGIS":
-        migrationText = " *** Migrated from the L Drive (%s)" % props["Data Source"]
+    migrationText = " *** Migrated from the L Drive (%s)" % props["Data Source"]
 
     if os.path.exists(metadataFile):
         os.remove(metadataFile)
@@ -356,10 +372,10 @@ def load_layers_in_xls(wbPath, test):
                                             print('%-60s%s' % (" ",">>> FAILED to load data [" + str(arcpy.GetMessages()) + "]"))
                                             ds["Loaded?"] = 'FAILED'
                             else:
-                                print('%-60s%s' % (ds["Name"],"*** no target name"))
+                                print('%-60s%s' % (ds["Name"],"*** no target name [" + ds["Data Source"] + "]"))
                                 ds["Loaded?"] = "NO TARGET NAME"
                         else:
-                            print('%-60s%s' % (ds["Name"],"*** no target store"))
+                            print('%-60s%s' % (ds["Name"],"*** no target store  [" + ds["Data Source"] + "]"))
                             ds["Loaded?"] = "NO TARGET STORE"
                     else:
                         print('%-60s%s' % (ds["Name"],"*** unknown layer type"))
