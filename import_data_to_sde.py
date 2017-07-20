@@ -17,7 +17,7 @@ METADATA_TRANSLATOR = os.path.join(AGS_HOME, r'Metadata/Translator/ARCGIS2FGDC.x
 HEADERS = []
 HEADERS_FOR_UPDATE = []
 
-DATA_SOURCES = []
+DATA_SOURCES = {}
 DATA_TARGETS = []
 
 DATA_CATEGORIES = []
@@ -38,11 +38,14 @@ def load_config(configFile):
     # print HEADERS_FOR_UPDATE
 
     for child in root.iter('source'):
-        DATA_SOURCES.append({
-            'name':child.attrib['name'],
-            'Source':child.attrib['name'],
-            'LDrv':child.attrib['path']
-        })
+        nm = child.attrib['name']
+        if nm not in DATA_SOURCES.keys():
+            DATA_SOURCES[nm] = []
+        for sc in child:
+            DATA_SOURCES[nm].append({
+                'LDrv':sc.attrib['path'],
+                'Mode':sc.tag
+            })
     # print DATA_SOURCES
 
     for child in root.iter('target'):
@@ -91,9 +94,17 @@ def load_config(configFile):
     del tree
 
 def get_source_type(lDrvPath):
-    for cvt in DATA_SOURCES:
-        if lDrvPath.find(cvt["LDrv"]) == 0:
-            return cvt["Source"]
+    for k in DATA_SOURCES.keys():
+        excluded = False
+        ds = DATA_SOURCES[k]
+        for cvt in [s for s in ds if s["Mode"] == "exclude"]:
+            if lDrvPath.find(cvt["LDrv"]) == 0:
+                excluded = True
+                break
+        if not excluded:
+            for cvt in [s for s in ds if s["Mode"] == "add"]:
+                if lDrvPath.find(cvt["LDrv"]) == 0:
+                    return k
     return None
 
 
@@ -129,8 +140,8 @@ def guess_target_name(lDrvPath):
         return None
     elif target_source == "MOZGIS":
         # parse the path
-        for src in DATA_SOURCES:
-            if src["Source"] == "MOZGIS":
+        for src in DATA_SOURCES[target_source]:
+            if src["Mode"] == "add":
                 lDrvPath = lDrvPath.replace(src["LDrv"], "")
         parts = lDrvPath.split("\\")
         category = parts[0]
@@ -302,8 +313,9 @@ def load_layers_in_xls(wbPath, test):
                         tgt_conn = get_raster_connection(srcType)
                         if tgt_conn is not None:
                             tgt_workspace = ds["Data Source"]
-                            for src in DATA_SOURCES:
-                                tgt_workspace = tgt_workspace.replace(src["LDrv"], tgt_conn)
+                            for src in DATA_SOURCES[srcType]:
+                                if src["mode"] == "add":
+                                    tgt_workspace = tgt_workspace.replace(src["LDrv"], tgt_conn)
                             ds["SDE Conn"] = os.path.dirname(tgt_workspace)
                             ds["SDE Name"] = os.path.basename(tgt_workspace)
                             if os.path.exists(tgt_workspace) or arcpy.Exists(tgt_workspace):

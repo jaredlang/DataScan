@@ -13,11 +13,23 @@
 		<header name="Description"/>
 	</headers>
     <sources>
-        <source name="MOZGIS" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\"/>
-        <source name="MOZGIS" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\"/>
-        <source name="LNG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\"/>
-        <source name="LNG" path="L:\SharedData\Houston\Mozambique LNG\"/>
-        <source name="Raster_Depot" path="\\anadarko.com\expdata\Houston\gngdata\raster_depot\"/>
+        <source name="MOZGIS">
+			<add path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\"/>
+			<add path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\"/>
+			<exclude path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\"/>
+			<exclude path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\"/>
+			<exclude path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WORKING\"/>
+			<exclude path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WORKING\"/>
+		</source>
+		<source name="LNG">
+			<add path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\"/>
+			<add path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\"/>
+			<add path="L:\SharedData\Houston\Mozambique LNG\"/>
+			<add path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\"/>
+		</source>
+        <source name="Raster_Depot">
+			<add path="\\anadarko.com\expdata\Houston\gngdata\raster_depot\"/>
+		</source>
     </sources>
     <targets>
         <target name="MOZGIS">
