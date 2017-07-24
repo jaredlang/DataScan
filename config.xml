@@ -187,7 +187,7 @@
 		<definedName name="LWA_R_DrgDspo_Sediment_Metal_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\Dredge_Disposal_Bay_Sediments_TraceMetals"/>
 		<definedName name="LWA_R_RgiTkji_CoralDive_Nov11I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\Events_InterIsland_RonguiTekomaji_CoralDive_Transect_Nov2011_37S"/>
 		<definedName name="LWA_R_RgiTkji_CoralDive_Nov11F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\Events_InterIsland_RonguiTekomaji_CoralDive_Transect_Nov2011_37S"/>
-		<definedName name="LWA_R_FRCoral_exMEP" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150908 - Marine Critical Habitats\Marine Critical Habitats\FRCoral_exMEP.shp"/>
+		<definedName name="LWA_R_FR_Coral_ex_MEP" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150908 - Marine Critical Habitats\Marine Critical Habitats\FRCoral_exMEP.shp"/>
 		<definedName name="LWA_R_GF_Coral_GolfLit_Occur_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_GolfLit_Occurrence"/>
 		<definedName name="LWA_R_GF_Coral_GolfLit_Occur_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_GolfLit_Occurrence"/>
 		<definedName name="LWA_R_GF_Coral_GolfLit_Cover_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_GolfLit_Percent_Cover"/>
@@ -448,10 +448,17 @@
 		<shortcut key="Pfl" name="Profiler" priority="B"/>
 		<shortcut key="Pfl" name="Profile" priority="B"/>
 		<shortcut key="FLT" name="FAULTS" priority="B"/>
-		<shortcut key="GEOL" name="GEOLOGIC" priority="B"/>		
+		<shortcut key="GEOL" name="GEOLOGIC" priority="B"/>	
+		<shortcut key="GeoPhy" name="Geophysical" priority="B"/>
+		<shortcut key="MAT" name="Material" priority="B"/>	
+		<shortcut key="Ftpt" name="Footprint" priority="B"/>
+		<shortcut key="SEIS" name="SEISMICITY" priority="B"/>			
 
 		<!-- Ordinary -->
+		
+		<shortcut key="AFR" name="AFRICA" priority="C"/> 
 		<shortcut key="Archae" name="Archaelogical" priority="C"/>
+		<shortcut key="Aqua" name="Aquatic" priority="C"/>		
 		<shortcut key="ADRO" name="Aerodrome" priority="C"/>
 		<shortcut key="Addl" name="Additional" priority="C"/>
 		<shortcut key="Act" name="Activity" priority="C"/>
@@ -467,12 +474,15 @@
 		<shortcut key="Ctlg" name="Catalog" priority="C"/>
 		<shortcut key="Drg" name="Dredge" priority="C"/>
 		<shortcut key="DrgDspo" name="DredgeDisposal" priority="C"/>
+		<shortcut key="Exp" name="Expansion" priority="C"/>
+		<shortcut key="Ext" name="EXTENSIONAL" priority="C"/>
 		<shortcut key="Fac" name="Facility" priority="C"/>
 		<shortcut key="Fac" name="Facilities" priority="C"/>
 		<shortcut key="" name="From" priority="C"/>
 		<shortcut key="" name="Extracted" priority="C"/>
 		<shortcut key="Exg" name="Existing" priority="C"/>
-		<shortcut key="GeoPhy" name="Geophysical" priority="C"/>
+		<shortcut key="Mtr" name="Monitor" priority="C"/>
+		<shortcut key="MOVE" name="MOVEMENTS" priority="C"/>		
 		<shortcut key="Ofld" name="Offloading" priority="C"/>
 		<shortcut key="Opn" name="Operation" priority="C"/>
 		<shortcut key="Opt" name="Option" priority="C"/>
@@ -487,6 +497,8 @@
 		<shortcut key="Bch" name="Beach" priority="C"/>
 		<shortcut key="Dev" name="Development" priority="C"/>
 		<shortcut key="Dply" name="Deployment" priority="C"/>
+		<shortcut key="Init" name="Initial" priority="C"/>
+		<shortcut key="Rev" name="Revised" priority="C"/>
 		<shortcut key="Ldg" name="Landing" priority="C"/>
 		<shortcut key="Loc" name="Location" priority="C"/>
 		<shortcut key="Loc" name="Locations" priority="C"/>
@@ -513,5 +525,6 @@
 		<shortcut key="Veg" name="Vegatation" priority="C"/>
 		<shortcut key="" name="Zone" priority="C"/>
 		<shortcut key="" name="Zones" priority="C"/>
+
 	</shortcuts>
 </config>
