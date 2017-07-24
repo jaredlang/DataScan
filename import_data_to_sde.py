@@ -17,6 +17,8 @@ METADATA_TRANSLATOR = os.path.join(AGS_HOME, r'Metadata/Translator/ARCGIS2FGDC.x
 HEADERS = []
 HEADERS_FOR_UPDATE = []
 
+NETWORK_DRIVES = []
+
 DATA_SOURCES = {}
 DATA_TARGETS = []
 
@@ -25,6 +27,16 @@ WORD_SHORTCUTS = []
 NAME_CHANGES = []
 
 DEFINED_NAMES = {}
+
+
+def get_alias_path(lDrvPath):
+    for nd in NETWORK_DRIVES:
+        if lDrvPath.find(nd["Path"]) == 0:
+            return lDrvPath.replace(nd["Path"], nd["Drive"])
+        if lDrvPath.find(nd["Drive"]) == 0:
+            return lDrvPath.replace(nd["Drive"], nd["Path"])
+    return lDrvPath
+
 
 def load_config(configFile):
     tree = ET.parse(configFile)
@@ -37,6 +49,13 @@ def load_config(configFile):
     # print HEADERS
     # print HEADERS_FOR_UPDATE
 
+    for child in root.iter('networkDrive'):
+        NETWORK_DRIVES.append({
+            'Drive': child.attrib['drive'],
+            'Path': child.attrib['path']
+        })
+    # print NETWORK_DRIVES
+
     for child in root.iter('source'):
         nm = child.attrib['name']
         if nm not in DATA_SOURCES.keys():
@@ -44,6 +63,10 @@ def load_config(configFile):
         for sc in child:
             DATA_SOURCES[nm].append({
                 'LDrv':sc.attrib['path'],
+                'Mode':sc.tag
+            })
+            DATA_SOURCES[nm].append({
+                'LDrv':get_alias_path(sc.attrib['path']),
                 'Mode':sc.tag
             })
     # print DATA_SOURCES
@@ -88,10 +111,15 @@ def load_config(configFile):
                 'Name':nm.attrib['name'],
                 'Path':nm.attrib['path']
             })
+            DEFINED_NAMES[scope].append({
+                'Name':nm.attrib['name'],
+                'Path':get_alias_path(nm.attrib['path'])
+            })
     # print DEFINED_NAMES
 
     del root
     del tree
+
 
 def get_source_type(lDrvPath):
     for k in DATA_SOURCES.keys():
