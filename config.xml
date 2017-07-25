@@ -333,20 +333,27 @@
 		<definedName name="TBC_R_CH_PB_North_Wetland_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Wetlands_North_of_Palma_Bay"/>
     </definedNames>
     <definedNames scope="MOZGIS">
-        <definedName name="STR_NS_Profile_Points_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profile_Points_20141204.shp"/>
-        <definedName name="STR_NS_Line_of_Sight_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Line_of_Sight.shp"/>
-        <definedName name="STR_NS_Profile_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profiles_20141204.shp"/>
-        <definedName name="STR_EA_PR_FA0600_INT_E04_00101" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\shapefiles\EA_PR_FA0600_INT_E04_00101_01_DWG\EA_PR_FA0600_INT_E04_00101_01_DWG_x.shp"/>
-        <definedName name="GET_PR_Missing_MR14s_Manifolds" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\PR_Missing_MR14s_forGetotech_DataAcqAtManifolds.shp"/>
-        <definedName name="GET_Prop_Prsprd_Addl_20140220" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_AdditionalDataAcq_20140220.shp"/>
-		
-        <definedName name="GET_CCJV_Stg3_Boring_Locs_Rev" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\CCJV_Stage3_Boring_RevisedLocs.shp"/>
+        <definedName name="GIS_Bathy_Tifs_Gap" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\arcgis_files\tifs\Bathy\Gap.shp"/>
+		<definedName name="BND_Africa_ARCHIVE" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ARCHIVE\shapefiles\Archive_20150323\BOUND\Africa.shp"/>
+	
         <definedName name="GET_Addl_Stg4_Borehol_20131007" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Additional_Stage4_Boreholes_20131007.shp"/>
+        <definedName name="GET_CCJV_Stg3_Boring_Locs_Rev" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\CCJV_Stage3_Boring_RevisedLocs.shp"/>
+        <definedName name="GET_PR_Missing_MR14s_Manifolds" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\PR_Missing_MR14s_forGetotech_DataAcqAtManifolds.shp"/>
         <definedName name="GET_Prop_Prsprd_Explrt20131024" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131024.shp"/>
         <definedName name="GET_Prop_Prsprd_Explrt20131115" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131115.shp"/>
         <definedName name="GET_Prop_Prsprd_Explrt20131123" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131123.shp"/>
         <definedName name="GET_Prop_Prsprd_Explrt20131220" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131220.shp"/>
+        <definedName name="GET_Prop_Prsprd_Addl_20140220" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_AdditionalDataAcq_20140220.shp"/>
         <definedName name="GET_MR13_SD_P48_Boreh_20131008" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\MR13_SD_P48_Borehole_for_TCoraspe_20131008.shp"/>
+		
+        <definedName name="STR_NS_Profile_Points_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profile_Points_20141204.shp"/>
+        <definedName name="STR_NS_Line_of_Sight_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Line_of_Sight.shp"/>
+        <definedName name="STR_NS_Profile_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profiles_20141204.shp"/>
+        <definedName name="STR_EA_PR_FA0600_INT_E04_00101" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\shapefiles\EA_PR_FA0600_INT_E04_00101_01_DWG\EA_PR_FA0600_INT_E04_00101_01_DWG_x.shp"/>
+        <definedName name="STR_Profile_Manifolds_MergedAll" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\Manifolds.gdb\MergedAll"/>
+        <definedName name="STR_Profile_Manifolds_Merged" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\Manifolds.gdb\Merged"/>
+        <definedName name="STR_Profile_Drill_Scope_NewLn" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\DrillingScope\NewLines.shp"/>
+		
     </definedNames>
 	<nameChanges scope="MOZGIS">
 		<nameChange old="BND_RV_VegClr_50mBuffDissolve_20161012" new="BND_RV_VegClr_50mBfD_20161012" type="word"/>
@@ -539,6 +546,5 @@
 		<shortcut key="" name="Zone" priority="C"/>
 		<shortcut key="" name="Zones" priority="C"/>
 		<shortcut key="" name="for" priority="C"/>
-
 	</shortcuts>
 </config>
