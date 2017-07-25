@@ -150,6 +150,21 @@ def get_raster_connection(target):
     return None
 
 
+def get_data_properties(lDrvPath):
+    parts = lDrvPath.split("\\")
+    category = parts[0]
+    dataType = dataFormat = parts[1]
+    if dataType not in ['gdb', 'shapefiles']:
+        return dataFormat
+    else:
+        dataName = parts[-1]
+        dataFolder = parts[-2]
+
+        if os.path.splitext(dataName)[-1] == '.shp':
+            dataType = 'shp'
+        elif os.path.splitext(dataFolder)[-1] == '.gdb':
+            dataType = 'gdb'
+
 def change_name(name):
     for c in NAME_CHANGES:
         if c["Old"] == name:
@@ -171,19 +186,26 @@ def guess_target_name(lDrvPath):
         for src in DATA_SOURCES[target_source]:
             if src["Mode"] == "add":
                 lDrvPath = lDrvPath.replace(src["LDrv"], "")
+        # parse for data type
         parts = lDrvPath.split("\\")
         category = parts[0]
-        dataFormat = parts[1]
+        fileName = parts[-1]
+        folderName = parts[-2]
+        dataFormat = None
+        if len(os.path.splitext(fileName)[-1]) > 0:
+            dataFormat = os.path.splitext(fileName)[-1]
+        elif len(os.path.splitext(folderName)[-1]) > 0:
+            dataFormat = os.path.splitext(folderName)[-1]
+        # determine data name
         dataName = None
         dataKeys = []
-        if category not in ["WORKING"]:
-            if dataFormat == 'gdb':
-                dataName = parts[-1]
-            elif dataFormat == 'shapefiles':
-                dataName = os.path.splitext(parts[-1])[0]
-                dataName = dataName.replace(' ', '_')
-            else:
-                return None
+        if dataFormat == '.gdb':
+            dataName = fileName
+        elif dataFormat == '.shp':
+            dataName = os.path.splitext(fileName)[0]
+            dataName = dataName.replace(' ', '_')
+        # add data category if needed
+        if dataName is not None:
             for c in DATA_CATEGORIES:
                 if c["Name"] == category:
                     dataKeys.append(c["Key"])
@@ -342,7 +364,7 @@ def load_layers_in_xls(wbPath, test):
                         if tgt_conn is not None:
                             tgt_workspace = ds["Data Source"]
                             for src in DATA_SOURCES[srcType]:
-                                if src["mode"] == "add":
+                                if src["Mode"] == "add":
                                     tgt_workspace = tgt_workspace.replace(src["LDrv"], tgt_conn)
                             ds["SDE Conn"] = os.path.dirname(tgt_workspace)
                             ds["SDE Name"] = os.path.basename(tgt_workspace)
@@ -381,7 +403,7 @@ def load_layers_in_xls(wbPath, test):
                         tgt_conn = get_sde_connection(srcType)
                         if tgt_conn is not None:
                             ds["SDE Conn"] = tgt_conn
-                            if ds["SDE Name"] is None:
+                            if ds["SDE Name"] is None or len(ds["SDE Name"]) > 30:
                                 ds["SDE Name"] = guess_target_name(ds["Data Source"])
                             if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
                                 ds["SDE Name"] = change_name(ds["SDE Name"])
