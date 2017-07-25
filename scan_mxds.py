@@ -12,10 +12,21 @@ logger = logging.getLogger(__name__)
 
 HEADERS = []
 
+NETWORK_DRIVES = []
+
 DATA_SOURCES = []
 DATA_TARGETS = []
 
 LDRV_LL_PATHS = []
+
+
+def get_alias_path(lDrvPath):
+    for nd in NETWORK_DRIVES:
+        if lDrvPath.find(nd["Path"]) == 0:
+            return lDrvPath.replace(nd["Path"], nd["Drive"])
+        if lDrvPath.find(nd["Drive"]) == 0:
+            return lDrvPath.replace(nd["Drive"], nd["Path"])
+    return lDrvPath
 
 
 def load_config(configFile):
@@ -27,16 +38,23 @@ def load_config(configFile):
     # print HEADERS
 
     for child in root.iter('source'):
-        DATA_SOURCES.append({
-            'name':child.attrib['name'],
-            'Source':child.attrib['name'],
-            'LDrv':child.attrib['path']
-        })
+        src_name = child.attrib['name']
+        for sc in child:
+            DATA_SOURCES.append({
+                'name': src_name,
+                'LDrv':sc.attrib['path'],
+                'Mode':sc.tag
+            })
+            DATA_SOURCES.append({
+                'name': src_name,
+                'LDrv':get_alias_path(sc.attrib['path']),
+                'Mode':sc.tag
+            })
     # print DATA_SOURCES
 
     for child in root.iter('target'):
         target = {}
-        target['name'] = 'MOZGIS'
+        target['name'] = child.attrib['name']
         for sc in child:
             target[sc.tag] = sc.text
             DATA_TARGETS.append(target)
@@ -44,7 +62,7 @@ def load_config(configFile):
 
     for src in DATA_SOURCES:
         for tgt in DATA_TARGETS:
-            if src['name'] == tgt['name']:
+            if src['name'] == tgt['name'] and src['Mode'] == 'add':
                 LDRV_LL_PATHS.append({
                     'Name':src['name'],
                     'LDrv':src['LDrv'],
