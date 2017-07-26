@@ -3,7 +3,7 @@ import os
 import tempfile
 import shutil
 import xml.etree.ElementTree as ET
-from arcpy import mapping
+import arcpy
 from openpyxl import Workbook
 from openpyxl import load_workbook
 import logging

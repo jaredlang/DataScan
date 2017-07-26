@@ -3,7 +3,7 @@ import os
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from arcpy import mapping
+import arcpy
 from openpyxl import Workbook
 import logging
 
@@ -114,10 +114,11 @@ def write_to_workbook(wbPath, dsList, sheetName=None):
 
 def scan_layers_in_mxd(mxdPath):
      dsList = []
+     mxd = None
      # scan the mxd file
      try:
-         mxd = mapping.MapDocument(mxdPath)
-         lyrs = mapping.ListLayers(mxd)
+         mxd = arcpy.mapping.MapDocument(mxdPath)
+         lyrs = arcpy.mapping.ListLayers(mxd)
          dsList.append({"Name": "MXD File", "Data Source": mxdPath})
          lyrTitle = 'Map Layer'
          sourceTitle = 'Data Source'
