@@ -237,8 +237,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Scan mxds and list layers into spreadsheets')
     parser.add_argument('-m','--mxd', help='MXD Folder (input)', required=True)
     parser.add_argument('-x','--xls', help='XLS Folder (output)', required=True)
-    parser.add_argument('-a','--action', help='Action Options (scan or comp)', required=False, default='scan')
+    parser.add_argument('-a','--action', help='Action Options (scan, comp, single)', required=False, default='scan')
     parser.add_argument('-f','--filter', help='Filter by dates. Ex. 2015/2/19<2016/2/18', required=False, default=None)
+    parser.add_argument('-s','--single', help='A single MXD file (input for action: single', required=False, default=None)
     parser.add_argument('-c','--cfg', help='Config File', required=False, default=r'H:\MXD_Scan\config.xml')
 
     params = parser.parse_args()
@@ -250,8 +251,7 @@ if __name__ == "__main__":
         scan_mxd_in_folder(params.mxd, params.xls, params.filter)
     elif params.action == 'comp':
         scan_missed_mxds(params.mxd, params.xls)
+    elif params.action == 'single':
+        list_layers_to_xls(params.single, params.mxd, params.xls)
     else:
         print 'Error: unknown action [%s] for scanning' % params.action
-
-
-
