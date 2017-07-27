@@ -1,5 +1,6 @@
 import sys
 import os
+import argparse
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -169,8 +170,20 @@ def scan_layers_in_mxd(mxdPath):
      return dsList
 
 
-def scan_mxd_in_folder(mxdFolder, xlsFolder, date_filters):
+def list_layers_to_xls(mxdPath, mxdFolder, xlsFolder):
+    print('\nThe mxd file: %s' % mxdPath)
+    fname = os.path.basename(mxdPath)
+    fdir = os.path.dirname(mxdPath)
+    dsList = scan_layers_in_mxd(mxdPath)
+    wbFolder = fdir.replace(mxdFolder, xlsFolder)
+    if not os.path.exists(wbFolder):
+        os.makedirs(wbFolder)
+    wbFilePath = os.path.join(wbFolder, fname + ".xlsx")
+    print('\nThe xlsx file: %s' % wbFilePath)
+    write_to_workbook(wbFilePath, dsList)
 
+
+def scan_mxd_in_folder(mxdFolder, xlsFolder, date_filters):
     # parse date filters
     lower_date = None
     upper_date = None
@@ -196,26 +209,49 @@ def scan_mxd_in_folder(mxdFolder, xlsFolder, date_filters):
                     is_filter_met = is_filter_met and modified_time <= upper_date
                 # work on the mxd file
                 if is_filter_met == True:
-                    print('\nThe mxd file: %s' % mxdPath)
-                    dsList = scan_layers_in_mxd(mxdPath)
-                    wbFolder = root.replace(mxdFolder, xlsFolder)
-                    if not os.path.exists(wbFolder):
-                        os.makedirs(wbFolder)
-                    wbFilePath = os.path.join(wbFolder, fname + ".xlsx")
-                    print('\nThe xlsx file: %s' % wbFilePath)
-                    write_to_workbook(wbFilePath, dsList)
+                    list_layers_to_xls(mxdPath, mxdFolder, xlsFolder)
+
+
+def scan_missed_mxds(mxdFolder, xlsFolder):
+    missedMxds = []
+    # walk through all files
+    for root, dirs, files in os.walk(mxdFolder):
+        for fname in files:
+            if fname.endswith(".mxd"):
+                mxdPath = os.path.join(root, fname)
+                xlsPath = os.path.join(root.replace(mxdFolder, xlsFolder), fname + ".xlsx")
+                if not os.path.exists(xlsPath):
+                    mxdModifiedTime = datetime.datetime.fromtimestamp(os.stat(mxdPath).st_mtime)
+                    missedMxd = {
+                        "Path": mxdPath,
+                        "ModTime": mxdModifiedTime.strftime('"%Y-%m-%d"')
+                    }
+                    missedMxds.append(missedMxd)
+    missedMxds = sorted(missedMxds, key=lambda missedMxd: missedMxd['ModTime'])
+    for missedMxd in missedMxds:
+        print 'Found: %-10s  %s' % (missedMxd['ModTime'], missedMxd['Path'])
+        list_layers_to_xls(missedMxd['Path'], mxdFolder, xlsFolder)
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3 and len(sys.argv) > 5:
-        print("scan_mxds mxd_folder xls_folder [date_filter ex. 2016/2/19<]  [config_file]")
+    parser = argparse.ArgumentParser(description='Scan mxds and list layers into spreadsheets')
+    parser.add_argument('-m','--mxd', help='MXD Folder (input)', required=True)
+    parser.add_argument('-x','--xls', help='XLS Folder (output)', required=True)
+    parser.add_argument('-a','--action', help='Action Options (scan or comp)', required=False, default='scan')
+    parser.add_argument('-f','--filter', help='Filter by dates. Ex. 2015/2/19<2016/2/18', required=False, default=None)
+    parser.add_argument('-c','--cfg', help='Config File', required=False, default=r'H:\MXD_Scan\config.xml')
+
+    params = parser.parse_args()
+
+    if params.cfg is not None:
+        load_config(params.cfg)
+
+    if params.action == 'scan':
+        scan_mxd_in_folder(params.mxd, params.xls, params.filter)
+    elif params.action == 'comp':
+        scan_missed_mxds(params.mxd, params.xls)
     else:
-        date_filters = None
-        if len(sys.argv) == 4:
-            date_filters = sys.argv[3]
-        config_file = r'H:\MXD_Scan\config.xml'
-        if len(sys.argv) == 5:
-            config_file = sys.argv[4]
-        load_config(config_file)
-        scan_mxd_in_folder(sys.argv[1], sys.argv[2], date_filters)
+        print 'Error: unknown action [%s] for scanning' % params.action
+
+
 
