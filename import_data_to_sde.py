@@ -1,5 +1,6 @@
 import sys
 import os
+import argparse
 import tempfile
 import shutil
 import xml.etree.ElementTree as ET
@@ -459,7 +460,7 @@ def load_layers_in_folder(xlsFolder, test):
     for root, dirs, files in os.walk(xlsFolder):
         # walk through all files
         for fname in files:
-            if fname.endswith(".xlsx"):
+            if fname.endswith(".xlsx") and not fname.startswith('~$'):
                 # read from a xls file
                 xlsPath = os.path.join(root, fname)
                 print('\nThe xlsx file: %s' % xlsPath)
@@ -469,15 +470,16 @@ def load_layers_in_folder(xlsFolder, test):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2 and len(sys.argv) > 4:
-        print("import_data_to_sde xls_folder [test] [config_file]")
-    else:
-        test = None
-        if len(sys.argv) == 3:
-            test = sys.argv[2]
-        config_file = r'H:\MXD_Scan\config.xml'
-        if len(sys.argv) == 4:
-            config_file = sys.argv[3]
-        load_config(config_file)
-        load_layers_in_folder(sys.argv[1], test)
+    parser = argparse.ArgumentParser(description='Import data referenced by layers in spreadsheets')
+    parser.add_argument('-x','--xls', help='XLS Folder (input)', required=True)
+    parser.add_argument('-t','--test', help='Test only without loading data', required=False, default=None)
+    parser.add_argument('-c','--cfg', help='Config File', required=False, default=r'H:\MXD_Scan\config.xml')
 
+    params = parser.parse_args()
+
+    if params.cfg is not None:
+        load_config(params.cfg)
+    if params.test is not None and params.test != 'test':
+        params.test = None
+
+    load_layers_in_folder(params.xls, params.test)
