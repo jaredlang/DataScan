@@ -331,10 +331,9 @@
 		<definedName name="TBC_R_CH_Terres_habit_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Terrestrial_CH_qualifying_habitats"/>
 		<definedName name="TBC_R_CH_Turtle_nesti_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Turtle_nesting_beach"/>
 		<definedName name="TBC_R_CH_PB_North_Wetland_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Wetlands_North_of_Palma_Bay"/>
-    </definedNames>
+
+	</definedNames>
     <definedNames scope="MOZGIS">
-		<definedName name="GET_CPT_Borehole_MMey_20140716" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\CPT_Borehole_MMeyer_20140716.shp"/>
-		<definedName name="GET_Logan_CPT_Intertidal_Aug14" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Logan_CPT_Intertidal_Aug_2014.shp"/>
         <definedName name="GIS_Bathy_Tifs_Gap" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\arcgis_files\tifs\Bathy\Gap.shp"/>
 		<definedName name="BND_Africa_ARCHIVE" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ARCHIVE\shapefiles\Archive_20150323\BOUND\Africa.shp"/>
 		<definedName name="BND_CD_PIIM_Study_Img_Acquis_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_CD_PIIM_Study_Imagery_Acquisition_P"/>
@@ -345,9 +344,35 @@
 		<definedName name="BND_GF_AUV_Geophy_Survey_Areas_F" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_GF_AUV_GeophysicalSurveyAreas_F"/>
 		<definedName name="BND_GF_Aerial_LndLidar_Opt_AOI" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Imagery_AOI_Aimee_3_28_2014\Gulfino_Aerial_and_LandLidar_Optional_AOI.shp"/>
 		<definedName name="BND_Off_ENI_Geot_Environ_Survey_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_Off_ENI_Geotechnical_Environmental_Survey_P"/>
+	
+		<definedName name="BND_Afg_AS_Assets_CZ_20170309" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Afungi_Airstrip_AOI_Assets_CZ_20170309.shp"/>
+		<definedName name="BND_Afg_DUAT50MBuf_CZ_20170623" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Palma_Afungi_InsideDUAT_50MBufferEitherSide_CZ_20170623.shp"/>
+		<definedName name="BND_Coastline_Visual_20170622" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Coastline_Polyline_ForVisualization_20170622.shp"/>
+		<definedName name="BND_CCSJV_PriorityAre_20161108" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\CCSJV_PriorityAreas_20161108.shp"/>
+		<definedName name="BND_DU_ReplVlg_S2_BHFd_Buf200M" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_DU_ReplacementVill_Section2_BoreholeFd_Buf_200M"/>
+		<definedName name="BND_DU_Livelihood_Develop_F" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_DU_LivelihoodDevelopmentZone_F"/>
+		<definedName name="BND_ES_Baseln_Establi_20161212" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\ES_BaselineEstablishment_Transects_20161212.shp"/>
+		<definedName name="BND_Prop_Demining_20160628" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Proposed_DeminingAreas_ExcludeDemined28June2016.shp"/>
+		<definedName name="BND_Prop_Helipad_HLZ_20161013" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Proposed_Helipad_HLZ_SouthApproach_20161013.shp"/>
+		<definedName name="BND_Prop_ASTrf_AOI_CZ_20170208" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\ProposedAirstripTurf_AOI_CZ_20170208.shp"/>
+		<definedName name="BND_Patacua_Mag_Rd_Markers_Kms" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Patacua_Maganja_Rd_Markers_Kms.shp"/>
+		<definedName name="BND_PB_MM_Bypass_Buf_200M" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_Macala_Mangala_Bypass_Buf_200M"/>
+		<definedName name="BND_PB_Install_Avoidance_Vtx_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_InstallationActivities_AvoidanceArea_Vertices_P"/>
+		<definedName name="BND_PB_Install_Avoidance_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_InstallationActivities_AvoidanceArea_P"/>
+		<definedName name="BND_Quelimane_Rd_Markers_Kms" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Quelimane_Nsemo_Rd_Markers_Kms.shp"/>
+		<definedName name="BND_QN_Pfl_IndexGrid_20170626" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Quelimane_Nsemo_Profile_IndexGrid_20170626.shp"/>
+		<definedName name="BND_LNG_Exclud_1km_CZ_20170725" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\LNG_Exclusion_Zone_1000m_CZ_20170725.shp"/>
+		<definedName name="BND_RV_VegClr_50mBuf_20161012" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\RV_VegetationClearance_50mBuffer_20161012.shp"/>
+		<definedName name="BND_RV_VegClr_50mBufD_20161012" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\RV_VegetationClearance_50mBuffDissolve_20161012.shp"/>
+
+		<definedName name="ECO_DU_woodland_AW_20170306_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ECOLOGY\shapefiles\ECO_DU_Closed_Berlinia_Orientalis_woodland_forest_No_Longer_Present_AlanWatts_20170306_P.shp"/>
+		<definedName name="ECO_DU_EI_HabitatType_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ECOLOGY\gdb\ECO.gdb\ECO_DU_EnviroInsight_HabitatType_P"/>
+		<definedName name="ECO_EI_AW_Wetlands_20170210" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ECOLOGY\shapefiles\EnviroInsight_AlanWattsModified_Wetlands_20170210.shp"/>
+		<definedName name="ECO_EI_Wetland_Bf150m_20170210" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ECOLOGY\shapefiles\EnviroInsight_AlanWattsModified_WetlandsBuffer150m_20170210.shp"/>
+
+		<definedName name="ELV_PB_Contour_Line_20160422" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ELEV\shapefiles\Palma_Bay_Contour_Lines_20160422_37S.shp"/>
 		<definedName name="HYD_DU_GSN_LchFld_Monitor_Wells_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\HYDRO\gdb\HYD.gdb\HYD_DU_GSN_LchFldMonitorWells_P"/>
 
-		
         <definedName name="GET_Addl_Stg4_Borehol_20131007" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Additional_Stage4_Boreholes_20131007.shp"/>
         <definedName name="GET_CCJV_Stg3_Boring_Locs_Rev" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\CCJV_Stage3_Boring_RevisedLocs.shp"/>
         <definedName name="GET_PR_Missing_MR14s_Manifolds" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\PR_Missing_MR14s_forGetotech_DataAcqAtManifolds.shp"/>
@@ -357,7 +382,19 @@
         <definedName name="GET_Prop_Prsprd_Explrt20131220" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131220.shp"/>
         <definedName name="GET_Prop_Prsprd_Addl_20140220" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_AdditionalDataAcq_20140220.shp"/>
         <definedName name="GET_MR13_SD_P48_Boreh_20131008" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\MR13_SD_P48_Borehole_for_TCoraspe_20131008.shp"/>
+		<definedName name="GET_CPT_Borehole_MMey_20140716" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\CPT_Borehole_MMeyer_20140716.shp"/>
+		<definedName name="GET_Logan_CPT_Intertidal_Aug14" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Logan_CPT_Intertidal_Aug_2014.shp"/>
+		<definedName name="GET_Aimee_Site_Invest_Landing" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Aimee_GeotechSiteInvestigationLanding.shp"/>
 		
+		<definedName name="REF_Fishermen_Dis_RAP_20150901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\REF\shapefiles\FishermenDistributionRoutes_RAP_1_09_2015.shp"/>
+
+		<definedName name="INF_AF_Archae_Importance_F" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\gdb\INF.gdb\INF_AF_ArchaeologicalImportance_F"/>
+		<definedName name="INF_AF_ERM_Cult_Heritage_Ste_F" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\gdb\INF.gdb\INF_AF_ERM_CulturalHeritage_SiteInventory_F"/>
+		<definedName name="INF_Realg_PowLn_33kv_20160912" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\shapefiles\Realigned_Powerline_33kv_20160912.shp"/>
+
+		<definedName name="STR_AF_Reset_Vlg_Opt1_Poly_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_AF_Reset_Village_Option1_Layout_Poly_P"/>
+		<definedName name="STR_DU_CCSJV_Flare_Drum_Meg_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_DU_CCSJV_Bog_Comp_Flare_Drum_Meg_Storage_P"/>
+		<definedName name="STR_GF_LandingAndValve_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\PIPE.gdb\STR_GF_GolfinhoLandingAndValve_P"/>
         <definedName name="STR_NS_Profile_Points_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profile_Points_20141204.shp"/>
         <definedName name="STR_NS_Line_of_Sight_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Line_of_Sight.shp"/>
         <definedName name="STR_NS_Profile_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profiles_20141204.shp"/>
@@ -374,47 +411,13 @@
 		<definedName name="STR_Start_End_Profile_20150212" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20150212\Start_End_Profiles_20150212.shp"/>
 		<definedName name="STR_PR_OFF_Escarp_Profiles_F" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20141226\PR_OFF_EscarpmentProfiles_F.shp"/>
 		
-		
+		<definedName name="TRN_PM_New_RdAlign_GH_20170630" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\TRANS\shapefiles\Patacua_Mganja_NewRdAlignment_GH_20170630.shp"/>
     </definedNames>
-	<nameChanges scope="MOZGIS">
-		<nameChange old="BND_RV_VegClr_50mBuffDissolve_20161012" new="BND_RV_VegClr_50mBfD_20161012" type="word"/>
-		<nameChange old="BND_RV_VegClr_50mBuffer_20161012" new="BND_RV_VegClr_50mBuf_20161012" type="word"/>
-		<nameChange old="STR_DU_CCSJV_Bog_Comp_Flare_Drum_Meg_Storage_P" new="STR_DU_CCSJV_Flare_Drum_Meg_P" type="word"/>
-		<nameChange old="BND_DU_LivelihoodDevelopmentZone_F" new="BND_DU_Livelihood_Dev_F" type="word"/>
-		<nameChange old="INF_AF_ArchaeologicalImportance_F" new="INF_AF_Archae_Importance_F" type="word"/>
-		<nameChange old="FishermenDistributionRoutes_RAP_1_09_2015" new="Fishermen_Dist_Rt_RAP_20150901" type="word"/>
-		<nameChange old="BND_Quelimane_Nsemo_Rd_Markers_Kms" new="BND_QN_Rd_Markers_Kms" type="word"/>
-		<nameChange old="BND_Quelimane_Nsemo_Profile_IndexGrid_20170626" new="BND_QN_Profile_IdxGrd_20170626" type="word"/>
-		<nameChange old="BND_Patacua_Maganja_Rd_Markers_Kms" new="BND_PM_Rd_Markers_Kms" type="word"/>
-		<nameChange old="BND_Coastline_Polyline_ForVisualization_20170622" new="BND_Coastline_For_Vis_20170622" type="word"/>
-		<nameChange old="BND_Palma_Afungi_InsideDUAT_50MBufferEitherSide_CZ_20170623" new="BND_PB_Afg_50MBuf_CZ_20170623" type="word"/>
-		<nameChange old="EnviroInsight_AlanWattsModified_Wetlands_20170210" new="EI_AW_Wetlands_20170210" type="word"/>
-		<nameChange old="EnviroInsight_AlanWattsModified_WetlandsBuffer150m_20170210" new="EI_AW_Wetlands_Bf150m_20170210" type="word"/>
-		<nameChange old="BND_ProposedAirstripTurf_AOI_CZ_20170208" new="BND_Prop_ASTrf_AOI_CZ_20170208" type="word"/>
-		<nameChange old="BND_Afungi_Airstrip_AOI_Assets_CZ_20170309" new="BND_Afg_Airstp_AOI_CZ_20170309" type="word"/>
+	<!--nameChanges scope="MOZGIS">
 		<nameChange old="HYD_RplcLand_RainMntr_Grid_1km2" new="HYD_RplcLand_RainMntr_1km2" type="word"/>
-		<nameChange old="BND_CCSJV_PriorityAreas_20161108" new="BND_CCSJV_Priority_20161108" type="word"/>
 		<nameChange old="BND_CCSJV_Priority_Areas_For_Rst" new="BND_CCSJV_Priority_Rst" type="word"/>
-		<nameChange old="BND_ES_BaselineEstablishment_Transects_20161212" new="BND_ES_Baseln_Estab_20161212" type="word"/>
 		<nameChange old="BND_Buffer_200m_VegiClear_20161011" new="BND_VegiClr_Buf_200m_20161011" type="word"/>
-		<nameChange old="INF_Realigned_PowLn_33kv_20160912" new="INF_Realg_PowLn_33kv_20160912" type="word"/>
-		<nameChange old="BND_PB_InstallationActivities_AvoidanceArea_Vtx_P" new="BND_PB_Install_Avoidance_Vtx_P" type="word"/>
-		<nameChange old="BND_PB_InstallationActivities_AvoidanceArea_P" new="BND_PB_Install_Avoidance_P" type="word"/>
-		<nameChange old="BND_Prop_Helipad_HLZ_SouthApproach_20161013" new="BND_Prop_Helipad_HLZ_20161013" type="word"/>
-		<nameChange old="ECO_DU_EnviroInsight_HabitatType_P" new="ECO_DU_EI_HabitatType_P" type="word"/>
-		<nameChange old="INF_AF_ERM_CulturalHeritage_SiteInventory_F" new="INF_AF_ERM_Cult_Heritage_Ste_F" type="word"/>
-		<nameChange old="BND_PB_Macala_Mangala_Bypass_Buf_200M" new="BND_PB_MM_Byp_Buf_200M" type="word"/>
-		<nameChange old="STR_AF_Reset_Vlg_Opt1_Lyt_Poly_P" new="STR_AF_Reset_Vlg_Opt1_Poly_P" type="word"/>
-		<nameChange old="STR_GF_GolfinhoLandingAndValve_P" new="STR_GF_LandingAndValve_P" type="word"/>
-		<nameChange old="ELV_Palma_Bay_Ctur_Ln_20160422_37S" new="ELV_PB_Ctur_Ln_20160422_37S" type="word"/>
-		<nameChange old="BND_RV_VegiClear_50mBuffDissolve_20161012" new="BND_RV_VegiClr_50mBfD_20161012" type="word"/>
-		<nameChange old="BND_RV_VegiClear_50mBuffer_20161012" new="BND_RV_VegiClr_50mBuf_20161012" type="word"/>
-		<nameChange old="BND_DU_ReplacementVill_Section2_BoreholeFd_Buf_200M" new="BND_DU_ReplVlg_S2_BHFd_Buf200M" type="word"/>
-		<nameChange old="BND_Proposed_DeminingAreas_ExcludeDemined28June2016" new="BND_Prop_Dem_Exclude_20160628" type="word"/>
-		<nameChange old="TRN_Patacua_Mganja_NewRdAlignment_GH_20170630" new="TRN_PM_NewRdAlign_GH_20170630" type="word"/>
-		<nameChange old="STR_DU_CCSJV_Bog_Comp_Flare_Drum_Meg_Stg_P" new="STR_DU_CCSJV_Flare_Drum_Meg_P" type="word"/>
-		<nameChange old="ECO_DU_Closed_Berlinia_Orientalis_woodland_forest_No_Longer_Present_AlanWatts_20170306_P" new="ECO_DU_woodland_AW_20170306_P" type="word"/>
-	</nameChanges>
+	</nameChanges-->
 	<shortcuts>
 		<!-- GIS -->
 		<shortcut key="Bndy" name="Boundary" priority="A"/>

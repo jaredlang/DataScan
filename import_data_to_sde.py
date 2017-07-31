@@ -25,7 +25,6 @@ DATA_TARGETS = []
 
 DATA_CATEGORIES = []
 WORD_SHORTCUTS = []
-NAME_CHANGES = []
 
 DEFINED_NAMES = {}
 
@@ -86,14 +85,6 @@ def load_config(configFile):
             'Name':child.attrib['name']
         })
     # print DATA_CATEGORIES
-
-    for child in root.iter('nameChange'):
-        NAME_CHANGES.append({
-            'Old':child.attrib['old'],
-            'New':child.attrib['new'],
-            'Type':child.attrib['type']
-        })
-    # print NAME_CHANGES
 
     for child in root.iter('shortcut'):
         WORD_SHORTCUTS.append({
@@ -165,12 +156,6 @@ def get_data_properties(lDrvPath):
             dataType = 'shp'
         elif os.path.splitext(dataFolder)[-1] == '.gdb':
             dataType = 'gdb'
-
-def change_name(name):
-    for c in NAME_CHANGES:
-        if c["Old"] == name:
-            return c["New"]
-    return name
 
 
 def guess_target_name(lDrvPath):
@@ -407,9 +392,7 @@ def load_layers_in_xls(wbPath, test):
                             if ds["SDE Name"] is None or len(ds["SDE Name"]) > 30:
                                 ds["SDE Name"] = guess_target_name(ds["Data Source"])
                             if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
-                                ds["SDE Name"] = change_name(ds["SDE Name"])
                                 ds["SDE Name"] = shorten_target_name(ds["SDE Name"])
-                                ds["SDE Name"] = change_name(ds["SDE Name"])
                                 if len(ds["SDE Name"]) > 30:
                                     print('%-60s%s' % (ds["Name"],"*** name too long [%s]" % ds["SDE Name"]))
                                     ds["Loaded?"] = "NAME TOO LONG"
