@@ -1,5 +1,6 @@
 import sys
 import os
+import argparse
 import tempfile
 import xml.etree.ElementTree as ET
 from arcpy import mapping
@@ -7,6 +8,8 @@ from openpyxl import Workbook
 from openpyxl import load_workbook
 import logging
 
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 HEADERS = []
 
@@ -114,14 +117,22 @@ def update_mxds(mxd_folder, xls_folder, new_mxd_folder):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 4 and len(sys.argv) > 5:
-        print("update_mxd xls_folder mxd_folder xls_folder new_mxd_folder [config_file]")
+    parser = argparse.ArgumentParser(description='Update mxds with data sources specified in spreadsheets')
+    parser.add_argument('-m','--mxd', help='MXD Folder (input)', required=True)
+    parser.add_argument('-x','--xls', help='XLS Folder (input)', required=True)
+    parser.add_argument('-n','--newMxd', help='New MXD Folder (output)', required=True)
+    parser.add_argument('-a','--action', help='Action Options (batch, single)', required=False, default='batch')
+    parser.add_argument('-c','--cfg', help='Config File', required=False, default=r'H:\MXD_Scan\config.xml')
+
+    params = parser.parse_args()
+
+    if params.cfg is not None:
+        load_config(params.cfg)
+
+    if params.action == 'batch':
+        update_mxds(params.mxd, params.xls, params.newMxd)
+    elif params.action == 'single':
+        print "[%s] Not Implemented Yet" % params.action
     else:
-        mxd_folder = sys.argv[1]
-        xls_folder = sys.argv[2]
-        new_mxd_folder = sys.argv[3]
-        config_file = r'H:\MXD_Scan\config.xml'
-        if len(sys.argv) == 5:
-            config_file = sys.argv[4]
-        load_config(config_file)
-        update_mxds(mxd_folder, xls_folder, new_mxd_folder)
+        print 'Error: unknown action [%s] for scanning' % params.action
+
