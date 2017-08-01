@@ -348,8 +348,8 @@ def load_layers_in_xls(wbPath, test):
         srcType = get_source_type(ds["Data Source"])
         if srcType is not None:
             if ds["Loaded?"] not in ["LOADED", 'EXIST']:
-                if ds["Verified?"] is not None and bool(ds["Verified?"]) == True:
-                    if ds["Layer Type"] is not None and ds["Layer Type"] == "RasterLayer":
+                if bool(ds["Verified?"]) == True:
+                    if ds["Layer Type"] == "RasterLayer":
                         # find out the target workspace
                         tgt_conn = get_raster_connection(srcType)
                         if tgt_conn is not None:
