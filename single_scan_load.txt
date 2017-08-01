@@ -1,0 +1,2 @@
+python H:\MXD_Scan\scan_mxds.py -a single -m \\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\arcgis_files\mxds -x H:\MXD_Scan\xlsx\arcgis_files\mxds_missed -s "\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\arcgis_files\mxds\LNGPark_DU_ProjectLayout_LU_APC_EL.mxd"
+python H:\MXD_Scan\import_data_to_sde.py -a single -x "H:\MXD_Scan\xlsx\arcgis_files\mxds_missed\LNGPark_DU_ProjectLayout_LU_APC_EL.mxd.xlsx"
