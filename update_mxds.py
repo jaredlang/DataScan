@@ -12,7 +12,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 XLS_TAB_NAME = "dataSource"
-HEADERS = []
+XLS_HEADERS = []
 
 def load_config(configFile):
     tree = ET.parse(configFile)
@@ -23,7 +23,7 @@ def load_config(configFile):
         XLS_TAB_NAME = child.attrib['name']
 
     for child in root.iter('xlsHeader'):
-        HEADERS.append(child.attrib['name'])
+        XLS_HEADERS.append(child.attrib['name'])
 
     del root
     del tree
@@ -40,8 +40,8 @@ def read_from_workbook(wbPath, sheetName=None):
 
     while ws["A"+str(r)].value is not None:
         dsRecord = {}
-        for c in range(0, len(HEADERS)):
-            dsRecord[HEADERS[c]] = ws[hdrs[c]+str(r)].value
+        for c in range(0, len(XLS_HEADERS)):
+            dsRecord[XLS_HEADERS[c]] = ws[hdrs[c]+str(r)].value
         dsList.append(dsRecord)
         r = r + 1
 

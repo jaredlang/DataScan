@@ -12,7 +12,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 XLS_TAB_NAME = "dataSource"
-HEADERS = []
+XLS_HEADERS = []
 
 NETWORK_DRIVES = []
 
@@ -40,8 +40,8 @@ def load_config(configFile):
         XLS_TAB_NAME = child.attrib['name']
 
     for child in root.iter('xlsHeader'):
-        HEADERS.append(child.attrib['name'])
-    # print HEADERS
+        XLS_HEADERS.append(child.attrib['name'])
+    # print XLS_HEADERS
 
     for child in root.iter('source'):
         src_name = child.attrib['name']
@@ -98,17 +98,17 @@ def write_to_workbook(wbPath, dsList, sheetName=None):
     ws1.title = XLS_TAB_NAME
 
     # headers
-    for c in range(0, len(HEADERS)):
-        ws1.cell(row=1, column=c+1, value=HEADERS[c])
+    for c in range(0, len(XLS_HEADERS)):
+        ws1.cell(row=1, column=c+1, value=XLS_HEADERS[c])
 
     # content
     s = 1 # skip the first 1 row
     for r in range(0, len(dsList)):
         for c in dsList[r]:
             # TODO: add style to cell?
-            h = HEADERS.index(c)
+            h = XLS_HEADERS.index(c)
             if h > -1:
-                ws1.cell(row=r+s+1, column=h+1, value=dsList[r][HEADERS[h]])
+                ws1.cell(row=r+s+1, column=h+1, value=dsList[r][XLS_HEADERS[h]])
             else:
                 print('Invalid header [%s] in xls [%s]' % (c, mxdPath))
 

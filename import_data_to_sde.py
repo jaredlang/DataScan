@@ -16,8 +16,8 @@ AGS_HOME = arcpy.GetInstallInfo("Desktop")["InstallDir"]
 METADATA_TRANSLATOR = os.path.join(AGS_HOME, r'Metadata/Translator/ARCGIS2FGDC.xml')
 
 XLS_TAB_NAME = "dataSource"
-HEADERS = []
-HEADERS_FOR_UPDATE = []
+XLS_HEADERS = []
+XLS_HEADERS_FOR_UPDATE = []
 
 NETWORK_DRIVES = []
 
@@ -48,11 +48,11 @@ def load_config(configFile):
         XLS_TAB_NAME = child.attrib['name']
 
     for child in root.iter('xlsHeader'):
-        HEADERS.append(child.attrib['name'])
+        XLS_HEADERS.append(child.attrib['name'])
         if 'update' in child.attrib.keys() and child.attrib['update'] == 'Y':
-            HEADERS_FOR_UPDATE.append(child.attrib['name'])
-    # print HEADERS
-    # print HEADERS_FOR_UPDATE
+            XLS_HEADERS_FOR_UPDATE.append(child.attrib['name'])
+    # print XLS_HEADERS
+    # print XLS_HEADERS_FOR_UPDATE
 
     for child in root.iter('networkDrive'):
         NETWORK_DRIVES.append({
@@ -260,8 +260,8 @@ def read_from_workbook(wbPath, sheetName=None):
 
     while ws["A"+str(r)].value is not None:
         dsRecord = {}
-        for c in range(0, len(HEADERS)):
-            dsRecord[HEADERS[c]] = ws[hdrs[c]+str(r)].value
+        for c in range(0, len(XLS_HEADERS)):
+            dsRecord[XLS_HEADERS[c]] = ws[hdrs[c]+str(r)].value
         dsList.append(dsRecord)
         r = r + 1
 
@@ -280,9 +280,9 @@ def update_status_in_workbook(wbPath, dsList, sheetName=None):
     s = 2 # skip the first 2 rows
     for r in range(0, len(dsList)):
         for c in dsList[r]:
-            for u in HEADERS_FOR_UPDATE:
-                h = HEADERS.index(u)
-                ws1.cell(row=r+s+1, column=h+1, value=dsList[r][HEADERS[h]])
+            for u in XLS_HEADERS_FOR_UPDATE:
+                h = XLS_HEADERS.index(u)
+                ws1.cell(row=r+s+1, column=h+1, value=dsList[r][XLS_HEADERS[h]])
 
     wb.save(filename = wbPath)
     wb.close()
