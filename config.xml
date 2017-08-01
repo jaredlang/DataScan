@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <config>
+	<xlsTab name="dataSource"/>
 	<xlsHeaders>
 		<xlsHeader name="Name"/>
 		<xlsHeader name="Data Source"/>

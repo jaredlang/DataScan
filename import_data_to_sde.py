@@ -15,6 +15,7 @@ logger = logging.getLogger(__name__)
 AGS_HOME = arcpy.GetInstallInfo("Desktop")["InstallDir"]
 METADATA_TRANSLATOR = os.path.join(AGS_HOME, r'Metadata/Translator/ARCGIS2FGDC.xml')
 
+XLS_TAB_NAME = "dataSource"
 HEADERS = []
 HEADERS_FOR_UPDATE = []
 
@@ -41,6 +42,10 @@ def get_alias_path(lDrvPath):
 def load_config(configFile):
     tree = ET.parse(configFile)
     root = tree.getroot()
+
+    for child in root.iter('xlsTab'):
+        # only one tab
+        XLS_TAB_NAME = child.attrib['name']
 
     for child in root.iter('xlsHeader'):
         HEADERS.append(child.attrib['name'])
@@ -246,7 +251,7 @@ def shorten_target_name(name, maxLen=30):
 
 def read_from_workbook(wbPath, sheetName=None):
     wb = load_workbook(filename = wbPath, read_only=True)
-    ws = wb["dataSource"]
+    ws = wb[XLS_TAB_NAME]
 
     dsList = []
     # skip the first 2 rows
@@ -269,7 +274,7 @@ def read_from_workbook(wbPath, sheetName=None):
 
 def update_status_in_workbook(wbPath, dsList, sheetName=None):
     wb = load_workbook(filename = wbPath)
-    ws1 = wb["dataSource"]
+    ws1 = wb[XLS_TAB_NAME]
 
     # content
     s = 2 # skip the first 2 rows

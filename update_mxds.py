@@ -11,11 +11,16 @@ import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+XLS_TAB_NAME = "dataSource"
 HEADERS = []
 
 def load_config(configFile):
     tree = ET.parse(configFile)
     root = tree.getroot()
+
+    for child in root.iter('xlsTab'):
+        # only one tab
+        XLS_TAB_NAME = child.attrib['name']
 
     for child in root.iter('xlsHeader'):
         HEADERS.append(child.attrib['name'])
@@ -26,7 +31,7 @@ def load_config(configFile):
 
 def read_from_workbook(wbPath, sheetName=None):
     wb = load_workbook(filename = wbPath, read_only=True)
-    ws = wb["dataSource"]
+    ws = wb[XLS_TAB_NAME]
 
     dsList = []
     # skip the first 2 rows

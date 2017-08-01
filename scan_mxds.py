@@ -11,6 +11,7 @@ import logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+XLS_TAB_NAME = "dataSource"
 HEADERS = []
 
 NETWORK_DRIVES = []
@@ -33,6 +34,10 @@ def get_alias_path(lDrvPath):
 def load_config(configFile):
     tree = ET.parse(configFile)
     root = tree.getroot()
+
+    for child in root.iter('xlsTab'):
+        # only one tab
+        XLS_TAB_NAME = child.attrib['name']
 
     for child in root.iter('xlsHeader'):
         HEADERS.append(child.attrib['name'])
@@ -90,7 +95,7 @@ def verify_layer_dataSource(lyr, lyrType):
 def write_to_workbook(wbPath, dsList, sheetName=None):
     wb = Workbook()
     ws1 = wb.active
-    ws1.title = "dataSource"
+    ws1.title = XLS_TAB_NAME
 
     # headers
     for c in range(0, len(HEADERS)):
