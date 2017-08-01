@@ -34,7 +34,7 @@ def load_config(configFile):
     tree = ET.parse(configFile)
     root = tree.getroot()
 
-    for child in root.iter('header'):
+    for child in root.iter('xlsHeader'):
         HEADERS.append(child.attrib['name'])
     # print HEADERS
 

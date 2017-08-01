@@ -42,7 +42,7 @@ def load_config(configFile):
     tree = ET.parse(configFile)
     root = tree.getroot()
 
-    for child in root.iter('header'):
+    for child in root.iter('xlsHeader'):
         HEADERS.append(child.attrib['name'])
         if 'update' in child.attrib.keys() and child.attrib['update'] == 'Y':
             HEADERS_FOR_UPDATE.append(child.attrib['name'])

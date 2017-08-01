@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <config>
-	<headers>
-		<header name="Name"/>
-		<header name="Data Source"/>
-		<header name="Layer Type"/>
-		<header name="Verified?"/>
-		<header name="Loaded?" update="Y"/>
-		<header name="SDE Name" update="Y"/>
-		<header name="SDE Conn" update="Y"/>
-		<header name="Livelink Link"/>
-		<header name="Definition Query"/>
-		<header name="Description"/>
-	</headers>
+	<xlsHeaders>
+		<xlsHeader name="Name"/>
+		<xlsHeader name="Data Source"/>
+		<xlsHeader name="Layer Type"/>
+		<xlsHeader name="Verified?"/>
+		<xlsHeader name="Loaded?" update="Y"/>
+		<xlsHeader name="SDE Name" update="Y"/>
+		<xlsHeader name="SDE Conn" update="Y"/>
+		<xlsHeader name="Livelink Link"/>
+		<xlsHeader name="Definition Query"/>
+		<xlsHeader name="Description"/>
+	</xlsHeaders>
 	<networkDrives>
 		<networkDrive drive="L:\" path="\\anadarko.com\world\"/>
 	</networkDrives>
