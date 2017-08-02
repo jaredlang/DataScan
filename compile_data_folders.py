@@ -170,9 +170,9 @@ def compile_data_folders(xlsFolder, xlsOutput):
             }
             dataFolderList.append(df)
 
-    write_to_workbook(xlsOutput, dataFolderList)
+    write_to_workbook(xlsOutput, sorted(dataFolderList, key=lambda df:df["Source Type"]))
 
-    print('The compiled data folder list: %s' % xlsOutput)
+    print('**** The compiled data folder list: %s' % xlsOutput)
 
 
 if __name__ == "__main__":
