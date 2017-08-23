@@ -35,14 +35,19 @@
         <target name="MOZGIS">
             <sdeConn>C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_GIS.sde</sdeConn>
             <rasterDepot>\\anadarko.com\expdata\Houston\gngdata\raster_depot1\Mozambique\MOZGIS\</rasterDepot>
-            <livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll/open/33638511</livelink>
+            <!--livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll/open/33638511</livelink-->
         </target>
         <target name="LNG">
             <sdeConn>C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_LNG.sde</sdeConn>
             <rasterDepot>\\anadarko.com\expdata\Houston\gngdata\raster_depot1\Mozambique\MozambiqueLNG\</rasterDepot>
-            <livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll/open/33642312</livelink>
+            <!--livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll/open/33642312</livelink-->
         </target>
     </targets>
+	<livelink name="xRef" path="H:\MXD_Scan\xlsx\arcgis_files\REF_data_folders.xlsx">
+		<xrefHeader name="Source Type"/>
+		<xrefHeader name="Data Source"/>
+		<xrefHeader name="Livelink URL"/>
+	</livelink>
     <dataCategories>
         <dataCategory key="BIO" name="BIOLOGICAL"/>
         <dataCategory key="BND" name="BOUND"/>

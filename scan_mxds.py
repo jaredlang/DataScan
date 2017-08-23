@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 import arcpy
 from openpyxl import Workbook
+from openpyxl import load_workbook
 import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -19,6 +20,8 @@ NETWORK_DRIVES = []
 DATA_SOURCES = []
 DATA_TARGETS = []
 
+XREF_TAB_NAME = "xRef"
+XREF_HEADERS = []
 LDRV_LL_PATHS = []
 
 
@@ -66,6 +69,7 @@ def load_config(configFile):
             DATA_TARGETS.append(target)
     # print DATA_TARGETS
 
+    '''
     for src in DATA_SOURCES:
         for tgt in DATA_TARGETS:
             if src['name'] == tgt['name'] and src['Mode'] == 'add':
@@ -74,13 +78,39 @@ def load_config(configFile):
                     'LDrv':src['LDrv'],
                     'LL':tgt['livelink']
                 })
+    '''
+    for child in root.iter('livelink'):
+        if child.attrib['name'] == 'xRef':
+            llPath = child.attrib['path']
+            for hdr in child.iter('xrefHeader'):
+                XREF_HEADERS.append(hdr.attrib['name'])
+
+            wb = load_workbook(filename = llPath, read_only=True)
+            ws = wb[XREF_TAB_NAME]
+
+            # skip the first 1 row (the headers)
+            r = 2
+            hdrs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+            while ws["A"+str(r)].value is not None:
+                xrefRecord = {}
+                for c in range(0, len(XREF_HEADERS)):
+                    xrefRecord[XREF_HEADERS[c]] = ws[hdrs[c]+str(r)].value
+                LDRV_LL_PATHS.append(xrefRecord)
+                r = r + 1
+
+            wb.close()
+            del wb
+
+            break
+
     # print LDRV_LL_PATHS
 
 
 def find_Livelink_path(lDrvPath):
     for cvt in LDRV_LL_PATHS:
-        if lDrvPath.find(cvt["LDrv"]) == 0:
-            return cvt["LL"]
+        if lDrvPath.find(cvt["Data Source"]) == 0:
+            return cvt["Livelink URL"]
     return None
 
 
