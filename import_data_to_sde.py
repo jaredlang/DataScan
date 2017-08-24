@@ -295,6 +295,9 @@ def update_sde_metadata(sdeFC, props, srcType):
     TEMP_DIR = tempfile.gettempdir()
     metadataFile = os.path.join(TEMP_DIR, os.path.basename(sdeFC) + '-metadata.xml')
     migrationText = " *** Migrated from the L Drive (%s)" % props["Data Source"]
+    livelinkText = ""
+    if props["Livelink Link"]:
+        livelinkText = 'Click <a href="' + props["Livelink Link"] + '">here</a> to go to Livelink'
 
     if os.path.exists(metadataFile):
         os.remove(metadataFile)
@@ -326,7 +329,7 @@ def update_sde_metadata(sdeFC, props, srcType):
     if abstract.text is None:
         abstract.text = migrationText
     elif abstract.text.find(migrationText) == -1:
-        abstract.text = abstract.text + migrationText
+        abstract.text = "<![CDATA[%s<br/>%s<br/>%s]]>" % (abstract.text, livelinkText, migrationText)
 
     tree.write(metadataFile)
 
