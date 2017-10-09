@@ -174,7 +174,8 @@ def find_files_by_ext(xlsFolder, fileExts, xlsOutput):
                             fext = get_file_ext(lyr["Data Source"])
                             if fext in fileExts:
                                 print('%s\t[%s]' % (fext, lyr["Data Source"]))
-                                df = parse_data_folder(lyr["Data Source"])
+                                #df = parse_data_folder(lyr["Data Source"])
+                                df = lyr["Data Source"] # get the full path
                                 dataFileSet.add(df)
 
     dataFileList = []
