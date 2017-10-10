@@ -30,7 +30,7 @@ MAPPER_TAB_NAME = "GIS"
 MAPPER_HEADERS = ['Name_in_mxd', 'Source_Featureclass_Name', 'Source_Path', 'Target_Path', 'Target_Featureclass_Name']
 MAPPER_LIST = []
 
-MAPPED_HEADERS_FOR_UPDATE = ["Data Source", "Verified?"]
+MAPPED_HEADERS_FOR_UPDATE = ["Data Source", "Verified?", "SDE Name", "SDE Conn"]
 
 
 def get_alias_path(lDrvPath):
