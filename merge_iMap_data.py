@@ -243,10 +243,14 @@ def map_layers_in_xls(wbPath):
                 if llDrvPath is None:
                     print('%-60s%s' % (ds["Name"],"No LDrive path found for %s" % ds["Data Source"]))
                 else:
-                    ds["SDE Name"] = get_predefined_name(dataName)
                     ds["Data Source"] = llDrvPath
                     ds["Verified?"] = verify_layer_dataSource(ds["Data Source"])
-                    ds["SDE Conn"] = get_sde_connection(get_source_type(ds["Data Source"]))
+                    '''
+                    srcType = get_source_type(ds["Data Source"])
+                    if srcType == "MOZGIS":
+                        ds["SDE Name"] = get_predefined_name(dataName)
+                        ds["SDE Conn"] = get_sde_connection(srcType)
+                    '''
 
     return dsList
 
