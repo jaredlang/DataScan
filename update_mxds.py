@@ -75,18 +75,24 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
                      # get the layer data source
                      lyrDS = lyr.dataSource
                      for ds in dsList:
-                        if ds["Data Source"] == lyrDS and bool(ds["Verified?"]) == True and ds["Loaded?"] in ["LOADED", 'EXIST']:
-                            if ds["Layer Type"] == "RasterLayer":
-                                wsType = "RASTER_WORKSPACE"
-                            elif ds["Layer Type"] == "FeatureLayer":
-                                wsType = "SDE_WORKSPACE"
+                        if ds["Data Source"] == lyrDS:
+                            if bool(ds["Verified?"]) == True and ds["Loaded?"] in ["LOADED", 'EXIST']:
+                                if ds["Layer Type"] == "RasterLayer":
+                                    wsType = "RASTER_WORKSPACE"
+                                elif ds["Layer Type"] == "FeatureLayer":
+                                    wsType = "SDE_WORKSPACE"
+                                else:
+                                    wsType = "NONE"
+                                try:
+                                    # update the layer data source
+                                    print('%-60s%s' % (lyr.name,"set data source to " + os.path.join(ds["SDE Conn"], ds["SDE Name"])))
+                                    lyr.replaceDataSource(ds["SDE Conn"], wsType, ds["SDE Name"], True)
+                                except:
+                                    print('%-60s%s' % (lyr.name,">>> failed to update data source " + lyrType))
                             else:
-                                wsType = "NONE"
-                            try:
-                                # update the layer data source
-                                lyr.replaceDataSource(ds["SDE Conn"], wsType, ds["SDE Name"], True)
-                            except:
-                                print('%-60s%s' % (lyr.name,">>> failed to update data source " + lyrType))
+                                print('%-60s%s' % (lyr.name,"*** skip invalid or unavailable layer"))
+                            break
+
              except:
                  print('%-60s%s' % (lyr.name,">>> failed to retrieve info " + lyrType))
         # save the updated mxd file
