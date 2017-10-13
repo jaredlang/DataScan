@@ -247,9 +247,9 @@ def map_layers_in_xls(wbPath):
                     ds["Verified?"] = verify_layer_dataSource(ds["Data Source"])
                     '''
                     srcType = get_source_type(ds["Data Source"])
+                    ds["SDE Conn"] = get_sde_connection(srcType)
                     if srcType == "MOZGIS":
                         ds["SDE Name"] = get_predefined_name(dataName)
-                        ds["SDE Conn"] = get_sde_connection(srcType)
                     '''
 
     return dsList
