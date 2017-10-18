@@ -97,7 +97,6 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
                  print('%-60s%s' % (lyr.name,">>> failed to retrieve info " + lyrType))
         # save the updated mxd file
         mxd.saveACopy(newMxdPath)
-        print('\nThe NEW mxd file: %s' % newMxdPath)
     except:
         print('Unable to open the mxd file [%s]' % mxdPath)
     finally:
@@ -125,7 +124,7 @@ def update_mxds(mxd_folder, xls_folder, new_mxd_folder):
                 else:
                     print('Updating data sources ...')
                     update_mxd_ds(mxdPath, xlsPath, newMxdPath)
-                    print("**** completed")
+                    print('\nThe NEW mxd file: %s' % newMxdPath)
 
 
 if __name__ == '__main__':
