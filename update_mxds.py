@@ -1,7 +1,7 @@
 import sys
 import os
 import argparse
-import tempfile
+import shutil
 import xml.etree.ElementTree as ET
 from arcpy import mapping
 from openpyxl import Workbook
@@ -53,10 +53,13 @@ def read_from_workbook(wbPath, sheetName=None):
 
 
 def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
+    print('\nThe mxd file: %s' % mxdPath)
     dsList = read_from_workbook(xlsPath)
     try:
         mxd = arcpy.mapping.MapDocument(mxdPath)
         lyrs = arcpy.mapping.ListLayers(mxd)
+
+        print('Updating data sources ...')
         for lyr in lyrs:
              if lyr.isFeatureLayer == True:
                  lyrType = "FeatureLayer"
@@ -97,8 +100,12 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
                  print('%-60s%s' % (lyr.name,">>> failed to retrieve info " + lyrType))
         # save the updated mxd file
         mxd.saveACopy(newMxdPath)
+        print('\nThe NEW mxd file: %s' % newMxdPath)
     except:
         print('Unable to open the mxd file [%s]' % mxdPath)
+        shutil.copy2(mxdPath, newMxdPath)
+        print('\nThe NEW mxd file copied as is: %s' % newMxdPath)
+
     finally:
         del mxd
 
@@ -109,7 +116,6 @@ def update_mxds(mxd_folder, xls_folder, new_mxd_folder):
         for mxdFile in mxdFiles:
             if mxdFile.endswith(".mxd"):
                 mxdPath = os.path.join(mxdRoot, mxdFile)
-                print('\nThe mxd file: %s' % mxdPath)
 
                 newMxdPath = os.path.join(new_mxd_folder, mxdPath.replace(mxd_folder, new_mxd_folder))
                 newMxdFolder = os.path.dirname(newMxdPath)
@@ -122,16 +128,14 @@ def update_mxds(mxd_folder, xls_folder, new_mxd_folder):
                 if not os.path.exists(xlsPath):
                     print('The xls file not exist: %s' % xlsPath)
                 else:
-                    print('Updating data sources ...')
                     update_mxd_ds(mxdPath, xlsPath, newMxdPath)
-                    print('\nThe NEW mxd file: %s' % newMxdPath)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Update mxds with data sources specified in spreadsheets')
-    parser.add_argument('-m','--mxd', help='MXD Folder (input)', required=True)
-    parser.add_argument('-x','--xls', help='XLS Folder (input)', required=True)
-    parser.add_argument('-n','--newMxd', help='New MXD Folder (output)', required=True)
+    parser.add_argument('-m','--mxd', help='MXD Folder/File (input)', required=True)
+    parser.add_argument('-x','--xls', help='XLS Folder/File (input)', required=True)
+    parser.add_argument('-n','--newMxd', help='New MXD Folder/File (output)', required=True)
     parser.add_argument('-a','--action', help='Action Options (batch, single)', required=False, default='batch')
     parser.add_argument('-c','--cfg', help='Config File', required=False, default=r'H:\MXD_Scan\config.xml')
 
@@ -143,7 +147,7 @@ if __name__ == '__main__':
     if params.action == 'batch':
         update_mxds(params.mxd, params.xls, params.newMxd)
     elif params.action == 'single':
-        print "[%s] Not Implemented Yet" % params.action
+        update_mxd_ds(params.mxd, params.xls, params.newMxd)
     else:
         print 'Error: unknown action [%s] for scanning' % params.action
 
