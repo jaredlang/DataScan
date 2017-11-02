@@ -1,6 +1,7 @@
 import sys
 import os
 import argparse
+import re
 import shutil
 import xml.etree.ElementTree as ET
 from arcpy import mapping
@@ -104,31 +105,52 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
     except:
         print('Unable to open the mxd file [%s]' % mxdPath)
         shutil.copy2(mxdPath, newMxdPath)
-        print('\nThe NEW mxd file copied as is: %s' % newMxdPath)
+        print('\nThe COPIED mxd file copied as is: %s' % newMxdPath)
 
     finally:
         del mxd
 
 
-def update_mxds(mxd_folder, xls_folder, new_mxd_folder):
+def update_mxds(mxd_folder, xls_folder, new_mxd_folder, date_filters):
+    # parse date filters
+    lower_date = None
+    upper_date = None
+    if date_filters is not None:
+        dfs = re.split('<', date_filters)
+        if len(dfs) == 2:
+            if dfs[0] is not None and len(dfs[0]) > 0:
+                lower_date = datetime.datetime.strptime(dfs[0], "%Y/%m/%d")
+            if dfs[1] is not None and len(dfs[1]) > 0:
+                upper_date = datetime.datetime.strptime(dfs[1], "%Y/%m/%d")
+
     # walk through the mxd files
     for mxdRoot, mxdDirs, mxdFiles in os.walk(mxd_folder):
         for mxdFile in mxdFiles:
             if mxdFile.endswith(".mxd"):
                 mxdPath = os.path.join(mxdRoot, mxdFile)
 
-                newMxdPath = os.path.join(new_mxd_folder, mxdPath.replace(mxd_folder, new_mxd_folder))
-                newMxdFolder = os.path.dirname(newMxdPath)
-                if not os.path.exists(newMxdFolder):
-                        os.makedirs(newMxdFolder)
+                modified_time = datetime.datetime.fromtimestamp(os.stat(mxdPath).st_mtime)
+                # check against the filter
+                is_filter_met = True
+                if lower_date is not None:
+                    is_filter_met = modified_time >= lower_date
+                if upper_date is not None:
+                    is_filter_met = is_filter_met and modified_time <= upper_date
 
-                xlsPath = os.path.join(xls_folder, mxdPath.replace(mxd_folder, xls_folder))
-                xlsPath = xlsPath + ".xlsx"
+                # work on the mxd file
+                if is_filter_met == True:
+                    newMxdPath = os.path.join(new_mxd_folder, mxdPath.replace(mxd_folder, new_mxd_folder))
+                    newMxdFolder = os.path.dirname(newMxdPath)
+                    if not os.path.exists(newMxdFolder):
+                            os.makedirs(newMxdFolder)
 
-                if not os.path.exists(xlsPath):
-                    print('The xls file not exist: %s' % xlsPath)
-                else:
-                    update_mxd_ds(mxdPath, xlsPath, newMxdPath)
+                    xlsPath = os.path.join(xls_folder, mxdPath.replace(mxd_folder, xls_folder))
+                    xlsPath = xlsPath + ".xlsx"
+
+                    if not os.path.exists(xlsPath):
+                        print('The xls file not exist: %s' % xlsPath)
+                    else:
+                        update_mxd_ds(mxdPath, xlsPath, newMxdPath)
 
 
 if __name__ == '__main__':
@@ -136,6 +158,7 @@ if __name__ == '__main__':
     parser.add_argument('-m','--mxd', help='MXD Folder/File (input)', required=True)
     parser.add_argument('-x','--xls', help='XLS Folder/File (input)', required=True)
     parser.add_argument('-n','--newMxd', help='New MXD Folder/File (output)', required=True)
+    parser.add_argument('-f','--filter', help='Filter by dates. Ex. 2015/2/19<2016/2/18', required=False, default=None)
     parser.add_argument('-a','--action', help='Action Options (batch, single)', required=False, default='batch')
     parser.add_argument('-c','--cfg', help='Config File', required=False, default=r'H:\MXD_Scan\config.xml')
 
@@ -145,7 +168,7 @@ if __name__ == '__main__':
         load_config(params.cfg)
 
     if params.action == 'batch':
-        update_mxds(params.mxd, params.xls, params.newMxd)
+        update_mxds(params.mxd, params.xls, params.newMxd, params.filter)
     elif params.action == 'single':
         update_mxd_ds(params.mxd, params.xls, params.newMxd)
     else:
