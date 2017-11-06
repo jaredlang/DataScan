@@ -25,6 +25,13 @@ XREF_HEADERS = []
 LDRV_LL_PATHS = []
 
 
+def ascii(s):
+    if s is not None:
+        return s.encode('ascii', 'replace')
+    else:
+        return s
+
+
 def get_alias_path(lDrvPath):
     for nd in NETWORK_DRIVES:
         if lDrvPath.find(nd["Path"]) == 0:
@@ -173,11 +180,11 @@ def scan_layers_in_mxd(mxdPath):
                  lyrType = "UnknownLayer"
              try:
                  if lyrType in ["GroupLayer", "ServiceLayer", "UnknownLayer"]:
-                     print('%-60s%s' % (lyr.name,"*** skip " + lyrType))
+                     print('%-60s%s' % (ascii(lyr.name),"*** skip " + lyrType))
                  else:
                      # get the layer data source
                      ds = lyr.dataSource
-                     print('%-60s%s' % (lyr.name,ds))
+                     print('%-60s%s' % (ascii(lyr.name),ds))
                      # get the layer def query
                      defQry = None
                      if lyr.supports("DEFINITIONQUERY") == True:
@@ -196,9 +203,9 @@ def scan_layers_in_mxd(mxdPath):
                                     "Verified?": verified, "Definition Query": defQry, "Description": dspt,
                                     "Livelink Link": llPath})
              except:
-                 print('%-60s%s' % (lyr.name,">>> failed to retrieve info " + lyrType))
+                 print('%-60s%s' % (ascii(lyr.name), ">>> failed to retrieve info " + lyrType + ": " + str(sys.exc_info()[0])))
      except:
-         print('Unable to open the mxd file [%s]' % mxdPath)
+         print('Failed to process the mxd file [%s]: %s' % (mxdPath, sys.exc_info()[0]))
      finally:
          del mxd
 

@@ -15,6 +15,14 @@ logger = logging.getLogger(__name__)
 XLS_TAB_NAME = "dataSource"
 XLS_HEADERS = []
 
+
+def ascii(s):
+    if s is not None:
+        return s.encode('ascii', 'replace')
+    else:
+        return s
+
+
 def load_config(configFile):
     tree = ET.parse(configFile)
     root = tree.getroot()
@@ -74,7 +82,7 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
                  lyrType = "UnknownLayer"
              try:
                  if lyrType in ["GroupLayer", "ServiceLayer", "UnknownLayer"]:
-                     print('%-60s%s' % (lyr.name,"*** skip " + lyrType))
+                     print('%-60s%s' % (ascii(lyr.name),"*** skip " + lyrType))
                  else:
                      # get the layer data source
                      lyrDS = lyr.dataSource
@@ -89,16 +97,16 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
                                     wsType = "NONE"
                                 try:
                                     # update the layer data source
-                                    print('%-60s%s' % (lyr.name,"set data source to " + os.path.join(ds["SDE Conn"], ds["SDE Name"])))
+                                    print('%-60s%s' % (ascii(lyr.name),"set data source to " + os.path.join(ds["SDE Conn"], ds["SDE Name"])))
                                     lyr.replaceDataSource(ds["SDE Conn"], wsType, ds["SDE Name"], True)
                                 except:
-                                    print('%-60s%s' % (lyr.name,">>> failed to update data source " + lyrType))
+                                    print('%-60s%s' % (ascii(lyr.name),">>> failed to update data source " + lyrType))
                             else:
-                                print('%-60s%s' % (lyr.name,"*** skip invalid or unavailable layer"))
+                                print('%-60s%s' % (ascii(lyr.name),"*** skip invalid or unavailable layer"))
                             break
 
              except:
-                 print('%-60s%s' % (lyr.name,">>> failed to retrieve info " + lyrType))
+                 print('%-60s%s' % (ascii(lyr.name),">>> failed to retrieve info " + lyrType))
         # save the updated mxd file
         mxd.saveACopy(newMxdPath)
         print('\nThe NEW mxd file: %s' % newMxdPath)

@@ -30,6 +30,13 @@ WORD_SHORTCUTS = []
 DEFINED_NAMES = {}
 
 
+def ascii(s):
+    if s is not None:
+        return s.encode('ascii', 'replace')
+    else:
+        return s
+
+
 def get_alias_path(lDrvPath):
     for nd in NETWORK_DRIVES:
         if lDrvPath.find(nd["Path"]) == 0:
@@ -363,11 +370,11 @@ def load_layers_in_xls(wbPath, test):
                             ds["SDE Conn"] = os.path.dirname(tgt_workspace)
                             ds["SDE Name"] = os.path.basename(tgt_workspace)
                             if os.path.exists(tgt_workspace) or arcpy.Exists(tgt_workspace):
-                                print('%-60s%s' % (ds["Name"],"*** existing layer"))
+                                print('%-60s%s' % (ascii(ds["Name"]),"*** existing layer"))
                                 ds["Loaded?"] = 'EXIST'
                             else:
                                 # copy data to the target workspace
-                                print('%-60s%s' % (ds["Name"],"loading to Raster Depot as %s" % tgt_workspace))
+                                print('%-60s%s' % (ascii(ds["Name"]),"loading to Raster Depot as %s" % tgt_workspace))
                                 if test == "test":
                                     print('%-60s%s' % (" ","^^^ TESTED"))
                                     ds["Loaded?"] = 'TESTED'
@@ -390,7 +397,7 @@ def load_layers_in_xls(wbPath, test):
                                             print('%-60s%s' % (" ",">>> FAILED to load data [" + str(arcpy.GetMessages()) + "]"))
                                             ds["Loaded?"] = 'FAILED'
                         else:
-                            print('%-60s%s' % (ds["Name"],"*** no target store"))
+                            print('%-60s%s' % (ascii(ds["Name"]),"*** no target store"))
                             ds["Loaded?"] = "NO TARGET STORE"
 
                     elif ds["Layer Type"] is not None and ds["Layer Type"] == "FeatureLayer":
@@ -402,13 +409,13 @@ def load_layers_in_xls(wbPath, test):
                             if ds["SDE Name"] is not None and len(ds["SDE Name"]) > 0:
                                 ds["SDE Name"] = shorten_target_name(ds["SDE Name"])
                                 if len(ds["SDE Name"]) > 30:
-                                    print('%-60s%s' % (ds["Name"],"*** name too long [%s]" % ds["SDE Name"]))
+                                    print('%-60s%s' % (ascii(ds["Name"]),"*** name too long [%s]" % ds["SDE Name"]))
                                     ds["Loaded?"] = "NAME TOO LONG"
                                 elif arcpy.Exists(tgt_conn + "\\" + ds["SDE Name"]) == True:
-                                    print('%-60s%s' % (ds["Name"],"*** existing layer"))
+                                    print('%-60s%s' % (ascii(ds["Name"]),"*** existing layer"))
                                     ds["Loaded?"] = 'EXIST'
                                 else:
-                                    print('%-60s%s' % (ds["Name"],"loading to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
+                                    print('%-60s%s' % (ascii(ds["Name"]),"loading to SDE at %s as %s" % (tgt_conn, ds["SDE Name"])))
                                     # upload the actual data
                                     if test == "test":
                                         print('%-60s%s' % (" ","^^^ TESTED"))
@@ -419,29 +426,29 @@ def load_layers_in_xls(wbPath, test):
                                             print('%-60s%s' % (" ","^^^ LOADED"))
                                             ds["Loaded?"] = 'LOADED'
 
-                                            print('%-60s%s' % (ds["Name"],"updating SDE metadata of %s\\%s" % (tgt_conn, ds["SDE Name"])))
+                                            print('%-60s%s' % (ascii(ds["Name"]),"updating SDE metadata of %s\\%s" % (tgt_conn, ds["SDE Name"])))
                                             update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds, srcType)
                                             print('%-60s%s' % (" ","^^^ METADATA UPDATED"))
                                         except arcpy.ExecuteError:
                                             print('%-60s%s' % (" ",">>> FAILED to load data [" + str(arcpy.GetMessages()) + "]"))
                                             ds["Loaded?"] = 'FAILED'
                             else:
-                                print('%-60s%s' % (ds["Name"],"*** no target name [" + ds["Data Source"] + "]"))
+                                print('%-60s%s' % (ascii(ds["Name"]),"*** no target name [" + ds["Data Source"] + "]"))
                                 ds["Loaded?"] = "NO TARGET NAME"
                         else:
-                            print('%-60s%s' % (ds["Name"],"*** no target store  [" + ds["Data Source"] + "]"))
+                            print('%-60s%s' % (ascii(ds["Name"]),"*** no target store  [" + ds["Data Source"] + "]"))
                             ds["Loaded?"] = "NO TARGET STORE"
                     else:
-                        print('%-60s%s' % (ds["Name"],"*** unknown layer type"))
+                        print('%-60s%s' % (ascii(ds["Name"]),"*** unknown layer type"))
                         ds["Loaded?"] = "UNKNOWN LAYER"
                 else:
-                    print('%-60s%s' % (ds["Name"],"*** invalid layer"))
+                    print('%-60s%s' % (ascii(ds["Name"]),"*** invalid layer"))
                     ds["Loaded?"] = "INVALID"
             else:
-                print('%-60s%s' % (ds["Name"],"*** existing layer"))
+                print('%-60s%s' % (ascii(ds["Name"]),"*** existing layer"))
                 # ds["Loaded?"] = 'EXIST'
         else:
-            print('%-60s%s' % (ds["Name"],"*** out of scope"))
+            print('%-60s%s' % (ascii(ds["Name"]),"*** out of scope"))
             ds["Loaded?"] = "NOT IN SCOPE"
 
     return dsList
