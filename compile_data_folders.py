@@ -22,6 +22,7 @@ NETWORK_DRIVES = []
 
 DATA_SOURCES = {}
 
+XREF_TAB_NAME = "xRef"
 OUTPUT_HEADERS = ["Source Type", "Data Source", "Livelink Node Id"]
 
 
@@ -109,7 +110,7 @@ def read_from_workbook(wbPath, sheetName=None):
 def write_to_workbook(wbPath, dsList, sheetName=None):
     wb = Workbook()
     ws1 = wb.active
-    ws1.title = XLS_TAB_NAME
+    ws1.title = XREF_TAB_NAME
 
     # headers
     for c in range(0, len(OUTPUT_HEADERS)):
