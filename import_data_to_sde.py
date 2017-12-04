@@ -297,7 +297,7 @@ def update_status_in_workbook(wbPath, dsList, sheetName=None):
     del wb
 
 
-def update_sde_metadata(sdeFC, props, srcType):
+def update_layer_metadata(sdeFC, props, srcType):
 
     TEMP_DIR = tempfile.gettempdir()
     metadataFile = os.path.join(TEMP_DIR, os.path.basename(sdeFC) + '-metadata.xml')
@@ -427,7 +427,7 @@ def load_layers_in_xls(wbPath, test):
                                             ds["Loaded?"] = 'LOADED'
 
                                             print('%-60s%s' % (ascii(ds["Name"]),"updating SDE metadata of %s\\%s" % (tgt_conn, ds["SDE Name"])))
-                                            update_sde_metadata(tgt_conn + "\\" + ds["SDE Name"], ds, srcType)
+                                            update_layer_metadata(tgt_conn + "\\" + ds["SDE Name"], ds, srcType)
                                             print('%-60s%s' % (" ","^^^ METADATA UPDATED"))
                                         except arcpy.ExecuteError:
                                             print('%-60s%s' % (" ",">>> FAILED to load data [" + str(arcpy.GetMessages()) + "]"))
