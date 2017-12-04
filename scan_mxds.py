@@ -198,6 +198,8 @@ def scan_layers_in_mxd(mxdPath):
                      verified = verify_layer_dataSource(ds, lyrType)
                      # get the Livelink path
                      llPath = find_Livelink_path(ds)
+                     if llPath is None:
+                        print('%-60s%s' % (ascii(lyr.name),"??? no Livelink path found for " + ds))
                      #
                      dsList.append({"Name": lyr.name, "Data Source": ds, "Layer Type": lyrType,
                                     "Verified?": verified, "Definition Query": defQry, "Description": dspt,
