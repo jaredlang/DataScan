@@ -216,7 +216,7 @@ def scan_layers_in_mxd(mxdPath):
                      #
                      # get the Livelink path
                      llPath = None
-                     if verified and srcType is not None:
+                     if lyrType == "FeatureLayer" and verified and srcType is not None:
                          llPath = find_Livelink_path(ds)
                          if llPath is None:
                             print('%-60s%s' % (ascii(lyr.name),"??? no Livelink path found for " + ds))
