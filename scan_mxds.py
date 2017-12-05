@@ -17,7 +17,7 @@ XLS_HEADERS = []
 
 NETWORK_DRIVES = []
 
-DATA_SOURCES = []
+DATA_SOURCES = {}
 DATA_TARGETS = []
 
 XREF_TAB_NAME = "xRef"
@@ -54,15 +54,15 @@ def load_config(configFile):
     # print XLS_HEADERS
 
     for child in root.iter('source'):
-        src_name = child.attrib['name']
+        nm = child.attrib['name']
+        if nm not in DATA_SOURCES.keys():
+            DATA_SOURCES[nm] = []
         for sc in child:
-            DATA_SOURCES.append({
-                'name': src_name,
+            DATA_SOURCES[nm].append({
                 'LDrv':sc.attrib['path'],
                 'Mode':sc.tag
             })
-            DATA_SOURCES.append({
-                'name': src_name,
+            DATA_SOURCES[nm].append({
                 'LDrv':get_alias_path(sc.attrib['path']),
                 'Mode':sc.tag
             })
