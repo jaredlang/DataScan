@@ -114,6 +114,21 @@ def load_config(configFile):
     # print LDRV_LL_PATHS
 
 
+def get_source_type(lDrvPath):
+    for k in DATA_SOURCES.keys():
+        excluded = False
+        ds = DATA_SOURCES[k]
+        for cvt in [s for s in ds if s["Mode"] == "exclude"]:
+            if lDrvPath.find(cvt["LDrv"]) == 0:
+                excluded = True
+                break
+        if not excluded:
+            for cvt in [s for s in ds if s["Mode"] == "add"]:
+                if lDrvPath.find(cvt["LDrv"]) == 0:
+                    return k
+    return None
+
+
 def find_Livelink_path(lDrvPath):
     for cvt in LDRV_LL_PATHS:
         if lDrvPath.find(cvt["Data Source"]) == 0:
@@ -196,10 +211,15 @@ def scan_layers_in_mxd(mxdPath):
                      #
                      # verify the layer data source
                      verified = verify_layer_dataSource(ds, lyrType)
+                     # check if the layer is within the scope
+                     srcType = get_source_type(ds)
+                     #
                      # get the Livelink path
-                     llPath = find_Livelink_path(ds)
-                     if llPath is None:
-                        print('%-60s%s' % (ascii(lyr.name),"??? no Livelink path found for " + ds))
+                     llPath = None
+                     if verified and srcType is not None:
+                         llPath = find_Livelink_path(ds)
+                         if llPath is None:
+                            print('%-60s%s' % (ascii(lyr.name),"??? no Livelink path found for " + ds))
                      #
                      dsList.append({"Name": lyr.name, "Data Source": ds, "Layer Type": lyrType,
                                     "Verified?": verified, "Definition Query": defQry, "Description": dspt,
