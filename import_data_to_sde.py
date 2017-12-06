@@ -493,10 +493,13 @@ if __name__ == "__main__":
 
     if params.action == 'batch':
         load_layers_in_folder(params.xls, None)
+        print('###### Completed importing all xls files in %s'%params.xls)
     elif params.action == 'single':
         load_layers_in_file(params.xls, None)
+        print('###### Completed importing the xls file at %s'%params.xls)
     elif params.action == 'test':
         load_layers_in_folder(params.xls, 'test')
+        print('###### Completed importing (Test only) all xls files in %s'%params.xls)
     else:
         print 'Error: unknown action [%s] for importing' % params.action
 

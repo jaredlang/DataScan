@@ -180,8 +180,10 @@ if __name__ == '__main__':
 
     if params.action == 'batch':
         update_mxds(params.mxd, params.xls, params.newMxd, params.filter)
+        print('###### Completed updating all mxd files in %s'%params.mxd)
     elif params.action == 'single':
         update_mxd_ds(params.mxd, params.xls, params.newMxd)
+        print('###### Completed updating the mxd file at %s'%params.mxd)
     else:
         print 'Error: unknown action [%s] for scanning' % params.action
 

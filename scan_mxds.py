@@ -334,9 +334,12 @@ if __name__ == "__main__":
 
     if params.action == 'scan':
         scan_mxd_in_folder(params.mxd, params.xls, params.filter)
+        print('###### Completed scaning all mxd files in %s'%params.mxd)
     elif params.action == 'comp':
         scan_missed_mxds(params.mxd, params.xls)
+        print('###### Completed compareing mxd files bewteen %s and %s'% (params.mxd, params.xls))
     elif params.action == 'single':
         list_layers_to_xls(params.single, params.mxd, params.xls)
+        print('###### Completed scaning the mxd file at %s'%params.single)
     else:
         print 'Error: unknown action [%s] for scanning' % params.action
