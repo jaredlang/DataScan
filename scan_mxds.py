@@ -2,7 +2,8 @@ import sys
 import os
 import argparse
 import re
-import xml.etree.ElementTree as ET
+#import xml.etree.ElementTree as ET
+from lxml import etree as ET
 from datetime import datetime
 import arcpy
 from openpyxl import Workbook

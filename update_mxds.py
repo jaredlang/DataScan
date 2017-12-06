@@ -3,7 +3,8 @@ import os
 import argparse
 import re
 import shutil
-import xml.etree.ElementTree as ET
+#import xml.etree.ElementTree as ET
+from lxml import etree as ET
 from arcpy import mapping
 from openpyxl import Workbook
 from openpyxl import load_workbook
@@ -63,10 +64,12 @@ def read_from_workbook(wbPath, sheetName=None):
 
 def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
     print('\nThe mxd file: %s' % mxdPath)
-    dsList = read_from_workbook(xlsPath)
+    mxd = None
     try:
         mxd = arcpy.mapping.MapDocument(mxdPath)
         lyrs = arcpy.mapping.ListLayers(mxd)
+
+        dsList = read_from_workbook(xlsPath)
 
         print('Updating data sources ...')
         for lyr in lyrs:
