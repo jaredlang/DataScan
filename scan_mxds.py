@@ -63,6 +63,13 @@ def load_config(configFile):
         XLS_HEADERS.append(child.attrib['name'])
     # print XLS_HEADERS
 
+    for child in root.iter('networkDrive'):
+        NETWORK_DRIVES.append({
+            'Drive': child.attrib['drive'],
+            'Path': child.attrib['path']
+        })
+    # print NETWORK_DRIVES
+
     for child in root.iter('source'):
         nm = child.attrib['name']
         if nm not in DATA_SOURCES.keys():
