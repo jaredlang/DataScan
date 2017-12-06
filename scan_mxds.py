@@ -41,6 +41,16 @@ def get_alias_path(lDrvPath):
     return lDrvPath
 
 
+def parse_data_folder(lDrvPath):
+    parts = lDrvPath.split('\\')
+    idx = -1
+    for p in list(reversed(range(0, len(parts)))):
+        if parts[p].find('.') > -1:
+            idx = p
+            break
+    return '\\'.join(parts[:idx])
+
+
 def load_config(configFile):
     tree = ET.parse(configFile)
     root = tree.getroot()
@@ -130,9 +140,11 @@ def get_source_type(lDrvPath):
 
 
 def find_Livelink_path(lDrvPath):
-    lDrvPathAlias = get_alias_path(lDrvPath)
+    folderPath = parse_data_folder(lDrvPath)
+    folderPathAlias = get_alias_path(folderPath)
     for cvt in LDRV_LL_PATHS:
-        if lDrvPath.find(cvt["Data Source"]) == 0 or lDrvPathAlias.find(cvt["Data Source"]) == 0:
+        #if lDrvPath.find(cvt["Data Source"]) == 0 or lDrvPathAlias.find(cvt["Data Source"]) == 0:
+        if folderPath == cvt["Data Source"] or folderPathAlias == cvt["Data Source"]:
             return cvt["Livelink URL"]
     return None
 
