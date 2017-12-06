@@ -300,8 +300,7 @@ def update_status_in_workbook(wbPath, dsList, sheetName=None):
 
 def update_layer_metadata(sdeFC, props, srcType):
 
-    TEMP_DIR = r"C:\Users\kdb086\Documents\ArcGIS"
-    #TEMP_DIR = tempfile.gettempdir()
+    TEMP_DIR = tempfile.gettempdir()
     metadataFile = os.path.join(TEMP_DIR, os.path.basename(sdeFC) + '-metadata.xml')
     #migrationText = " *** Migrated from the L Drive (%s)" % props["Data Source"]
     migrationText = "<b>Retired L Drive Path: </b> %s" % props["Data Source"]
@@ -342,10 +341,11 @@ def update_layer_metadata(sdeFC, props, srcType):
     if abstract.text is None:
         #abstract.text = migrationText
         #abstract.text = "<![CDATA[<p/><p>%s</p>]]>" % migrationText
-        abstract.text = ETree.CDATA("<p/><p>%s</p>" % migrationText)
+        abstract.text = ET.CDATA("<p/><p>%s</p>" % migrationText)
     elif abstract.text.find(migrationText) == -1:
         #abstract.text = "<![CDATA[%s<br/>%s<br/>%s]]>" % (abstract.text, livelinkText, migrationText)
-        abstract.text = "<![CDATA[%s<p/><p>%s</p><p>%s</p>]]>" % (abstract.text, livelinkText, migrationText)
+        #abstract.text = "<![CDATA[%s<p/><p>%s</p><p>%s</p>]]>" % (abstract.text, livelinkText, migrationText)
+        abstract.text = ET.CDATA("%s<p/><p>%s</p><p>%s</p>"% (abstract.text, livelinkText, migrationText))
 
     tree.write(metadataFile)
 
