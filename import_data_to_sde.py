@@ -300,8 +300,8 @@ def update_status_in_workbook(wbPath, dsList, sheetName=None):
 
 def update_layer_metadata(sdeFC, props, srcType):
 
-    TEMP_DIR = r"C:\Users\kdb086\Documents\ArcGIS\metadata-files"
-    #TEMP_DIR = tempfile.gettempdir()
+    #TEMP_DIR = r"C:\Users\kdb086\Documents\ArcGIS\metadata-files"
+    TEMP_DIR = tempfile.gettempdir()
     metadataFile = os.path.join(TEMP_DIR, os.path.basename(sdeFC) + '-metadata.xml')
     #migrationText = " *** Migrated from the L Drive (%s)" % props["Data Source"]
     migrationText = "<b>Retired L Drive Path: </b> %s" % props["Data Source"]
@@ -340,6 +340,7 @@ def update_layer_metadata(sdeFC, props, srcType):
     # B2- modify the element text
     abstract = dspt.find('abstract')
     if abstract.text is None:
+        # use dot in place of empty space to force CDATA to be recognisable
         abstract.text = ". "
     abstract.text = ET.CDATA("%s<p/><p>%s</p><p>%s</p>"% (abstract.text, livelinkText, migrationText))
 
