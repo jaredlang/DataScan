@@ -115,6 +115,11 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
         print('\nThe NEW mxd file: %s' % newMxdPath)
     except:
         print('Unable to open the mxd file [%s]' % mxdPath)
+        # create the target folder if not exist yet
+        newMxdFolder = os.path.split(newMxdPath)[0]
+        if not os.path.exists(newMxdFolder):
+            os.makedirs(newMxdFolder)
+        #
         shutil.copy2(mxdPath, newMxdPath)
         print('\nThe COPIED mxd file copied as is: %s' % newMxdPath)
 
