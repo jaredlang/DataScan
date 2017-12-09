@@ -108,6 +108,7 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
                                     # update the layer data source
                                     print('%-60s%s' % (ascii(lyr.name),"set data source to " + os.path.join(ds["SDE Conn"], ds["SDE Name"])))
                                     lyr.replaceDataSource(ds["SDE Conn"], wsType, ds["SDE Name"], True)
+                                    lyrUpdateCount = lyrUpdateCount + 1
                                 except:
                                     print('%-60s%s' % (ascii(lyr.name),">>> failed to update data source " + lyrType))
                             else:
@@ -116,9 +117,15 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
 
              except:
                  print('%-60s%s' % (ascii(lyr.name),">>> failed to retrieve info " + lyrType))
-        # save the updated mxd file
-        mxd.saveACopy(newMxdPath)
-        print('\nThe NEW mxd file: %s' % newMxdPath)
+        if lyrUpdateCount > 0:
+            # save the updated mxd file
+            mxd.saveACopy(newMxdPath)
+            print('\nThe NEW mxd file: %s' % newMxdPath)
+        else:
+            print('No layer updated in the mxd file [%s]' % mxdPath)
+            shutil.copy2(mxdPath, newMxdPath)
+            print('\nThe COPIED mxd file copied as is: %s' % newMxdPath)
+
     except:
         print('Unable to open the mxd file [%s]' % mxdPath)
         shutil.copy2(mxdPath, newMxdPath)
