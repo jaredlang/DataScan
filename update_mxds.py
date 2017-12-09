@@ -64,6 +64,11 @@ def read_from_workbook(wbPath, sheetName=None):
 
 def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
     print('\nThe mxd file: %s' % mxdPath)
+    # create the target folder if not exist yet
+    newMxdFolder = os.path.dirname(newMxdPath)
+    if not os.path.exists(newMxdFolder):
+        os.makedirs(newMxdFolder)
+    # process the mxd file
     mxd = None
     try:
         mxd = arcpy.mapping.MapDocument(mxdPath)
@@ -115,11 +120,6 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
         print('\nThe NEW mxd file: %s' % newMxdPath)
     except:
         print('Unable to open the mxd file [%s]' % mxdPath)
-        # create the target folder if not exist yet
-        newMxdFolder = os.path.split(newMxdPath)[0]
-        if not os.path.exists(newMxdFolder):
-            os.makedirs(newMxdFolder)
-        #
         shutil.copy2(mxdPath, newMxdPath)
         print('\nThe COPIED mxd file copied as is: %s' % newMxdPath)
 
@@ -155,16 +155,14 @@ def update_mxds(mxd_folder, xls_folder, new_mxd_folder, date_filters):
 
                 # work on the mxd file
                 if is_filter_met == True:
-                    newMxdPath = os.path.join(new_mxd_folder, mxdPath.replace(mxd_folder, new_mxd_folder))
-                    newMxdFolder = os.path.dirname(newMxdPath)
-                    if not os.path.exists(newMxdFolder):
-                            os.makedirs(newMxdFolder)
+                    newMxdPath = mxdPath.replace(mxd_folder, new_mxd_folder)
+                    #newMxdPath = os.path.join(new_mxd_folder, mxdPath.replace(mxd_folder, new_mxd_folder))
 
                     xlsPath = os.path.join(xls_folder, mxdPath.replace(mxd_folder, xls_folder))
                     xlsPath = xlsPath + ".xlsx"
 
                     if not os.path.exists(xlsPath):
-                        print('The xls file not exist: %s' % xlsPath)
+                        print('Failed to process the mxd file [%s] without the xls file [%s]' % (mxdPath, xlsPath))
                     else:
                         update_mxd_ds(mxdPath, xlsPath, newMxdPath)
 
