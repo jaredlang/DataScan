@@ -177,7 +177,7 @@ def guess_target_name(lDrvPath):
     for nm in DEFINED_NAMES[target_source]:
         if nm['Path'].lower() == lDrvPath.lower():
             return nm['Name']
-    if target_source == "LNG":
+    if target_source == "MOZLNG":
         # TODO: come up with a naming convention for the LNG vendor data
         return None
     elif target_source == "MOZGIS":

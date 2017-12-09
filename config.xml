@@ -23,7 +23,7 @@
 			<exclude path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WORKING\"/>
 			<exclude path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\arcgis_files\mxds\Reference_MXD_iMAPS\Old_MOZ_Imaps\"/>
 		</source>
-		<source name="LNG">
+		<source name="MOZLNG">
 			<add path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\"/>
 			<add path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\"/>
 		</source>
@@ -37,7 +37,7 @@
             <rasterDepot>\\anadarko.com\expdata\Houston\gngdata\raster_depot1\Mozambique\MOZGIS\</rasterDepot>
             <!--livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll/open/33638511</livelink-->
         </target>
-        <target name="LNG">
+        <target name="MOZLNG">
             <sdeConn>C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_LNG.sde</sdeConn>
             <rasterDepot>\\anadarko.com\expdata\Houston\gngdata\raster_depot1\Mozambique\MozambiqueLNG\</rasterDepot>
             <!--livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll/open/33642312</livelink-->
@@ -70,7 +70,7 @@
         <dataCategory key="VEN" name="VENDOR"/>
         <dataCategory key="WELL" name="WELL"/>
     </dataCategories>
-    <definedNames scope="LNG">
+    <definedNames scope="MOZLNG">
         <definedName name="AMA1_R_RVPC_const_20161024" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20161024 - RV Construction Phases Shapefile\RV+PC_constr_Phases\RV+PC_constr_Phases.shp"/>
         <definedName name="AMA1_R_GF_AT_DISV_LINE_20170222" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170222 - Discovery area data from Paula Crockett\Discovery Area\GF_AT_DISCOVERY_OUTLINE.shp"/>
         <definedName name="AMA1_R_PROSPERIDADE_DISCOV_20170222" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170222 - Discovery area data from Paula Crockett\Discovery Area\PROSPERIDADE_DISCOVERY_AREA.shp"/>
