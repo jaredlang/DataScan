@@ -3,7 +3,8 @@ import os
 import argparse
 import tempfile
 import shutil
-import xml.etree.ElementTree as ET
+#import xml.etree.ElementTree as ET
+from lxml import etree as ET
 import arcpy
 from openpyxl import Workbook
 from openpyxl import load_workbook
@@ -11,9 +12,6 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-
-AGS_HOME = arcpy.GetInstallInfo("Desktop")["InstallDir"]
-METADATA_TRANSLATOR = os.path.join(AGS_HOME, r'Metadata/Translator/ARCGIS2FGDC.xml')
 
 XLS_TAB_NAME = "dataSource"
 XLS_HEADERS = []
@@ -23,7 +21,8 @@ NETWORK_DRIVES = []
 DATA_SOURCES = {}
 
 XREF_TAB_NAME = "xRef"
-OUTPUT_HEADERS = ["Source Type", "Data Source", "Livelink Node Id"]
+LL_OUTPUT_HEADERS = ["Source Type", "Data Source", "Livelink Node Id"]
+SDE_OUTPUT_HEADERS = ["Source Type", "Data Source", "SDE Path"]
 
 
 def get_alias_path(lDrvPath):
@@ -69,6 +68,7 @@ def load_config(configFile):
             })
     # print DATA_SOURCES
 
+
 def get_source_type(lDrvPath):
     for k in DATA_SOURCES.keys():
         excluded = False
@@ -107,25 +107,25 @@ def read_from_workbook(wbPath, sheetName=None):
     return dsList
 
 
-def write_to_workbook(wbPath, dsList, sheetName=None):
+def write_to_workbook(wbPath, dsList, headerList):
     wb = Workbook()
     ws1 = wb.active
     ws1.title = XREF_TAB_NAME
 
     # headers
-    for c in range(0, len(OUTPUT_HEADERS)):
-        ws1.cell(row=1, column=c+1, value=OUTPUT_HEADERS[c])
+    for c in range(0, len(headerList)):
+        ws1.cell(row=1, column=c+1, value=headerList[c])
 
     # content
     s = 1 # skip the first 1 row
     for r in range(0, len(dsList)):
         for c in dsList[r]:
             # TODO: add style to cell?
-            h = OUTPUT_HEADERS.index(c)
+            h = headerList.index(c)
             if h > -1:
-                ws1.cell(row=r+s+1, column=h+1, value=dsList[r][OUTPUT_HEADERS[h]])
+                ws1.cell(row=r+s+1, column=h+1, value=dsList[r][headerList[h]])
             else:
-                print('Invalid header [%s] in xls [%s]' % (c, mxdPath))
+                print('Invalid header [%s] in xls [%s]' % (c, wbPath))
 
     wb.save(filename = wbPath)
     wb.close()
@@ -143,7 +143,7 @@ def parse_data_folder(dataSource):
     return '\\'.join(parts[:idx])
 
 
-def compile_data_folders(xlsFolder, xlsOutput):
+def compile_data_folders_For_Livelink(xlsFolder, xlsOutput):
     dataFolderSet = set()
     for root, dirs, files in os.walk(xlsFolder):
         # walk through all files
@@ -171,20 +171,32 @@ def compile_data_folders(xlsFolder, xlsOutput):
             }
             dataFolderList.append(df)
 
-    write_to_workbook(xlsOutput, sorted(dataFolderList, key=lambda df:df["Source Type"]))
+    write_to_workbook(xlsOutput, sorted(dataFolderList, key=lambda df:df["Source Type"]), LL_OUTPUT_HEADERS)
 
-    print('**** The compiled data folder list: %s' % xlsOutput)
+
+def compile_data_sources_For_SDE(xlsFolder, xlsOutput):
+    None
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Compile all data folders into one spreadsheet')
+    parser = argparse.ArgumentParser(description='Compile all data folders or sources into one spreadsheet')
     parser.add_argument('-x','--xls', help='XLS Folder (input)', required=True)
     parser.add_argument('-o','--dsf', help='XLS File (output)', required=True)
+    parser.add_argument('-t','--tgt', help="Target Options (Livelink, SDE)", required=True)
     parser.add_argument('-c','--cfg', help='Config File', required=False, default=r'H:\MXD_Scan\config.xml')
 
     params = parser.parse_args()
 
+    if os.path.exists(params.dsf):
+        print('**** No Overwrite the existing output XLS file: %s' % xlsOutput)
+        exit(-1)
     if params.cfg is not None:
         load_config(params.cfg)
 
-    compile_data_folders(params.xls, params.dsf)
+    if params.tgt == "Livelink":
+        compile_data_folders_For_Livelink(params.xls, params.dsf)
+        print('**** The compiled data folder list for Livelink: %s' % xlsOutput)
+    elif params.tgt == "SDE":
+        compile_data_sources_For_SDE(params.xls, params.dsf)
+        print('**** The compiled data source list for SDE: %s' % xlsOutput)
+
