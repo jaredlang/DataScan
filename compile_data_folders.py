@@ -175,7 +175,35 @@ def compile_data_folders_For_Livelink(xlsFolder, xlsOutput):
 
 
 def compile_data_sources_For_SDE(xlsFolder, xlsOutput):
-    None
+    dataSourceSet = set()
+    ldrvPath2SDEList = []
+    for root, dirs, files in os.walk(xlsFolder):
+        # walk through all files
+        for fname in files:
+            if fname.endswith(".xlsx") and not fname.startswith('~$'):
+                # read from a xls file
+                xlsPath = os.path.join(root, fname)
+                print('\nThe xlsx file: %s' % xlsPath)
+                lyrList = read_from_workbook(xlsPath)
+                for lyr in lyrList:
+                    if lyr["Loaded?"] in ["LOADED", 'EXIST']:
+                        if bool(lyr["Verified?"]) == True:
+                            if lyr["Layer Type"] == "FeatureLayer":
+                                ldrvPath = lyr["Data Source"]
+                                srcType = get_source_type(ldrvPath) # the same as schema name
+                                sdePath = os.path.join(lyr["SDE Conn"], srcType + "." + lyr["SDE Name"])
+                                print('%s\t[%s]' % (ldrvPath, sdePath))
+                                ldrvPathAlias = get_alias_path(ldrvPath)
+                                # if new ldrvPath is added, then add to the list
+                                if ldrvPath not in dataSourceSet and ldrvPathAlias not in dataSourceSet:
+                                    dataSourceSet.add(ldrvPath)
+                                    ldrvPath2SDEList.append({
+                                        "Source Type": srcType,
+                                        "Data Source": ldrvPath,
+                                        "SDE Path": sdePath
+                                    })
+
+    write_to_workbook(xlsOutput, sorted(ldrvPath2SDEList, key=lambda df:df["Source Type"]), SDE_OUTPUT_HEADERS)
 
 
 if __name__ == "__main__":
@@ -188,15 +216,16 @@ if __name__ == "__main__":
     params = parser.parse_args()
 
     if os.path.exists(params.dsf):
-        print('**** No Overwrite the existing output XLS file: %s' % xlsOutput)
+        print('**** No Overwrite the existing output XLS file: %s' % params.dsf)
         exit(-1)
+
     if params.cfg is not None:
         load_config(params.cfg)
 
     if params.tgt == "Livelink":
         compile_data_folders_For_Livelink(params.xls, params.dsf)
-        print('**** The compiled data folder list for Livelink: %s' % xlsOutput)
+        print('**** The compiled data folder list for Livelink: %s' % params.dsf)
     elif params.tgt == "SDE":
         compile_data_sources_For_SDE(params.xls, params.dsf)
-        print('**** The compiled data source list for SDE: %s' % xlsOutput)
+        print('**** The compiled data source list for SDE: %s' % params.dsf)
 
