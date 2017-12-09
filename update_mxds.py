@@ -196,5 +196,5 @@ if __name__ == '__main__':
         update_mxd_ds(params.mxd, params.xls, params.newMxd)
         print('###### Completed updating the mxd file at %s'%params.mxd)
     else:
-        print 'Error: unknown action [%s] for scanning' % params.action
+        print 'Error: unknown action [%s] for updating' % params.action
 
