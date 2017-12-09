@@ -70,6 +70,7 @@ def update_mxd_ds(mxdPath, xlsPath, newMxdPath):
         os.makedirs(newMxdFolder)
     # process the mxd file
     mxd = None
+    lyrUpdateCount = 0
     try:
         mxd = arcpy.mapping.MapDocument(mxdPath)
         lyrs = arcpy.mapping.ListLayers(mxd)
