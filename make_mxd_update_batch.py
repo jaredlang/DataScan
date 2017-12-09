@@ -27,6 +27,9 @@ def make_batch_cmd(exeCmd, srcFile, tgtFile, xtsFile, cmdFile):
 def make_update_cmd(srcPath):
     tgtPath = srcPath.replace(SRC_FOLDER, TGT_FOLDER)
     xtsPath = srcPath.replace(SRC_FOLDER, XTS_FOLDER)
+    if xtsPath[-1] in ['"', "'"]:
+        xtsPath = xtsPath[:-1]
+    xtsPath = xtsPath + ".xlsx"
 
     return "%s -m %s -n %s -x %s\n" % (CMD, srcPath, tgtPath, xtsPath)
 
