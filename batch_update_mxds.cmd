@@ -1,8 +1,8 @@
 echo off
 echo MXD UPDATE script START %date% %time%
 
-echo update mxd of iMap %date% %time%
-python H:\MXD_Scan\update_mxds.py -x H:\MXD_Scan\xlsx\iMap\mxds_updateDDD -n H:\MXD_Scan\xlsx\iMap\mxds_load -m \\anadarko.com\world\AppsData\Houston\iMaps\Mxds_InWork\MOZ\Portal_20170221 > H:\MXD_Scan\xlsx\iMap\update_mxds_iMap.log 2>&1
+REM echo update mxd of iMap %date% %time%
+REM python H:\MXD_Scan\update_mxds.py -x H:\MXD_Scan\xlsx\iMap\mxds_updateDDD -n H:\MXD_Scan\xlsx\iMap\mxds_load -m \\anadarko.com\world\AppsData\Houston\iMaps\Mxds_InWork\MOZ\Portal_20170221 > H:\MXD_Scan\xlsx\iMap\update_mxds_iMap.log 2>&1
 
 echo update mxd of 2013 %date% %time%
 python H:\MXD_Scan\update_mxds.py -f "<2014/2/18" -x H:\MXD_Scan\xlsx\arcgis_files\mxds_load_all -n H:\MXD_Scan\xlsx\arcgis_files\mxds_updateDDD_all -m \\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\arcgis_files\mxds > H:\MXD_Scan\xlsx\arcgis_files\update_mxds_2013.log 2>&1
