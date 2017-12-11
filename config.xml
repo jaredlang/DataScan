@@ -451,6 +451,10 @@
 		<definedName name="WP_R_Replace_Vlg_20150605_LN" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20150605 - Replacement Village\Layout [DD].dwg\Polyline"/>
 		<definedName name="WP_R_Replace_Vlg_20150605_PLG" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20150605 - Replacement Village\Layout [DD].dwg\Polygon"/>
 		<definedName name="WP_R_Replace_Vlg_20150605_PCH" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20150605 - Replacement Village\Layout [DD].dwg\MultiPatch"/>
+
+		<definedName name="AMA1_S_Conting_DredgeDisp_Area" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Sent\20171019 - Data for EPCI contractors bidding (for Majid)\EPCI_Data.gdb\Contingent_Dredge_Disposal_Area"/>
+		<definedName name="AMA1_S_Base_DredgeDisp_Area" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Sent\20171019 - Data for EPCI contractors bidding (for Majid)\EPCI_Data.gdb\Base_Dredge_Disposal_Area"/>
+		<definedName name="AMA1_S_Beach_Landing_Area" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Sent\20171019 - Data for EPCI contractors bidding (for Majid)\EPCI_Data.gdb\Beach_Landing_Area"/>
 		
 	</definedNames>
     <definedNames scope="MOZGIS">
@@ -569,6 +573,9 @@
 		<definedName name="TRN_PB_Afg_Rd_ReAlign_20151008" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\TRANS\shapefiles\Palma_Afungi_Road_ReAlignment_20151008.shp"/>
 		<definedName name="TRN_PB_Afg_Rd_50mBuf_20151008" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\TRANS\shapefiles\Palma_Afungi_Road_ReAlignment_50mBuffer_20151008.shp"/>
 
+		<definedName name="BND_AS_VegClr_50mBuf_20171130" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Airstrip_PARoad_VegetationClearance_50mBuff_20171130.shp"/>
+		<definedName name="BND_EPCI_Worksite_MA_20171130" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\EPCI_Worksite_Vertices_MA_20171130.shp"/>
+
 		<!-- non-Esri data files -->
 		<definedName name="BND_CCSJV_Priority_Areas_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CCSJV_Priority_Areas\CCSJV_Priority_Areas.dwg\Point"/>
 		<definedName name="BND_CCSJV_Priority_Areas_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CCSJV_Priority_Areas\CCSJV_Priority_Areas.dwg\Polyline"/>
@@ -603,7 +610,18 @@
 		<definedName name="WELL_Maturation_Wells_20150519" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WELL\tables\Golfinho_Atumdevelopment_wells_2014_09_23_DeliveredByEricS_20150519.xlsx\'2015GolfMaturationWellLoc$'"/>		
 		<definedName name="WELL_Case130_Bathymetry_Routes" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WELL\tables\Well Case 130 Bathymetry Info.xlsx\'Bathymetry Routes$'"/>
 		<definedName name="WELL_Case130_Well_Network" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WELL\tables\Well Case 130 Bathymetry Info.xlsx\'130 Well Network$'"/> <!-- empty -->
-			
+
+		<definedName name="STR_MOF_Heavy_Haul_Ref_Points" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\tables\MOF_Heavy_Haul_Ref_Points.xlsx\Sheet1$"/> <!-- empty -->
+
+		<definedName name="CZ_FacilityLayout_20170822_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Point"/>
+		<definedName name="CZ_FacilityLayout_20170822_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Polyline"/>
+		<definedName name="CZ_FacilityLayout_20170822_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Polygon"/>
+		<definedName name="CZ_FacilityLayout_20170822_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\MultiPatch"/>
+		<definedName name="CZ_FacLayout_20170822_2_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Point"/>
+		<definedName name="CZ_FacLayout_20170822_2_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Polyline"/>
+		<definedName name="CZ_FacLayout_20170822_2_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Polygon"/>
+		<definedName name="CZ_FacLayout_20170822_2_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\MultiPatch"/>
+		
 	</definedNames>
 	<!--nameChanges scope="MOZGIS">
 		<nameChange old="HYD_RplcLand_RainMntr_Grid_1km2" new="HYD_RplcLand_RainMntr_1km2" type="word"/>
