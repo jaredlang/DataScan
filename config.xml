@@ -396,11 +396,12 @@
 		<definedName name="EI_R_R1F43_NoBldArea_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F43_Nobuildarea_UTM37S.shp"/>
 		<definedName name="EI_R_R1F43_Wet_Salini_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F43_Wetlandsalinity_UTM37S.shp"/>
 
-		<definedName name="RS_S_Cultural_Loc_20160126" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\RiskSolutions\Sent\20160126 - Cultural Points and Locations\Cultural_Locations_20160126.shp"/>
-		
+		<definedName name="RS_S_Cultural_Loc_20160126" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\RiskSolutions\Sent\20160126 - Cultural Points and Locations\Cultural_Locations_20160126.shp"/>		
 		<definedName name="KBR_R_ROAD_UPDATES_20141811" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\KBR\Received\20150120 - Proposed Roads\ROAD_UPDATES_141811_1\ROAD_UPDATES_141811_1.shp"/>
-
 		
+		<definedName name="GDS_R_LIDAR_HAT_Contour_20160210" path="L:\SharedData\Houston\Mozambique LNG\Geomatics Data Solutions\Received\20160210 - LIDAR\E-Delivery\Contours\HAT_Contour-BE.shp"/>
+		<definedName name="EI_R_Habit_Sensitivit_20160405" path="L:\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160407 - Missing data from report EA-MZ-SR0000-RRG-U17-00018-00\_export for Alan (April 2016)\Final_Habitat_Map_with_Sensitivities_IFCHabitattype_and_CriticalIntensity_05April2016.shp"/>
+
 		<!-- non-Esri data files -->
 		<definedName name="CCSJV_R_SitePlan_20150921_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\CCSJV\Received\20150921 - LNG Layout\MZLNG Overall Site Plan-Converted.dwg\Point"/>
 		<definedName name="CCSJV_R_SitePlan_20150921_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\CCSJV\Received\20150921 - LNG Layout\MZLNG Overall Site Plan-Converted.dwg\Polyline"/>
