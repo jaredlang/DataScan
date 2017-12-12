@@ -1,0 +1,42 @@
+$(Get-Item mxds_scan_2013).lastwritetime=$(Get-Item scan_mxds_2013.log).lastwritetime
+$(Get-Item mxds_scan_2014).lastwritetime=$(Get-Item scan_mxds_2014.log).lastwritetime
+$(Get-Item mxds_scan_2015).lastwritetime=$(Get-Item scan_mxds_2015.log).lastwritetime
+$(Get-Item mxds_scan_2016).lastwritetime=$(Get-Item scan_mxds_2016.log).lastwritetime
+$(Get-Item mxds_scan_2017).lastwritetime=$(Get-Item scan_mxds_2017.log).lastwritetime
+
+$(Get-Item mxds_load_2013).lastwritetime=$(Get-Item import_data_to_sde_2013.log).lastwritetime
+$(Get-Item mxds_load_2014).lastwritetime=$(Get-Item import_data_to_sde_2014.log).lastwritetime
+$(Get-Item mxds_load_2015).lastwritetime=$(Get-Item import_data_to_sde_2015.log).lastwritetime
+$(Get-Item mxds_load_2016).lastwritetime=$(Get-Item import_data_to_sde_2016.log).lastwritetime
+$(Get-Item mxds_load_2017).lastwritetime=$(Get-Item import_data_to_sde_2017.log).lastwritetime
+
+$(Get-Item mxds_scan_missed).lastwritetime=$(Get-Item scan_mxds_missed.log).lastwritetime
+$(Get-Item mxds_load_missed).lastwritetime=$(Get-Item import_data_to_sde_missed.log).lastwritetime
+
+$(Get-Item mxds_scan_all).lastwritetime=$(Get-Item scan_mxds_missed.log).lastwritetime
+$(Get-Item mxds_load_all).lastwritetime=$(Get-Item import_data_to_sde_missed.log).lastwritetime
+
+$(Get-Item mxds_updateDDD_all).lastwritetime=$(Get-Item update_mxds_missed.log).lastwritetime
+$(Get-Item mxds_updateDDD_all).lastwritetime=$(Get-Item mxds_FIX).lastwritetime
+
+$(Get-Item xxx.log).creationtime=$(Get-Date "12/6/2017 04:22 pm")
+$(Get-Item yyy.log).lastwritetime=$(Get-Date "12/6/2017 04:48 pm")
+
+
+REM REM REM 
+cd "L:\Temporary(30Days)\Houston\NEW_MXD"
+$y = Get-Date "12/12/2017 04:22 pm"
+
+$b = Get-ChildItem -Path *.pdf -Recurse
+
+foreach ($i in $b)
+{
+    if (($i.LastWriteTime).Date -lt ($y).Date) {
+       $t = $i.LastWriteTime 
+       $d = ($y).Date - ($i.LastWriteTime).Date
+       # Write-Host Time Difference is $d
+       $i.LastWriteTime = $t.AddDays($d.TotalDays)
+       Write-Host Update LastWriteTime on $i 
+    }
+}
+REM REM REM 
