@@ -614,14 +614,14 @@
 
 		<definedName name="STR_MOF_Heavy_Haul_Ref_Points" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\tables\MOF_Heavy_Haul_Ref_Points.xlsx\Sheet1$"/> <!-- empty -->
 
-		<definedName name="CZ_FacilityLayout_20170822_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Point"/>
-		<definedName name="CZ_FacilityLayout_20170822_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Polyline"/>
-		<definedName name="CZ_FacilityLayout_20170822_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Polygon"/>
-		<definedName name="CZ_FacilityLayout_20170822_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\MultiPatch"/>
-		<definedName name="CZ_FacLayout_20170822_2_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Point"/>
-		<definedName name="CZ_FacLayout_20170822_2_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Polyline"/>
-		<definedName name="CZ_FacLayout_20170822_2_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Polygon"/>
-		<definedName name="CZ_FacLayout_20170822_2_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\MultiPatch"/>
+		<definedName name="BND_CZ_FacLayout_20170822_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Point"/>
+		<definedName name="BND_CZ_FacLayout_20170822_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Polyline"/>
+		<definedName name="BND_CZ_FacLayout_20170822_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Polygon"/>
+		<definedName name="BND_CZ_FacLayout_20170822_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\MultiPatch"/>
+		<definedName name="BND_CZ_FacLayout_20170822_2PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Point"/>
+		<definedName name="BND_CZ_FacLayout_20170822_2LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Polyline"/>
+		<definedName name="BND_CZ_FacLayout_20170822_2PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Polygon"/>
+		<definedName name="BND_CZ_FacLayout_20170822_2PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\MultiPatch"/>
 		
 	</definedNames>
 	<!--nameChanges scope="MOZGIS">
