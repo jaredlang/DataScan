@@ -1,0 +1,790 @@
+<?xml version="1.0"?>
+<config>
+	<xlsTab name="dataSource"/>
+	<xlsHeaders>
+		<xlsHeader name="Name"/>
+		<xlsHeader name="Data Source"/>
+		<xlsHeader name="Layer Type"/>
+		<xlsHeader name="Verified?"/>
+		<xlsHeader name="Loaded?" update="Y"/>
+		<xlsHeader name="SDE Name" update="Y"/>
+		<xlsHeader name="SDE Conn" update="Y"/>
+		<xlsHeader name="Livelink Link"/>
+		<xlsHeader name="Definition Query"/>
+		<xlsHeader name="Description"/>
+	</xlsHeaders>
+	<networkDrives>
+		<networkDrive drive="L:\" path="\\anadarko.com\world\"/>
+		<networkDrive drive="N:\" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\"/>
+		<networkDrive drive="R:\" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\"/>
+	</networkDrives>
+    <snapshotPaths>
+		<snapshotPath path="N:\" snapshot="N:\~snapshot\daily.2017-12-28_0010\"/>
+		<snapshotPath path="R:\" snapshot="R:\~snapshot\jkmigrate_12272017_keep\"/>
+    </snapshotPaths>
+    <sources>
+        <source name="MOZGIS">
+			<add path="N:\~snapshot\daily.2017-12-28_0010\"/>
+			<exclude path="N:\~snapshot\daily.2017-12-28_0010\VENDOR\"/>
+			<exclude path="N:\~snapshot\daily.2017-12-28_0010\WORKING\"/>
+			<exclude path="N:\~snapshot\daily.2017-12-28_0010\arcgis_files\mxds\Reference_MXD_iMAPS\Old_MOZ_Imaps\"/>
+		</source>
+		<source name="MOZLNG">
+			<add path="R:\~snapshot\jkmigrate_12272017_keep\"/>
+			<add path="R:\~snapshot\daily.2017-12-28_0010\VENDOR\"/>
+		</source>
+        <source name="Raster_Depot">
+			<add path="\\anadarko.com\expdata\Houston\gngdata\raster_depot\"/>
+		</source>
+    </sources>
+    <targets>
+        <target name="MOZGIS">
+            <sdeConn>C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_GIS.sde</sdeConn>
+            <rasterDepot>\\anadarko.com\expdata\Houston\gngdata\raster_depot1\Mozambique\MOZGIS\</rasterDepot>
+            <!--livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll/open/33638511</livelink-->
+        </target>
+        <target name="MOZLNG">
+            <sdeConn>C:\Users\kdb086\Documents\ArcGIS\SDE2T_MOZ_LNG.sde</sdeConn>
+            <rasterDepot>\\anadarko.com\expdata\Houston\gngdata\raster_depot1\Mozambique\MozambiqueLNG\</rasterDepot>
+            <!--livelink>http://wwprojectstest.anadarko.com/projects/llisapi.dll/open/33642312</livelink-->
+        </target>
+    </targets>
+	<livelink name="xRef" path="H:\MXD_Scan\xlsx\arcgis_files\REF_data_folders.xlsx">
+		<xrefHeader name="Source Type"/>
+		<xrefHeader name="Data Source"/>
+		<xrefHeader name="Livelink URL"/>
+	</livelink>
+    <dataCategories>
+        <dataCategory key="BIO" name="BIOLOGICAL"/>
+        <dataCategory key="BND" name="BOUND"/>
+        <dataCategory key="ELV" name="BATHY"/>
+        <dataCategory key="ELV" name="ELEV"/>
+        <dataCategory key="ELEV" name="ELEV"/>
+        <dataCategory key="FAU" name="FAULTS"/>
+        <dataCategory key="GEOL" name="GEOLOGY"/>
+        <dataCategory key="GET" name="GEOTECH"/>
+        <dataCategory key="GPH" name="GEOPHYSICS"/>
+        <dataCategory key="HYD" name="HYDRO"/>
+        <dataCategory key="HYD" name="HYDROLOGY"/>
+        <dataCategory key="INF" name="INFRASTRUCT"/>
+        <dataCategory key="LAND" name="LAND"/>
+        <dataCategory key="LSE" name="LEASE"/>
+        <dataCategory key="REF" name="REFERENCE"/>
+        <dataCategory key="STR" name="STRUCT"/>
+        <dataCategory key="TRN" name="TRANS"/>
+        <dataCategory key="TRAN" name="TRANS"/>
+        <dataCategory key="VEN" name="VENDOR"/>
+        <dataCategory key="WELL" name="WELL"/>
+    </dataCategories>
+    <definedNames scope="MOZLNG">
+        <definedName name="AMA1_R_RVPC_const_20161024" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20161024 - RV Construction Phases Shapefile\RV+PC_constr_Phases\RV+PC_constr_Phases.shp"/>
+        <definedName name="AMA1_R_GF_AT_DISV_LINE_20170222" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170222 - Discovery area data from Paula Crockett\Discovery Area\GF_AT_DISCOVERY_OUTLINE.shp"/>
+        <definedName name="AMA1_R_PROSPERIDADE_DISCOV_20170222" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170222 - Discovery area data from Paula Crockett\Discovery Area\PROSPERIDADE_DISCOVERY_AREA.shp"/>
+        <definedName name="AMA1_R_ORCA_DISCOV_20170222" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170222 - Discovery area data from Paula Crockett\Discovery Area\ORCA_DISCOVERY_AREA.shp"/>
+        <definedName name="AMA1_R_TUBARAO_TIGRE_20170222" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170222 - Discovery area data from Paula Crockett\Discovery Area\TUBARAO_TIGRE_DISCOVERY_AREA.shp"/>
+        <definedName name="AMA1_R_TUBARAO_DISCOV_20170222" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170222 - Discovery area data from Paula Crockett\Discovery Area\TUBARAO_DISCOVERY_AREA.shp"/>
+
+		<definedName name="CCSJV_S_Afg_Existing_Roads_20170501" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\CCSJV\Sent\20170501 - Existing Afungi Roads for Planning Purpose (for Stuart Nicholson)\Existing_Roads_20170501.shp"/>
+
+		<definedName name="ENI_S_ENI_Mamba_Pipeline_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\ENI_Mamba_Pipeline.shp"/>
+        <definedName name="ENI_S_APC_Pipeline_1_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\APC_Pipeline_1.shp"/>
+        <definedName name="ENI_S_APC_Pipeline_2_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\APC_Pipeline_2.shp"/>
+        <definedName name="ENI_S_Proposed_Roads_clip_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Proposed_Roads_clip.shp"/>
+        <definedName name="ENI_S_Security_Fence_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Security_Fence.shp"/>
+        <definedName name="ENI_S_Proposed_Cemetery_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Proposed_Cemetery.shp"/>
+        <definedName name="ENI_S_RV_Section_2_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\RV_Section_2.shp"/>
+        <definedName name="ENI_S_Offloading_Facility_Concession_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Material_Offloading_Facility_Concession.shp"/>
+        <definedName name="ENI_S_Replacement_Village_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Replacement_Village.shp"/>
+        <definedName name="ENI_S_Proposed_Airstrip_Location_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Proposed_Airstrip_Location.shp"/>
+        <definedName name="ENI_S_Initial_DUAT_Boundary_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Initial_DUAT_Boundary.shp"/>
+		<definedName name="ENI_S_APC_ENI_Facilities_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\APC_ENI_Facilities.shp"/>
+		<definedName name="ENI_S_APC_ENI_Areas_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\APC_ENI_Areas.shp"/>
+		<definedName name="ENI_S_EIA_Revised_Project_Footprint_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\EIA_Revised_Project_Footprint.shp"/>
+		<definedName name="ENI_S_Future_Expansion_Area_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Future_Expansion_Area.shp"/>
+		<definedName name="ENI_S_Marine_Facilities_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Marine_Facilities.shp"/>
+		<definedName name="ENI_S_Marine_Terminal_Concession_Area_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\LNG_Marine_Terminal_Concession_Area_Clip.shp"/>
+		<definedName name="ENI_S_Coastline_Clip_20170302" path="L:\SharedData\Houston\Mozambique LNG\ENI\Sent\20170302 - AMA-EEA JV Facilities Layout Data for Review\Data_AMA1_EEAJV_Facilities_Layout\Coastline_Clip.shp"/>
+
+        <definedName name="ERM_R_Archae_Ste_20140901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Archaeology\Sites_of_Archaeological_Importance.shp"/>
+        <definedName name="ERM_R_Fring_Reef_20140901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Lwandle_Technologies\Fringing_Reef.shp"/>
+        <definedName name="ERM_R_Seagr_Habit_20140901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Lwandle_Technologies\Seagrass_Habitat.shp"/>
+        <definedName name="ERM_R_ReplacementVillage_Survey_Area_20160128" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20160128 - Cultural Heritage\ERM_CH_AMA1_RVS_GISDataDelivery_2016-01-27\GIS\ERM_CH_AMA1_RVA_Survey_Geodatabase_2016-01-27.gdb\Report_Data\AMA1_Village_Replacement_Survey_Area"/>
+		<definedName name="ERM_R_Rural_Struct_20160128" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20160128 - Cultural Heritage\ERM_CH_AMA1_RVS_GISDataDelivery_2016-01-27\GIS\ERM_CH_AMA1_RVA_Survey_Geodatabase_2016-01-27.gdb\Report_Data\ERM_Rural_Structures"/>
+		<definedName name="ERM_R_CH_RVS_SteInv_F_20160128" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20160128 - Cultural Heritage\ERM_CH_AMA1_RVS_GISDataDelivery_2016-01-27\GIS\ERM_CH_AMA1_RVA_Survey_Geodatabase_2016-01-27.gdb\Report_Data\ERM_CH_AMA1_RVS_Site_Inventory_Final_Points_pt"/>
+		<definedName name="ERM_R_CH_RVS_SteInv_F_20160128" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20160128 - Cultural Heritage\ERM_CH_AMA1_RVS_GISDataDelivery_2016-01-27\GIS\ERM_CH_AMA1_RVA_Survey_Geodatabase_2016-01-27.gdb\Report_Data\ERM_CH_AMA1_RVS_Site_Inventory_Final_Points_pt"/>
+		<definedName name="ERM_R_AQ_Sampling_Points_20140918" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Shape\Air_Quality\Air_Quality_Sampling_Points.shp"/>
+		<definedName name="ERM_R_GW_Sampling_Locations_20140918" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Shape\Groundwater\Sampling_Locations.shp"/>
+		<definedName name="ERM_R_GW_Hydrocensus_20140918" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Shape\Groundwater\Hydrocensus_Points.shp"/>
+		<definedName name="ERM_R_GW_Boreholes_20140918" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Shape\Groundwater\Boreholes.shp"/>
+		<definedName name="ERM_R_GW_Geo_Borehole_20140918" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Shape\Groundwater\AMA1_Geotechnical_Boreholes.shp"/>
+		<definedName name="ERM_R_Noise_Monitor_20140918" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Shape\Noise\Noise_Monitoring_Receptors.shp"/>
+		<definedName name="ERM_R_Fishing_Areas_20140901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Fishing_Areas.shp"/>
+		<definedName name="ERM_R_Fishing_Areas_20140901" path="L:\SharedData\Houston\Mozambique LNG\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Fishing_Areas.shp"/>
+		<definedName name="ERM_R_Porites_Coral_20140901" path="L:\SharedData\Houston\Mozambique LNG\ERM\Received\20140901 - Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Lwandle_Technologies\Larger-Porites-Coral_Bommie.shp"/>
+
+		<definedName name="ERM_R_Local_Roads_20120614" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Shape\Roads\Local_Roads_14June12.shp"/>
+		<definedName name="ERM_R_Control_Tower_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Anadarko\Airstrip\Control_Tower.shp"/>
+		<definedName name="ERM_R_Airstrip_Runway_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Anadarko\Airstrip\Runway.shp"/>
+		<definedName name="ERM_R_Onshore_LytArea_20120601" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Anadarko\Onshore_layout\Onshore_Layout_area_1June12.shp"/>
+		<definedName name="ERM_R_Onshore_LytArea_20120622" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Anadarko\Onshore_layout\Onshore_Layout_area_22June12.shp"/>
+		<definedName name="ERM_R_Onshore_LytLine_20120601" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Anadarko\Onshore_layout\Onshore_Layout_line_1June12.shp"/>
+		<definedName name="ERM_R_GF_PLN_GasField_20130419" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Anadarko\Pipeline_Route\Golfinho_Gas_Field_19Apr13.shp"/>
+		<definedName name="ERM_R_MZ_GF_Pipeline_20120531" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Anadarko\Pipeline_Route\Mozambique_Golfinho_31_May_2012.shp"/>
+		<definedName name="ERM_R_Prosp_GasField_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Anadarko\Pipeline_Route\Prosperidade_Gas_Field.shp"/>
+		<definedName name="ERM_R_MB_ENI_GasField_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Eni\Mamba_Gas_Field.shp"/>
+		<definedName name="ERM_R_ENIProp_PlnCrdr_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Eni\Proposed_Pipeline_corridor.shp"/>
+		<definedName name="ERM_R_Admin_Post_Ctr_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Administrative_Post_Centre.shp"/>
+		<definedName name="ERM_R_District_Centre_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\District_Centre.shp"/>
+		<definedName name="ERM_R_Fishing_Centre_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Fishing_Centre.shp"/>
+		<definedName name="ERM_R_Landuse_aerial_201106" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Landuse_aerialphotograph_June2011.shp"/>
+		<definedName name="ERM_R_salt_pans_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\salt_pans.shp"/>
+		<definedName name="ERM_R_Settl_w_Fishing_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Settlement_with_Fishing_Centre.shp"/>
+		<definedName name="ERM_R_Settlements_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Settlements.shp"/>
+		<definedName name="ERM_R_Villages_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Impacto\Social\Villages.shp"/>
+		<definedName name="ERM_R_Vessel_Turning_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Moffat_and_Nichol\Anchorages-Vessel_Turning_Areas.shp"/>
+		<definedName name="ERM_R_Vessel_Anchorin_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Moffat_and_Nichol\Vessel_Anchoring_Areas.shp"/>
+		<definedName name="ERM_R_Mar_Ops_Limit_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Moffat_and_Nichol\Limits_of_marine_operations.shp"/>
+		<definedName name="ERM_R_Nearshore_Layout_2012102" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Moffat_and_Nichol\M&amp;N_Updated_Nearshore_Layout_2Oct2012.shp"/>
+		<definedName name="ERM_R_Nearshore_Dock_2012102" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Moffat_and_Nichol\M&amp;N_Updated_Nearshore_Layout_PioneerDock_2Oct2012.shp"/>
+		<definedName name="ERM_R_Vessel_approach_20140901" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20140918 - Final GIS Deliverable\Final GIS Deliverable 01092014\0133576_Anadarko_Moz_LNG\Data\Source\Moffat_and_Nichol\Vessel_approach_track.shp"/>
+		<definedName name="ERM_R_RVA2_Surveyed_20161026" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\ERM\Received\20161031 ERM CH Report\archive\ERM_CH_AMA1_RVS_GISDataDelivery_2016-10-26\GIS\ERM_CH_AMA1_RVA2_Survey_Geodatabase_2016-10-26.gdb\Report_Data\ERM_CH_AMA1_RVA2_SurveyedArea_Sept2016_pg"/>
+
+		<definedName name="EI_R_Wetlands_upd_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\Wetlands_updated_UTM37S.shp"/>
+		<definedName name="EI_R_Wetlands_upd_20160331" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160331 - Critical Habitats-ecological constraints Updated Delivery\Wetlands_updated_2016_UTM37S.shp"/>
+        <definedName name="EI_S_Habit_Sensit_20160401" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Sent\20160401 - Data From EA-MZ-SR0100-RRG-U17-00018-00\Combined_Habitat_Sensitivity.shp"/>
+        <definedName name="EI_S_Afivauna_Sensit_20160401" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Sent\20160401 - Data From EA-MZ-SR0100-RRG-U17-00018-00\Afivauna_Sensitivity.shp"/>
+        <definedName name="EI_R_CH_Faunal_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\Faunal_recordings_UTM37S.shp"/>
+        <definedName name="EI_R_CH_AIP_F_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\AIP_Final_UTM37S.shp"/>
+        <definedName name="EI_R_Const_buf_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\Construction_buffer_zone_UTM37S.shp"/>
+        <definedName name="EI_R_Flora_obsv_20141016" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141016 - TBWG Workshop at Irene\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F3_Floraobservationpoints_UTM37S.shp"/>
+		<definedName name="EI_R_Flora_obsv_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F3_Floraobservationpoints_UTM37S.shp"/>
+		<definedName name="EI_R_Flora_survey_plots_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F3_Florasurveyplots_UTM37S.shp"/>
+		<definedName name="EI_R_Elephant_obsv_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F33_Elephantobservations_UTM37S.shp"/>
+		<definedName name="EI_R_Aquatic_SMP_sites_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F7_Aquaticsamplingsites_UTM37S.shp"/>
+		<definedName name="EI_R_Habitat_types_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F6_Habitattypes_UTM37S.shp"/>
+		<definedName name="EI_R_Frogging_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R2F7_Frogging_UTM37S.shp"/>
+		<definedName name="EI_R_Habit_Sensitivit_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R2F73_CombinedHabitatSensitivity_UTM37S.shp"/>
+		<definedName name="EI_R_Trapping_Sites_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R2F74_TrappingSites_UTM37S.shp"/>
+		<definedName name="EI_R_High_risk_AIP_20160225" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160225 - Critical Habitats\EI_CH_and_EC_GIS_UTM37S\High_risk_AIP_points_UTM37S.shp"/>
+		<definedName name="EI_R_Habit_Const_buf_20160331" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160331 - Critical Habitats-ecological constraints Updated Delivery\Construction_buffers_updated_2016_UTM37S.shp"/>
+		<definedName name="EI_R_Biotopes_DUAT_20151204" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20151204 - Biotopes and Vegetation\Fig_1_-_Biotopes_DUAT.shp"/>
+		<definedName name="EI_R_Vegetation_DUAT_20151204" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20151204 - Biotopes and Vegetation\Fig_1-_Vegetation_Units_DUAT.shp"/>
+
+		<definedName name="FCT_R_GRAP_Sacred_Sites_20160520" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Fircroft\Sent\20160520_GRAP_Data\GRAP_Data.gdb\Sacred_Sites"/>
+        <definedName name="FCT_R_GRAP_Scd_TrePnd_20160520" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Fircroft\Sent\20160520_GRAP_Data\GRAP_Data.gdb\Sacred_TreesPonds_GAS_Heritage_Collection"/>
+
+		<definedName name="FUG_R_ON_AFRICA_SEISMICITY_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_AFRICASEISMICITY_F"/>
+        <definedName name="FUG_R_PR_AMP_ANOMALY_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_PR_FUG_AMPANOMALIES_F"/>
+        <definedName name="FUG_R_PR_BLK_SEAFLOOR_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_PR_FUG_BLOCKYSEAFLOORBAY_F"/>
+        <definedName name="FUG_R_PR_CONTINENTAL_FAULTS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_PR_FUG_CONTINENTALFAULTS_F"/>
+        <definedName name="FUG_R_MO_EROSION_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_MO_FUG_EROSION_F"/>
+        <definedName name="FUG_R_ON_GEOLOGIC_UNITS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_GEOLOGICUNITS_F"/>
+        <definedName name="FUG_R_ON_GEOMORPHOLOG_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_GEOMORPHOLOGY_F"/>
+        <definedName name="FUG_R_ON_EXTENSIONAL_FAULTS_LINE_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_EXTENSIONALFAULTSLINE_F"/>
+        <definedName name="FUG_R_ON_FAULTS_500MS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_FAULTS500MS_F"/>
+        <definedName name="FUG_R_ON_FAULTS_HZN08_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_FAULTSHZN08_F"/>
+        <definedName name="FUG_R_ON_FAULTS_HZPRJGRD_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_FAULTSHZNPROJGRND_F"/>
+        <definedName name="FUG_R_ON_MAJOR_FAULTS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_MAJORFAULTS_F"/>
+        <definedName name="FUG_R_PR_LINEA_INTERP_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_PR_FUG_LINEARINTERP_F"/>
+        <definedName name="FUG_R_PB_SHLW_GEOMOR_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_PB_FUG_SHALLOWGEOMORPHPROV_F"/>
+        <definedName name="FUG_R_PR_SONA_CONTACT_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_PR_CCT_SONARCONTACTS_F"/>
+        <definedName name="FUG_R_ON_THURST_FAULTS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_THURSTFAULTS_F"/>
+        <definedName name="FUG_R_ON_TSLINE_FAULTS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GHZ_ON_FUG_TSLINEFAULTS_F"/>
+		<definedName name="FUG_R_FAULTS_HZPRJGRD_20140127" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140127 - Geologic Plate DSheet\Shapefiles\Faults_Hzn_Proj_grnd.shp"/>
+        <definedName name="FUG_R_FAULTS_500MS_20140127" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140127 - Geologic Plate DSheet\Shapefiles\Faults_500_ms.shp"/>
+        <definedName name="FUG_R_Coast_GEOMORPH_20140127" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140127 - Geologic Plate DSheet\Shapefiles\Coastal_geomorph_DGT_FIELDCopy.shp"/>
+        <definedName name="FUG_R_CONTACTS_20130711" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140127 - Geologic Plate DSheet\Shapefiles\Contacts_20130711.shp"/>
+	    <definedName name="FUG_R_PR_BURIED_FAULTS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_BURIEDFAULTS_F"/>
+        <definedName name="FUG_R_MO_BOULDERS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_MO_FUG_BOULDERS_F"/>
+        <definedName name="FUG_R_PR_BSREXTENT_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_BSREXTENT_F"/>
+        <definedName name="FUG_R_PR_CHANNELS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_CHANNELS_F"/>
+        <definedName name="FUG_R_PR_CANYONS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_CANYONS_F"/>
+        <definedName name="FUG_R_PR_DUNES_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_DUNES_F"/>
+        <definedName name="FUG_R_PR_EROSION_LINE_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_EROSIONALINEATIONS_F"/>
+        <definedName name="FUG_R_MO_POSS_EXPULSE_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_MO_FUG_POSSIBLEEXPULSION_F"/>
+        <definedName name="FUG_R_PR_POCKMARKS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_POCKMARKS_F"/>
+        <definedName name="FUG_R_PR_MASS_MOVEMENTS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_MASSMOVEMENTS_F"/>
+        <definedName name="FUG_R_PR_SEAFLOOR_FAULTS_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_SEAFLOORFAULTS_F"/>
+		<definedName name="FUG_R_GEOLOGIC_UNITS_20130711" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140127 - Geologic Plate DSheet\Shapefiles\Geologic_Units_20130711.shp"/>
+        <definedName name="FUG_R_MO_SEISMICITY_CATALOG_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_MO_FUG_SEISMICITYCATALOG_F"/>
+        <definedName name="FUG_R_PR_SHELFBRK_TRE_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_SHELFBREAKTERRACE_F"/>
+        <definedName name="FUG_R_PR_SLOPE_BNDY_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_SLOPEPROVINCEBOUNDARIES_F"/>
+        <definedName name="FUG_R_PR_TOPTHRUSTCON_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_TOPTHRUSTCON_F"/>
+        <definedName name="FUG_R_PR_TOPTHRUSTBND_20140321" path="L:\SharedData\Houston\Mozambique LNG\Fugro\Received\20140321 - GIS Delivery\2014_03_21_Anadarko_Mozambique_GIS_Database\APC_MOZ_VECTOR_DATASETS.gdb\F04_Geology\GEO_PR_FUG_TOPTHRUSTBND_F"/>
+
+		<definedName name="GDS_R_A1A2A3_Contour_LAT_20161208" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Geomatics Data Solutions\Received\20161208 - LidarContours Complete - LAT\A1A2A3_FinalContour_LAT\A1A2A3_FinalContour_LAT.shp"/>
+
+		<definedName name="GST_R_Afg_Prop_Bor_Ex_20170224" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Geosyntec\Received\20170224 - Proposed Geotechnical Sites from Afungi Bay Survey\Proposed_Borings\Additional_Proposed_Borings.shp"/>
+        <definedName name="GST_R_Afg_Proposed_Boring_20170224" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Geosyntec\Received\20170224 - Proposed Geotechnical Sites from Afungi Bay Survey\Proposed_Borings\Proposed_Borings.shp"/>
+        <definedName name="GST_S_GF_Abrupt_Slop_20151110" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Geosyntec\Sent\20151110 - Golfinho Segment, Near Abrupt Slope\Golfinho_Near_Abrupt_Slope_20151110.shp"/>
+
+		<definedName name="KBR_R_KBR_TMOF_Option_20150310" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\KBR\Received\20150310 - TMOF\KBR_TMOF_Options_20150310.shp"/>
+
+		<definedName name="LWA_R_CTD_Profile_WaQa_Mar12_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\CTD_Profiles_Water_Quality_Coords_Mar2012"/>
+		<definedName name="LWA_R_CTD_Profile_WaQa_Mar12_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\CTD_Profiles_Water_Quality_Coords_Mar2012"/>
+		<definedName name="LWA_R_CTD_Profile_WaQa_Nov11_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\CTD_Profiles_Water_Quality_Coords_Nov2011"/>
+		<definedName name="LWA_R_CTD_Profile_WaQa_Nov11_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\CTD_Profiles_Water_Quality_Coords_Nov2011"/>
+		<definedName name="LWA_R_Subtida_Coral_Jul_Sep14I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\CoralSize_Prosperidade_SubtidalCoral_ExclCoralHealth_Jul_Sep2014_37S"/>
+		<definedName name="LWA_R_Subtida_Coral_Jul_Sep14F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\CoralSize_Prosperidade_SubtidalCoral_ExclCoralHealth_Jul_Sep2014_37S"/>
+		<definedName name="LWA_R_DrgDspo_Sediment_PSU_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\Dredge_Disposal_Bay_Sediments_PSU"/>
+		<definedName name="LWA_R_DrgDspo_Sediment_PSU_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\Dredge_Disposal_Bay_Sediments_PSU"/>
+		<definedName name="LWA_R_DrgDspo_Sediment_Metal_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\Dredge_Disposal_Bay_Sediments_TraceMetals"/>
+		<definedName name="LWA_R_DrgDspo_Sediment_Metal_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\Dredge_Disposal_Bay_Sediments_TraceMetals"/>
+		<definedName name="LWA_R_RgiTkji_CoralDive_Nov11I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\Events_InterIsland_RonguiTekomaji_CoralDive_Transect_Nov2011_37S"/>
+		<definedName name="LWA_R_RgiTkji_CoralDive_Nov11F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\Events_InterIsland_RonguiTekomaji_CoralDive_Transect_Nov2011_37S"/>
+		<definedName name="LWA_R_FR_Coral_ex_MEP" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150908 - Marine Critical Habitats\Marine Critical Habitats\FRCoral_exMEP.shp"/>
+		<definedName name="LWA_R_GF_Coral_GolfLit_Occur_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_GolfLit_Occurrence"/>
+		<definedName name="LWA_R_GF_Coral_GolfLit_Occur_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_GolfLit_Occurrence"/>
+		<definedName name="LWA_R_GF_Coral_GolfLit_Cover_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_GolfLit_Percent_Cover"/>
+		<definedName name="LWA_R_GF_Coral_GolfLit_Cover_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_GolfLit_Percent_Cover"/>
+		<definedName name="LWA_R_GF_SubtidalCoral_Video_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_Videos"/>
+		<definedName name="LWA_R_GF_SubtidalCoral_Video_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\GF_SubtidalCoralHealth_Videos"/>
+		<definedName name="LWA_R_REF_TkE_Rock_Sand_Jun14I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_REF_TkE_Rock_and_Sand_Jun2014_37S"/>
+		<definedName name="LWA_R_REF_TkE_Rock_Sand_Jun14F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_REF_TkE_Rock_and_Sand_Jun2014_37S"/>
+		<definedName name="LWA_R_REF_TkW_Rock_Sand_Jun14I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_REF_TkW_Rock_and_Sand_Jun2014_37S"/>
+		<definedName name="LWA_R_REF_TkW_Rock_Sand_Jun14F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_REF_TkW_Rock_and_Sand_Jun2014_37S"/>
+		<definedName name="LWA_R_TST_RgE_Rock_Sand_Jun14I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_TEST_RgE_Rock_and_Sand_Jun2014_37S"/>
+		<definedName name="LWA_R_TST_RgE_Rock_Sand_Jun14F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_TEST_RgE_Rock_and_Sand_Jun2014_37S"/>
+		<definedName name="LWA_R_TST_RgE_Rock_Sand_Nov13I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_TEST_RgE_Rock_and_Sand_Nov2013_37S"/>
+		<definedName name="LWA_R_TST_RgE_Rock_Sand_Nov13F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_TEST_RgE_Rock_and_Sand_Nov2013_37S"/>
+		<definedName name="LWA_R_TST_RgW_Rock_Sand_Jun14I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_TEST_RgW_Rock_and_Sand_Jun2014_37S"/>
+		<definedName name="LWA_R_TST_RgW_Rock_Sand_Jun14F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_TEST_RgW_Rock_and_Sand_Jun2014_37S"/>
+		<definedName name="LWA_R_TST_RgW_Rock_Sand_Nov13I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_TEST_RgW_Rock_and_Sand_Nov2013_37S"/>
+		<definedName name="LWA_R_TST_RgW_Rock_Sand_Nov13F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp3_Island_Intertidal_Sand_Rock\INT_TEST_RgW_Rock_and_Sand_Nov2013_37S"/>
+		<definedName name="LWA_R_RgiTkji_CoralBoat_Nov11I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\InterIsland_RonguiTekomaji_CoralBoatTransect_Nov2011_37S"/>
+		<definedName name="LWA_R_RgiTkji_CoralBoat_Nov11F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\InterIsland_RonguiTekomaji_CoralBoatTransect_Nov2011_37S"/>
+		<definedName name="LWA_R_Bio_Dry_Sep14_Metals_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_DrySeason_Sep2014_Metals"/>
+		<definedName name="LWA_R_Bio_Dry_Sep14_Metals_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_DrySeason_Sep2014_Metals"/>
+		<definedName name="LWA_R_Bio_Dry_Sep14_Organics_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_DrySeason_Sep2014_Organics"/>
+		<definedName name="LWA_R_Bio_Dry_Sep14_Organics_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_DrySeason_Sep2014_Organics"/>
+		<definedName name="LWA_R_Bio_Dry_Sep14_PSA_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_DrySeason_Sep2014_PSA"/>
+		<definedName name="LWA_R_Bio_Dry_Sep14_PSA_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_DrySeason_Sep2014_PSA"/>
+		<definedName name="LWA_R_Bio_Wet_Jan15_Metals_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_WetSeason_Jan2015_Metals"/>
+		<definedName name="LWA_R_Bio_Wet_Jan15_Metals_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_WetSeason_Jan2015_Metals"/>
+		<definedName name="LWA_R_Bio_Wet_PSA_Jan15_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_WetSeason_Jan2015_PSA"/>
+		<definedName name="LWA_R_Bio_Wet_PSA_Jan15_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\IntertidalBiogeochemical_WetSeason_Jan2015_PSA"/>
+		<definedName name="LWA_R_June_2014_ROV_Tracks" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20140815 - Sample Video\June_2014_ROV_Tracks_from_GPX.shp"/>
+		<definedName name="LWA_R_LBS_Impl_Data_Coord_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\LBS_Implementation_Data_Coord_37S"/>
+		<definedName name="LWA_R_LBS_Impl_Data_Coord_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\LBS_Implementation_Data_Coord_37S"/>
+		<definedName name="LWA_R_LBS_Test_Data_Coord_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\LBS_Test_Data_Coord_37S"/>
+		<definedName name="LWA_R_LBS_Test_Data_Coord_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\LBS_Test_Data_Coord_37S"/>
+		<definedName name="LWA_R_MLS_Impl_Data_Coord_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\MLS_Implementation_Data_Coord_37S"/>
+		<definedName name="LWA_R_MLS_Impl_Data_Coord_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\MLS_Implementation_Data_Coord_37S"/>
+		<definedName name="LWA_R_MLS_Test_Data_Coord_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\MLS_Test_Data_Coord_37S"/>
+		<definedName name="LWA_R_MLS_Test_Data_Coord_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp7_Water_Properties\MLS_Test_Data_Coord_37S"/>
+		<definedName name="LWA_R_Offshore_Benthos_Abundance_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_Benthos_Abundance"/>
+		<definedName name="LWA_R_Offshore_Benthos_Abundance_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_Benthos_Abundance"/>
+		<definedName name="LWA_R_Offshore_Benthos_Biomass_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_Benthos_Biomass"/>
+		<definedName name="LWA_R_Offshore_Benthos_Biomass_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_Benthos_Biomass"/>
+		<definedName name="LWA_R_Offshore_CTD_Profiles_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_CTD_Profiles"/>
+		<definedName name="LWA_R_Offshore_CTD_Profiles_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_CTD_Profiles"/>
+		<definedName name="LWA_R_Offshore_GRADISTAT_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_GRADISTAT"/>
+		<definedName name="LWA_R_Offshore_GRADISTAT_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_GRADISTAT"/>
+		<definedName name="LWA_R_Offshore_Sediment_Properties_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_Sediment_Properties"/>
+		<definedName name="LWA_R_Offshore_Sediment_Properties_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_Sediment_Properties"/>
+		<definedName name="LWA_R_Offshore_Water_Samples_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_Water_Samples"/>
+		<definedName name="LWA_R_Offshore_Water_Samples_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp1_All_Offshore_Sampling\Offshore_Water_Samples"/>
+		<definedName name="LWA_R_POCKMARKS_001_038" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150908 - Marine Critical Habitats\Marine Critical Habitats\POCKMARKS_001-038.shp"/>
+		<definedName name="LWA_R_Pipeline_InShDive_Cov_Aug13_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\PipelineCorridor_InShoreDive_PercentageCover_Aug2013_37S"/>
+		<definedName name="LWA_R_Pipeline_InShDive_Cov_Aug13_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\PipelineCorridor_InShoreDive_PercentageCover_Aug2013_37S"/>
+		<definedName name="LWA_R_Pipeline_InShDive_Cov_Jun14_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\PipelineCorridor_InShoreDive_PercentageCover_Jun2014_37S"/>
+		<definedName name="LWA_R_Pipeline_InShDive_Cov_Jun14_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\PipelineCorridor_InShoreDive_PercentageCover_Jun2014_37S"/>
+		<definedName name="LWA_R_Pipeline_PoleMnt_Cov_Jun14_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\PipelineCorridor_PoleMount_PercentageCover_Jun2014_37S"/>
+		<definedName name="LWA_R_Pipeline_PoleMnt_Cov_Jun14_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\PipelineCorridor_PoleMount_PercentageCover_Jun2014_37S"/>
+		<definedName name="LWA_R_Pock_Marks_Apr2012_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\Pock_Marks_Apr2012"/>
+		<definedName name="LWA_R_Pock_Marks_Apr2012_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp6_Sediments\Pock_Marks_Apr2012"/>
+		<definedName name="LWA_R_ProspLit_Occ_Jul_Sep14_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\ProspLitOccurence_Prosperidade_SubtidalCoral_ExclCoralHealth_Jul_Sep2014_37S"/>
+		<definedName name="LWA_R_ProspLit_Occ_Jul_Sep14_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\ProspLitOccurence_Prosperidade_SubtidalCoral_ExclCoralHealth_Jul_Sep2014_37S"/>
+		<definedName name="LWA_R_ProspLit_Cov_Jul_Sep14_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\ProspLitPercentCover_Prosperidade_SubtidalCoral_ExclCoralHealth_Jul_Sep2014_37S"/>
+		<definedName name="LWA_R_ProspLit_Cov_Jul_Sep14_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\ProspLitPercentCover_Prosperidade_SubtidalCoral_ExclCoralHealth_Jul_Sep2014_37S"/>
+		<definedName name="LWA_R_REF_FFB_Coral_Bsl_Aug14I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\REF_FFB_Coral_Bommie_Baseline_Aug2014"/>
+		<definedName name="LWA_R_REF_FFB_Coral_Bsl_Aug14F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\REF_FFB_Coral_Bommie_Baseline_Aug2014"/>
+		<definedName name="LWA_R_REF_FFB_Coral_Bsl_Mar12I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\REF_FFB_Coral_Bommie_Baseline_Mar2012"/>
+		<definedName name="LWA_R_REF_FFB_Coral_Bsl_Mar12F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\REF_FFB_Coral_Bommie_Baseline_Mar2012"/>
+		<definedName name="LWA_R_ROV_Start_Points_PC_032012" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20140114 - PC ROV\ALL PC ROV Data\ROV_Start_Points_PC_032012.shp"/>
+		<definedName name="LWA_R_SEAGRASS_CORAL_DENSE_MEP" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150908 - Marine Critical Habitats\Marine Critical Habitats\SEAGRASS&amp;CORAL_MOD&amp;DENSE_exMEP.shp"/>
+		<definedName name="LWA_R_SEAGRASS_DENSE_Inter" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150908 - Marine Critical Habitats\Marine Critical Habitats\SEAGRASS_DENSE_Inter.shp"/>
+		<definedName name="LWA_R_SEAGRASS_DENSE_MEP" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150908 - Marine Critical Habitats\Marine Critical Habitats\SEAGRASS_DENSE_MEP.shp"/>
+		<definedName name="LWA_R_SG_INT_REF_PMN_Nov13_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_INT_REF_PMN_ALLDATA_Nov2013_37S"/>
+		<definedName name="LWA_R_SG_INT_REF_PMN_Nov13_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_INT_REF_PMN_ALLDATA_Nov2013_37S"/>
+		<definedName name="LWA_R_SG_INT_REF_PMW_Nov13_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_INT_REF_PMW_ALLDATA_Nov2013_37S"/>
+		<definedName name="LWA_R_SG_INT_REF_PMW_Nov13_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_INT_REF_PMW_ALLDATA_Nov2013_37S"/>
+		<definedName name="LWA_R_SG_INT_TEST_AFE_Nov13_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_INT_TEST_AFE_ALLDATA_Nov2013_37S"/>
+		<definedName name="LWA_R_SG_INT_TEST_AFE_Nov13_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_INT_TEST_AFE_ALLDATA_Nov2013_37S"/>
+		<definedName name="LWA_R_SG_INT_TEST_AFW_Nov13_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_INT_TEST_AFW_ALLDATA_Nov2013_37S"/>
+		<definedName name="LWA_R_SG_INT_TEST_AFW_Nov13_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_INT_TEST_AFW_ALLDATA_Nov2013_37S"/>
+		<definedName name="LWA_R_SG_ST_REF_PMN_Sep14_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_REF_PMN_ALLDATA_Sep2014_37S"/>
+		<definedName name="LWA_R_SG_ST_REF_PMN_Sep14_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_REF_PMN_ALLDATA_Sep2014_37S"/>
+		<definedName name="LWA_R_SG_ST_REF_PMW_Nov11_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_REF_PMW_ALLDATA_Nov2011_37S"/>
+		<definedName name="LWA_R_SG_ST_REF_PMW_Nov11_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_REF_PMW_ALLDATA_Nov2011_37S"/>
+		<definedName name="LWA_R_SG_ST_REF_PMW_Sep14_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_REF_PMW_ALLDATA_Sep2014_37S"/>
+		<definedName name="LWA_R_SG_ST_REF_PMW_Sep14_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_REF_PMW_ALLDATA_Sep2014_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFE_Nov11_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFE_ALLDATA_Nov2011_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFE_Nov11_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFE_ALLDATA_Nov2011_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFE_Nov11_E_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFE_ALLDATA_Nov2011_ExtraData_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFE_Nov11_E_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFE_ALLDATA_Nov2011_ExtraData_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFE_Sep14_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFE_ALLDATA_Sep2014_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFE_Sep14_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFE_ALLDATA_Sep2014_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFW_Nov11_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFW_ALLDATA_Nov2011_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFW_Nov11_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFW_ALLDATA_Nov2011_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFW_Sep14_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFW_ALLDATA_Sep2014_37S"/>
+		<definedName name="LWA_R_SG_ST_TEST_AFW_Sep14_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp5_Seagrass\SG_ST_TEST_AFW_ALLDATA_Sep2014_37S"/>
+		<definedName name="LWA_R_Sonar_Tracks_I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp4_Seabed_Construction\Sonar_Tracks_37S"/>
+		<definedName name="LWA_R_Sonar_Tracks_F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp4_Seabed_Construction\Sonar_Tracks_37S"/>
+		<definedName name="LWA_R_SurveyTransectXY_Aug13" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20140210 - Survey Transect Waypoints\SurveyTransectXY_Aug2013.shp"/>
+		<definedName name="LWA_R_TST_NFB_Coral_Bsl_Aug14I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\TEST_NFB_Coral_Bommie_Baseline_Aug2014"/>
+		<definedName name="LWA_R_TST_NFB_Coral_Bsl_Aug14F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\TEST_NFB_Coral_Bommie_Baseline_Aug2014"/>
+		<definedName name="LWA_R_TST_NFB_Coral_Bsl_Mar12I" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150219 - Incomplete Final\AMA1_METADATABASE_16 Feb 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\TEST_NFB_Coral_Bommie_Baseline_Mar2012"/>
+		<definedName name="LWA_R_TST_NFB_Coral_Bsl_Mar12F" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Lwandle\Received\20150731 - AMA1_Metadatabase - FINAL\AMA1_METADATABASE_16 July 2015\Lwandle_Final_Delivery.gdb\Grp2_Corals\TEST_NFB_Coral_Bommie_Baseline_Mar2012"/>
+
+		<definedName name="MEP_R_Bruv_Survey_Wpts_20150713" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\MEP\Received\20150713 - Complete Delivery\BRUV Surveys October 2014\BV shapefiles\141016_27_bruv_wpts_all.shp"/>
+		<definedName name="MEP_R_GT_Survey_Wpts_20150713" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\MEP\Received\20150713 - Complete Delivery\GT Surveys October 2014\GT shapefiles\gt_wpts_all.shp"/>
+        <definedName name="MEP_R_Scoping_Visit_20131230" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20131230 - Fisheries Data\Scoping villages\Scoping Visit.shp"/>
+		<definedName name="MEP_R_Scoping_Visit_20130813" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20130813 - Fishing Grounds and Scoping Village\Scoping villages\Scoping villages\Scoping Visit.shp"/>
+        <definedName name="MEP_R_vessel_act_20150527" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20150527 - EA-MZ-SR0504-RRG-U17-00024-00\Export to Tesselations 8_04_15\Vessel Activity Monitoring Update 8_04_15\Shapefiles\Points\vessel activity points.shp"/>
+		<definedName name="MEP_R_vessel_activity_lines_20150527" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20150527 - EA-MZ-SR0504-RRG-U17-00024-00\Export to Tesselations 8_04_15\Vessel Activity Monitoring Update 8_04_15\Shapefiles\Lines\vessel activity lines.shp"/>
+		<definedName name="MEP_R_Returned_activity_20150123" path="L:\SharedData\Houston\Mozambique LNG\MEP\Received\20150123 - Returned Activity\Shapefile\Shapefile\Returned activity data.shp"/>
+		<definedName name="MEP_R_Intertidal_points_20150123" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20150527 - EA-MZ-SR0504-RRG-U17-00024-00\Export to Tesselations 8_04_15\Intertidal Activity Monitoring Update 8_04_15\Shapefiles\Points\Intertidal points.shp"/>
+		<definedName name="MEP_R_PB_Canoe_Points_20151103" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20151103 - Palma Conoes Gird and Points\for Annex B Rev F\Palma Canoes Points\Palma Canoes Points.shp"/>
+		<definedName name="MEP_R_PB_Canoe_Grid_20151103" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20151103 - Palma Conoes Gird and Points\for Annex B Rev F\Palma Canoes Grid\Palma Canoes Grid.shp"/>
+		<definedName name="MEP_R_PB_Canoe_Activity_20141216" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\MEP\Received\20141216 - RAP Fisheries\RAP Fisheries Maps 16_12_14\Palma Canoe Activity\Palma Canoe Activity.shp"/>
+
+		<definedName name="RSL_R_Soil_Sample_Locations_20141124" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Resalt - soil\Received\20141124 - Soil Points\Resalt\Soil_Sample_Locations.shp"/>
+		<definedName name="RSL_R_Soil_Profile_Holes_20141124" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Resalt - soil\Received\20150720 - Soils Delivery\gps points\Combined and Processed GPS Data\Profile Holes.shp"/>
+		<definedName name="RSL_R_Soil_OMKO_18AUG_20141124" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Resalt - soil\Received\20150720 - Soils Delivery\gps points\Combined and Processed GPS Data\Oom Koos 18 Augustus 2014.shp"/>
+		<definedName name="RSL_R_Soil_Comb_GPS_20141124" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Resalt - soil\Received\20150720 - Soils Delivery\gps points\Combined and Processed GPS Data\Combined GPS Data.shp"/>
+		<definedName name="RSL_R_Fig1_Soil_Group_20150720" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Resalt - soil\Received\20150720 - Soils Delivery\Extracted_Information_Shapefiles\Figure1_Soils_Groups.shp"/>
+
+		<definedName name="TSL_R_CAS_HH_20160428" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Tessellations\Received\20160428 - CAS\CAS\Households.gdb\HH"/>
+		<definedName name="TSL_R_CAS_HH_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\HH"/>
+        <definedName name="TSL_R_HH_MACHAMBAS_20160428" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Tessellations\Received\20160428 - CAS\CAS\Households.gdb\MACHAMBAS"/>
+		<definedName name="TSL_R_HH_MACHAMBAS_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\MACHAMBAS"/>
+        <definedName name="TSL_R_HH_RESIDENCE_20160428" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Tessellations\Received\20160428 - CAS\CAS\Households.gdb\RESIDENCE"/>
+		<definedName name="TSL_R_HH_RESIDENCE_20160512" path="L:\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\RESIDENCE"/>
+		<definedName name="TSL_R_HH_MACHAMBAS_CL_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\Machambas_Clean_08312015"/>
+        <definedName name="TSL_R_CAS_YUMA_Graves_20160512" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Tessellations\Received\20160512 - CAS\MOZ\DATA_FROM_YUMA.gdb\Point"/>
+        <definedName name="TSL_R_COMMUNAL_ASSETS_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Communal_Survey.gdb\COMMUNAL_ASSETS"/>
+        <definedName name="TSL_R_FAM_CEMETERY_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\FAMILY_CEMETERY"/>
+        <definedName name="TSL_R_HH_GYD_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\GRAVEYARD"/>
+		<definedName name="TSL_R_HH_FRT_OTHER_20160512" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\FRUITS_OTHER_TREES"/>
+		<definedName name="TSL_R_HH_FRT_OTHER_20160512" path="L:\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\FRUITS_OTHER_TREES"/>
+		<definedName name="TSL_R_HH_FRT_OTHE_STD_20160512" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Tessellations\Received\20160512 - CAS\MOZ\Households.gdb\FRUITS_OTHER_TREE_STAND"/>
+		<definedName name="TBC_R_CH_Pockmarks_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Pockmarks"/>
+		<definedName name="TBC_R_CH_Dense_coral_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Dense_coral"/>
+		<definedName name="TBC_R_CH_Dense_seagra_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Dense_seagrass_and_medium_coral_MEP"/>
+		<definedName name="TBC_R_CH_Spars_seagra_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Sparse_seagrass_and_coral_MEP"/>
+		<definedName name="TBC_R_CH_Terres_habit_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Terrestrial_CH_qualifying_habitats"/>
+		<definedName name="TBC_R_CH_Turtle_nesti_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Turtle_nesting_beach"/>
+		<definedName name="TBC_R_CH_PB_North_Wetland_20160816" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\TBC\Received\20160816 - Critical Habitat Mapping\Extracted_From_Map_Package.gdb\Wetlands_North_of_Palma_Bay"/>
+
+		<definedName name="ECO_S_Alt_Pipeline_A_20150521" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Ecolyse\Sent\20150521 - Alternate Pipeline Routes\Contractor_A_Pipeline_20150521.shp"/>
+		<definedName name="ECO_S_Alt_Pipeline_B_20150521" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Ecolyse\Sent\20150521 - Alternate Pipeline Routes\Contractor_B_Pipeline_20150521.shp"/>
+
+		<definedName name="WP_R_Moz_Rivers_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Existing_Datasets\Moz_Rivers"/>
+		<definedName name="WP_R_Moz_Roads_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Existing_Datasets\Moz_Roads"/>
+		<definedName name="WP_R_Moz_Villages_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Existing_Datasets\Moz_Villages"/>
+		<definedName name="WP_R_Access_To_Coast_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Design_Data\Access_To_Coast"/>
+		<definedName name="WP_R_Intl_Airport_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Design_Data\International_Airport"/>
+		<definedName name="WP_R_Prop_New_Village_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Design_Data\Proposed_New_Village_Locations"/>
+		<definedName name="WP_R_NEW_Village_LOC_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Design_Data\NEW_Village_Locations"/>
+		<definedName name="WP_R_Rev_Build_Zones_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Design_Data\Revised_Build_Zones"/>
+		<definedName name="WP_R_DUAT_Area_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Design_Data\DUAT_Area"/>
+		<definedName name="WP_R_RISK_DU_LSIRCtur_20140324" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Project_Data.gdb\Design_Data\RISK_DU_LSIRcontours_WP_P_20140324"/>
+		<definedName name="WP_R_Constraint_INF_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Contraints_Data.gdb\Constraints_Datasets\Combined_Constraints_INF"/>
+		<definedName name="WP_R_Fishing_Zones_20140522" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20140522 - Final Report GIS Data\V10_Anadarko_GIS_Data\20140522\20140522\Contraints_Data.gdb\Constraints_Datasets\Fishing_Zones"/>
+
+		<definedName name="EI_R_Regional_Habitat_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\Regional_Habitats.shp"/>
+		<definedName name="EI_R_R1F7_HabitatType_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F7_Habitattypes_UTM37S.shp"/>
+		<definedName name="EI_R_R2F14_Palma_Area_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R2F14_PalmaDistrict_UTM37S.shp"/>
+		<definedName name="EI_R_R2F73_Palma_Area_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R2F73_PalmaDistrict_UTM37S.shp"/>
+		<definedName name="EI_R_R2F73_Moz_Border_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R2F73_MozambiqueBorder_UTM37S.shp"/>
+		<definedName name="EI_R_R1F43_Drainage__20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F43_Drainagecanal_UTM37S.shp"/>
+		<definedName name="EI_R_R1F43_NoBldArea_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F43_Nobuildarea_UTM37S.shp"/>
+		<definedName name="EI_R_R1F43_Wet_Salini_20141003" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20141003 - AMA1 GIS Package\AMA1 GIS package\E-I_GIS for Reports 1 and 2_26Sep2014\_Final Projections\R1F43_Wetlandsalinity_UTM37S.shp"/>
+
+		<definedName name="RS_S_Cultural_Loc_20160126" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\RiskSolutions\Sent\20160126 - Cultural Points and Locations\Cultural_Locations_20160126.shp"/>
+		<definedName name="KBR_R_ROAD_UPDATES_20141811" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\KBR\Received\20150120 - Proposed Roads\ROAD_UPDATES_141811_1\ROAD_UPDATES_141811_1.shp"/>
+
+		<definedName name="GDS_R_LIDAR_HAT_Contour_20160210" path="L:\SharedData\Houston\Mozambique LNG\Geomatics Data Solutions\Received\20160210 - LIDAR\E-Delivery\Contours\HAT_Contour-BE.shp"/>
+		<definedName name="EI_R_Habit_Sensitivit_20160405" path="L:\SharedData\Houston\Mozambique LNG\EnvironInsight\Received\20160407 - Missing data from report EA-MZ-SR0000-RRG-U17-00018-00\_export for Alan (April 2016)\Final_Habitat_Map_with_Sensitivities_IFCHabitattype_and_CriticalIntensity_05April2016.shp"/>
+
+		<!-- non-Esri data files -->
+		<definedName name="CCSJV_R_SitePlan_20150921_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\CCSJV\Received\20150921 - LNG Layout\MZLNG Overall Site Plan-Converted.dwg\Point"/>
+		<definedName name="CCSJV_R_SitePlan_20150921_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\CCSJV\Received\20150921 - LNG Layout\MZLNG Overall Site Plan-Converted.dwg\Polyline"/>
+		<definedName name="CCSJV_R_SitePlan_20150921_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\CCSJV\Received\20150921 - LNG Layout\MZLNG Overall Site Plan-Converted.dwg\Polygon"/>
+		<definedName name="CCSJV_R_SitePlan_20150921_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\CCSJV\Received\20150921 - LNG Layout\MZLNG Overall Site Plan-Converted.dwg\MultiPatch"/>
+
+		<definedName name="MOF_R_SP_AFG_BC_20150528_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Moffatt_Nichol\Received\20150528 - Final MOF\Z744800C-SP-AFUNGI-BC-FEED-12.dwg\Point"/>
+		<definedName name="MOF_R_SP_AFG_BC_20150528_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Moffatt_Nichol\Received\20150528 - Final MOF\Z744800C-SP-AFUNGI-BC-FEED-12.dwg\Polyline"/>
+		<definedName name="MOF_R_SP_AFG_BC_20150528_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Moffatt_Nichol\Received\20150528 - Final MOF\Z744800C-SP-AFUNGI-BC-FEED-12.dwg\Polygon"/>
+		<definedName name="MOF_R_SP_AFG_BC_20150528_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\Moffatt_Nichol\Received\20150528 - Final MOF\Z744800C-SP-AFUNGI-BC-FEED-12.dwg\MultiPatch"/>
+
+		<definedName name="AMA1_R_PM_Prop_RD_20170630_PT" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170630 - Patacua Maganja Proposed New Road Alignment\New road alignment - Rev.10.dwg\Point"/>
+		<definedName name="AMA1_R_PM_Prop_RD_20170630_LN" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170630 - Patacua Maganja Proposed New Road Alignment\New road alignment - Rev.10.dwg\Polyline"/>
+		<definedName name="AMA1_R_PM_Prop_RD_20170630_PLG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170630 - Patacua Maganja Proposed New Road Alignment\New road alignment - Rev.10.dwg\Polygon"/>
+		<definedName name="AMA1_R_PM_Prop_RD_20170630_PCH" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Received\20170630 - Patacua Maganja Proposed New Road Alignment\New road alignment - Rev.10.dwg\MultiPatch"/>
+
+		<definedName name="ITS_R_GF_North_RT_20140617_PT" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20140617 - Golfinho North South Route\AMA1 Golfinho Northern Route Layout June 17 2014_FME.dwg\Point"/>
+		<definedName name="ITS_R_GF_North_RT_20140617_LN" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20140617 - Golfinho North South Route\AMA1 Golfinho Northern Route Layout June 17 2014_FME.dwg\Polyline"/>
+		<definedName name="ITS_R_GF_North_RT_20140617_PLG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20140617 - Golfinho North South Route\AMA1 Golfinho Northern Route Layout June 17 2014_FME.dwg\Polygon"/>
+		<definedName name="ITS_R_GF_North_RT_20140617_PCH" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20140617 - Golfinho North South Route\AMA1 Golfinho Northern Route Layout June 17 2014_FME.dwg\MultiPatch"/>
+
+		<definedName name="ITS_R_GF_BaseMap_201507_PT" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20150901 - Golfinho Pipeline\7-15 Golfinho new basemap.dwg\Point"/>
+		<definedName name="ITS_R_GF_BaseMap_201507_LN" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20150901 - Golfinho Pipeline\7-15 Golfinho new basemap.dwg\Polyline"/>
+		<definedName name="ITS_R_GF_BaseMap_201507_PLG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20150901 - Golfinho Pipeline\7-15 Golfinho new basemap.dwg\Polygon"/>
+		<definedName name="ITS_R_GF_BaseMap_201507_PCH" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20150901 - Golfinho Pipeline\7-15 Golfinho new basemap.dwg\MultiPatch"/>
+
+		<definedName name="ITS_R_EA_GF_FA0600_INT_E04_PT" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20151106 - Golfinho Pipeline\EA-GF-FA0600-INT-E04-00111-01.dwg\Point"/>
+		<definedName name="ITS_R_EA_GF_FA0600_INT_E04_LN" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20151106 - Golfinho Pipeline\EA-GF-FA0600-INT-E04-00111-01.dwg\Polyline"/>
+		<definedName name="ITS_R_EA_GF_FA0600_INT_E04_PLG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20151106 - Golfinho Pipeline\EA-GF-FA0600-INT-E04-00111-01.dwg\Polygon"/>
+		<definedName name="ITS_R_EA_GF_FA0600_INT_E04_PCH" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\IntecSea\Received\20151106 - Golfinho Pipeline\EA-GF-FA0600-INT-E04-00111-01.dwg\MultiPatch"/>
+
+		<definedName name="KBR_R_EA_MZ_CI0401_KOI_E04_PT" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\KBR\Received\20150107 - Poneer Camp\EA-MZ-CI0401-KOI-E04-00077-01_Beni.dgn\Point"/>
+		<definedName name="KBR_R_EA_MZ_CI0401_KOI_E04_LN" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\KBR\Received\20150107 - Poneer Camp\EA-MZ-CI0401-KOI-E04-00077-01_Beni.dgn\Polyline"/>
+		<definedName name="KBR_R_EA_MZ_CI0401_KOI_E04_PLG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\KBR\Received\20150107 - Poneer Camp\EA-MZ-CI0401-KOI-E04-00077-01_Beni.dgn\Polygon"/>
+		<definedName name="KBR_R_EA_MZ_CI0401_KOI_E04_PCH" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\KBR\Received\20150107 - Poneer Camp\EA-MZ-CI0401-KOI-E04-00077-01_Beni.dgn\MultiPatch"/>
+
+		<definedName name="RSL_R_observ_Loc_20150720_PT" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Resalt - soil\Received\20150720 - Soils Delivery\july 2015 updates\Page 4\Location of observation Points.dwg\Point"/>
+		<definedName name="RSL_R_observ_Loc_20150720_LN" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Resalt - soil\Received\20150720 - Soils Delivery\july 2015 updates\Page 4\Location of observation Points.dwg\Polyline"/>
+		<definedName name="RSL_R_observ_Loc_20150720_PLG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Resalt - soil\Received\20150720 - Soils Delivery\july 2015 updates\Page 4\Location of observation Points.dwg\Polygon"/>
+		<definedName name="RSL_R_observ_Loc_20150720_PCH" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\Resalt - soil\Received\20150720 - Soils Delivery\july 2015 updates\Page 4\Location of observation Points.dwg\MultiPatch"/>
+
+		<definedName name="WP_R_REST_SiteKey_20161214_PT" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\WorleyParsons\Received\Resettlement\20161214 - RV Land foot print CAD\EA-MZ-CI0000-WOR-E04-00009-00_SITE_KEY_PLAN\4. Layout [EE].dwg\Point"/>
+		<definedName name="WP_R_REST_SiteKey_20161214_LN" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\WorleyParsons\Received\Resettlement\20161214 - RV Land foot print CAD\EA-MZ-CI0000-WOR-E04-00009-00_SITE_KEY_PLAN\4. Layout [EE].dwg\Polyline"/>
+		<definedName name="WP_R_REST_SiteKey_20161214_PLG" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\WorleyParsons\Received\Resettlement\20161214 - RV Land foot print CAD\EA-MZ-CI0000-WOR-E04-00009-00_SITE_KEY_PLAN\4. Layout [EE].dwg\Polygon"/>
+		<definedName name="WP_R_REST_SiteKey_20161214_PCH" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\WorleyParsons\Received\Resettlement\20161214 - RV Land foot print CAD\EA-MZ-CI0000-WOR-E04-00009-00_SITE_KEY_PLAN\4. Layout [EE].dwg\MultiPatch"/>
+
+		<definedName name="WP_R_Replace_Vlg_20150605_PT" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20150605 - Replacement Village\Layout [DD].dwg\Point"/>
+		<definedName name="WP_R_Replace_Vlg_20150605_LN" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20150605 - Replacement Village\Layout [DD].dwg\Polyline"/>
+		<definedName name="WP_R_Replace_Vlg_20150605_PLG" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20150605 - Replacement Village\Layout [DD].dwg\Polygon"/>
+		<definedName name="WP_R_Replace_Vlg_20150605_PCH" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\VENDOR\WorleyParsons\Received\Resettlement\20150605 - Replacement Village\Layout [DD].dwg\MultiPatch"/>
+
+		<definedName name="AMA1_S_Conting_DredgeDisp_Area" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Sent\20171019 - Data for EPCI contractors bidding (for Majid)\EPCI_Data.gdb\Contingent_Dredge_Disposal_Area"/>
+		<definedName name="AMA1_S_Base_DredgeDisp_Area" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Sent\20171019 - Data for EPCI contractors bidding (for Majid)\EPCI_Data.gdb\Base_Dredge_Disposal_Area"/>
+		<definedName name="AMA1_S_Beach_Landing_Area" path="\\anadarko.com\world\SharedData\Houston\Mozambique LNG\AMA1\Sent\20171019 - Data for EPCI contractors bidding (for Majid)\EPCI_Data.gdb\Beach_Landing_Area"/>
+
+	</definedNames>
+    <definedNames scope="MOZGIS">
+        <definedName name="GIS_Bathy_Tifs_Gap" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\arcgis_files\tifs\Bathy\Gap.shp"/>
+		<definedName name="BND_Africa_ARCHIVE" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ARCHIVE\shapefiles\Archive_20150323\BOUND\Africa.shp"/>
+		<definedName name="BND_AF_Aerial_Img_Lidar_Acqu_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_AF_Aerial_Imagery_Lidar_Acquisition_P"/>
+		<definedName name="BND_CD_PIIM_Study_Img_Acquis_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_CD_PIIM_Study_Imagery_Acquisition_P"/>
+		<definedName name="BND_PB_Exclusive_Concession_Zones_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_ExclusiveConcessionZones_P"/>
+		<definedName name="BND_PB_Exclusive_Concession_Zones_Dis_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_ExclusiveConcessionZones_Dissolve_P"/>
+		<definedName name="BND_PB_Exc_Concession_Zones_Coord_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_ExcConcessionZonesCoord_P"/>
+		<definedName name="BND_PB_MM_Bypass_Buf_200M" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_Macala_Mangala_Bypass_Buf_200M"/>
+		<definedName name="BND_PB_Install_Avoidance_Vtx_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_InstallationActivities_AvoidanceArea_Vertices_P"/>
+		<definedName name="BND_PB_Install_Avoidance_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_PB_InstallationActivities_AvoidanceArea_P"/>
+		<definedName name="BND_GF_AUV_Geophy_Survey_Areas_F" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_GF_AUV_GeophysicalSurveyAreas_F"/>
+		<definedName name="BND_GF_Aerial_LndLidar_Opt_AOI" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Imagery_AOI_Aimee_3_28_2014\Gulfino_Aerial_and_LandLidar_Optional_AOI.shp"/>
+		<definedName name="BND_Off_ENI_Geot_Environ_Survey_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_Off_ENI_Geotechnical_Environmental_Survey_P"/>
+
+		<definedName name="BND_Afg_AS_Assets_CZ_20170309" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Afungi_Airstrip_AOI_Assets_CZ_20170309.shp"/>
+		<definedName name="BND_Afg_DUAT50MBuf_CZ_20170623" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Palma_Afungi_InsideDUAT_50MBufferEitherSide_CZ_20170623.shp"/>
+		<definedName name="BND_Coastline_Visual_20170622" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Coastline_Polyline_ForVisualization_20170622.shp"/>
+		<definedName name="BND_Coastal_Rd_Map_CZ_20150515" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Coastal_Road_Mapbook_CZ_20150515.shp"/>
+		<definedName name="BND_CCSJV_PriorityAre_20161108" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\CCSJV_PriorityAreas_20161108.shp"/>
+		<definedName name="BND_DU_ReplVlg_S2_BHFd_Buf200M" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_DU_ReplacementVill_Section2_BoreholeFd_Buf_200M"/>
+		<definedName name="BND_DU_Livelihood_Develop_F" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\gdb\BND.gdb\BND_DU_LivelihoodDevelopmentZone_F"/>
+		<definedName name="BND_DU_PipeLandingDistToNoise" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\LNG_DU_PipeLandingDistToNoiseBuffer.shp"/>
+		<definedName name="BND_ES_Baseln_Establi_20161212" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\ES_BaselineEstablishment_Transects_20161212.shp"/>
+		<definedName name="BND_Prop_Demining_20160628" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Proposed_DeminingAreas_ExcludeDemined28June2016.shp"/>
+		<definedName name="BND_Prop_Helipad_HLZ_20161013" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Proposed_Helipad_HLZ_SouthApproach_20161013.shp"/>
+		<definedName name="BND_Prop_ASTrf_AOI_CZ_20170208" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\ProposedAirstripTurf_AOI_CZ_20170208.shp"/>
+		<definedName name="BND_Prop_2D_Seismic_Line_AreaR1" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ARCHIVE\shapefiles\Archive_20150323\BOUND\Prop_2D_Seismic_Line_Area-r1.shp"/>
+		<definedName name="BND_Patacua_Mag_Rd_Markers_Kms" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Patacua_Maganja_Rd_Markers_Kms.shp"/>
+		<definedName name="BND_QuelimaneN_Rd_Markers_Kms" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Quelimane_Nsemo_Rd_Markers_Kms.shp"/>
+		<definedName name="BND_QN_Rd_Kms_Opt1_20170824" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Quelimane_Nsemo_Rd_Markers_Kms_Option1_20170824.shp"/>
+		<definedName name="BND_QN_Rd_Kms_Opt1_20170818" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Quelimane_Nsemo_Rd_Markers_Kms_Option1_20170818.shp"/>
+		<definedName name="BND_QuelimaneN_Deviation_Coord" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\QuelimaneNsemo_Deviation_Coordinate.shp"/>
+		<definedName name="BND_QN_Pfl_IndexGrid_20170626" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Quelimane_Nsemo_Profile_IndexGrid_20170626.shp"/>
+		<definedName name="BND_LNG_Exclud_1km_CZ_20170725" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\LNG_Exclusion_Zone_1000m_CZ_20170725.shp"/>
+		<definedName name="BND_RV_VegClr_50mBuf_20161012" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\RV_VegetationClearance_50mBuffer_20161012.shp"/>
+		<definedName name="BND_RV_VegClr_50mBufD_20161012" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\RV_VegetationClearance_50mBuffDissolve_20161012.shp"/>
+
+		<definedName name="BND_EmissionDischarge_20170913" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\AMA1_Facility_EmissionDischarge_Points_DavidAnderson_20170913.shp"/>
+		<definedName name="BND_FacilitiesMap_CZ_20170914" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\FacilitiesMap_LabelArrows_CZ_20170914.shp"/>
+		<definedName name="BND_FacilitiesMap_CZ_20170915" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\FacilitiesMap_LabelArrows_CZ_20170915.shp"/>
+		<definedName name="BND_DUAT_ASISurvey_20170807" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Palma_Afungi_InsideDUAT_ASISurveyArea_IE_20170807.shp"/>
+		<definedName name="STR_PLN_Corridor_EMP_20170817" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\shapefiles\PipelineCorridor_ForEMP_Map_Temp_20170817.shp"/>
+
+		<definedName name="BND_Machamba_Alt_DUAT_Cantrobu" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Machambas_Alternative_DUAT_CAntrobus.shp"/>
+		<definedName name="BND_EI_CritHabit_Tidal_Shoreln" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\EnvironInsight_Critical_Habitat_Tidal_Shoreline.shp"/>
+		<definedName name="BND_EI_MozBorder_NoIslands" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\EnvironInsight_MozBorder_NoIslands.shp"/>
+		<definedName name="BND_Rst_Asset_Namba_Block_Cant" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Resettlement_Assets_Namba_Block_Cantrobus.shp"/>
+		<definedName name="BND_Rst_Asset_Namba_Block_Poly" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Resettlement_Assets_Namba_Block_Cantrobus_Poly.shp"/>
+		<definedName name="BND_Security_15km_DK_Committee" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Security_Zone_15000m_DK_Committee_Map.shp"/>
+		<definedName name="BND_Community_Investment_Loc" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Community_Investment_Point_Locations.shp"/>
+		<definedName name="BND_Problem_LandOwner_20151209" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Problem_Land_Owner_JH_20151209.shp"/>
+
+		<definedName name="ECO_DU_woodland_AW_20170306_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ECOLOGY\shapefiles\ECO_DU_Closed_Berlinia_Orientalis_woodland_forest_No_Longer_Present_AlanWatts_20170306_P.shp"/>
+		<definedName name="ECO_DU_EI_HabitatType_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ECOLOGY\gdb\ECO.gdb\ECO_DU_EnviroInsight_HabitatType_P"/>
+		<definedName name="ECO_EI_AW_Wetlands_20170210" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ECOLOGY\shapefiles\EnviroInsight_AlanWattsModified_Wetlands_20170210.shp"/>
+		<definedName name="ECO_EI_Wetland_Bf150m_20170210" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ECOLOGY\shapefiles\EnviroInsight_AlanWattsModified_WetlandsBuffer150m_20170210.shp"/>
+
+		<definedName name="ELV_PB_Contour_Line_20160422" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ELEV\shapefiles\Palma_Bay_Contour_Lines_20160422_37S.shp"/>
+		<definedName name="ELEV_A1A2A3_GDS_1mContour_LAT" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\ELEV\gdb\ELEV.gdb\ELEV_DU_GDS_1m_LAT_Complete_A1A2A3_Contours_F"/>
+
+		<definedName name="HYD_DU_GSN_LchFld_Monitor_Wells_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\HYDRO\gdb\HYD.gdb\HYD_DU_GSN_LchFldMonitorWells_P"/>
+
+        <definedName name="GET_Addl_Stg4_Borehol_20131007" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Additional_Stage4_Boreholes_20131007.shp"/>
+        <definedName name="GET_CCJV_Stg3_Boring_Locs_Rev" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\CCJV_Stage3_Boring_RevisedLocs.shp"/>
+        <definedName name="GET_PR_Missing_MR14s_Manifolds" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\PR_Missing_MR14s_forGetotech_DataAcqAtManifolds.shp"/>
+        <definedName name="GET_Prop_Prsprd_Explrt20131024" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131024.shp"/>
+        <definedName name="GET_Prop_Prsprd_Explrt20131115" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131115.shp"/>
+        <definedName name="GET_Prop_Prsprd_Explrt20131123" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131123.shp"/>
+        <definedName name="GET_Prop_Prsprd_Explrt20131220" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_Explrts20131220.shp"/>
+        <definedName name="GET_Prop_Prsprd_Addl_20140220" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Propsd_Prsprdade_AdditionalDataAcq_20140220.shp"/>
+        <definedName name="GET_MR13_SD_P48_Boreh_20131008" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\MR13_SD_P48_Borehole_for_TCoraspe_20131008.shp"/>
+		<definedName name="GET_CPT_Borehole_MMey_20140716" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\CPT_Borehole_MMeyer_20140716.shp"/>
+		<definedName name="GET_Logan_CPT_Intertidal_Aug14" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Logan_CPT_Intertidal_Aug_2014.shp"/>
+		<definedName name="GET_Aimee_Site_Invest_Landing" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Aimee_GeotechSiteInvestigationLanding.shp"/>
+		<definedName name="GET_Aimee_Site_Investigation" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Aimee_GeotechSiteInvestigati.shp"/>
+		<definedName name="GET_Aimee_Ste_Landing_20150323" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Aimee_GeotechSiteInvestigationLanding20150323.shp"/>
+		<definedName name="GET_SHLW_Borehole_RS_20150827" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOTECH\shapefiles\Shallow_Boreholes_RS_20150827.shp"/>
+
+		<definedName name="REF_Fishermen_Dis_RAP_20150901" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\REF\shapefiles\FishermenDistributionRoutes_RAP_1_09_2015.shp"/>
+
+		<definedName name="INF_AF_Archae_Importance_F" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\gdb\INF.gdb\INF_AF_ArchaeologicalImportance_F"/>
+		<definedName name="INF_AF_ERM_Cult_Heritage_Ste_F" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\gdb\INF.gdb\INF_AF_ERM_CulturalHeritage_SiteInventory_F"/>
+		<definedName name="INF_Realg_PowLn_33kv_20160912" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\shapefiles\Realigned_Powerline_33kv_20160912.shp"/>
+
+		<definedName name="LAND_CD_Baraba_BorrowPit_Loc_F" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\LAND\gdb\LAND.gdb\LAND_CD_Barabarane_BorrowPit_Locations_F"/>
+		<definedName name="LAND_CD_Bara_BorrowArea_Soil_F" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\LAND\gdb\LAND.gdb\LAND_CD_Barabarane_BorrowArea_SoilTypes_F"/>
+
+		<definedName name="STR_AF_Reset_Vlg_Opt1_Poly_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_AF_Reset_Village_Option1_Layout_Poly_P"/>
+		<definedName name="STR_DU_CCSJV_BatchPlant_Area_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_DU_CCSJV_BatchPlant_ConstArea_P"/>
+		<definedName name="STR_DU_CCSJV_Culvert_Fence_X_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_DU_CCSJV_Culvert_Fence_Crossing_P"/>
+		<definedName name="STR_DU_CCSJV_Flare_Drum_Meg_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_DU_CCSJV_Bog_Comp_Flare_Drum_Meg_Storage_P"/>
+		<definedName name="STR_GF_LandingAndValve_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\PIPE.gdb\STR_GF_GolfinhoLandingAndValve_P"/>
+        <definedName name="STR_NS_Profile_Points_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profile_Points_20141204.shp"/>
+        <definedName name="STR_NS_Line_of_Sight_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Line_of_Sight.shp"/>
+        <definedName name="STR_NS_Profile_20141204" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\Davies_Ridge_20141204\Profiles_20141204.shp"/>
+        <definedName name="STR_EA_PR_FA0600_INT_E04_00101" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\shapefiles\EA_PR_FA0600_INT_E04_00101_01_DWG\EA_PR_FA0600_INT_E04_00101_01_DWG_x.shp"/>
+        <definedName name="STR_Profile_Manifolds_MergedAll" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\Manifolds.gdb\MergedAll"/>
+        <definedName name="STR_Profile_Manifolds_Merged" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\Manifolds.gdb\Merged"/>
+        <definedName name="STR_Profile_Drill_Scope_NewLn" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\DrillingScope\NewLines.shp"/>
+		<definedName name="STR_PB_Marine_Excl_Breakwall_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_PB_Marine_Exclusion_Breakwall_P"/>
+		<definedName name="STR_PB_Prop_Bay_Route_Pts" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\PalmaBay_20140605\STR_PB_PropGolfinhoBayRoute_Pts_XYs.shp"/>
+		<definedName name="STR_GF_Nor_Rte_Escarp_20140605" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\LisaHawkins\Golfinho_NorthRouteEscarpment_20140605.shp"/>
+		<definedName name="STR_GF_Nor_Rte_Escarp_20140606" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\LisaHawkins\Golfinho_NorthRouteEscarpment_Vertices_20140606.shp"/>
+		<definedName name="STR_MZ_Kifaru_SD_Ste_DrillEx_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_MZ_Kifaru_SDSite_DrillExt__Pt_P"/>
+		<definedName name="STR_PB_ProfilesXYs_20140605" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\NeilSummer\PalmaBay_20140605\PalmaBayProfilesXYs_20140605.shp"/>
+		<definedName name="STR_PB_Vessel_Approach_Chnel_P" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\gdb\STR.gdb\STR_PB_Vessel_Approach_Channel_P"/>
+		<definedName name="STR_Start_End_Profile_20150212" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20150212\Start_End_Profiles_20150212.shp"/>
+		<definedName name="STR_PR_OFF_Escarp_Profiles_F" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20141226\PR_OFF_EscarpmentProfiles_F.shp"/>
+
+		<definedName name="TRN_Agri_Tracks_Hand_Auger_Ste" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\TRANS\shapefiles\Agricultural_Tracks_Hand_Auger_Sites.shp"/>
+		<definedName name="TRN_PM_New_RdAlign_GH_20170630" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\TRANS\shapefiles\Patacua_Mganja_NewRdAlignment_GH_20170630.shp"/>
+		<definedName name="TRN_Maganja_Mondlane_20151118" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\TRANS\shapefiles\Maganja_Mondlane_Coordinates_20151118.shp"/>
+		<definedName name="TRN_PB_Afg_Rd_ReAlign_20151008" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\TRANS\shapefiles\Palma_Afungi_Road_ReAlignment_20151008.shp"/>
+		<definedName name="TRN_PB_Afg_Rd_50mBuf_20151008" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\TRANS\shapefiles\Palma_Afungi_Road_ReAlignment_50mBuffer_20151008.shp"/>
+
+		<definedName name="BND_AS_VegClr_50mBuf_20171130" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\Airstrip_PARoad_VegetationClearance_50mBuff_20171130.shp"/>
+		<definedName name="BND_EPCI_Worksite_MA_20171130" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\shapefiles\EPCI_Worksite_Vertices_MA_20171130.shp"/>
+
+		<!-- non-Esri data files -->
+		<definedName name="BND_CCSJV_Priority_Areas_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CCSJV_Priority_Areas\CCSJV_Priority_Areas.dwg\Point"/>
+		<definedName name="BND_CCSJV_Priority_Areas_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CCSJV_Priority_Areas\CCSJV_Priority_Areas.dwg\Polyline"/>
+		<definedName name="BND_CCSJV_Priority_Areas_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CCSJV_Priority_Areas\CCSJV_Priority_Areas.dwg\Polygon"/>
+		<definedName name="BND_CCSJV_Priority_Areas_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CCSJV_Priority_Areas\CCSJV_Priority_Areas.dwg\MultiPatch"/>
+
+		<definedName name="BND_Chico_DUAT_survey_20140625" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\tables\DUAT_survey_locations_from_chico_6_25_2014.xlsx\Sheet1$"/>
+		<definedName name="BND_DUAT_Optimized_V2_COORDS" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\tables\DUAT_Optimized_v2.xlsx\XYCoords$"/>
+		<definedName name="BND_DUAT_Original_COORDS" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\tables\DUAT_Original.xlsx\XYCoords$"/>
+
+		<definedName name="INF_Telecom_Cable_20140504_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\cad\Telecom Cable survey-May 4 2014-Proc.dwg\Point"/>
+		<definedName name="INF_Telecom_Cable_20140504_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\cad\Telecom Cable survey-May 4 2014-Proc.dwg\Polyline"/>
+		<definedName name="INF_Telecom_Cable_20140504_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\cad\Telecom Cable survey-May 4 2014-Proc.dwg\Polygon"/>
+		<definedName name="INF_Telecom_Cable_20140504_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\cad\Telecom Cable survey-May 4 2014-Proc.dwg\MultiPatch"/>
+
+		<definedName name="STR_RodolfoSanci_A_GF_20150112" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20150112\CSV\A-GF_out.csv"/>
+		<definedName name="STR_RodolfoSanci_A_PR_20150112" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20150112\CSV\A-PR_out.csv"/>
+		<definedName name="STR_RodolfoSanci_B_GF_20150112" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20150112\CSV\B-GF_out.csv"/>
+		<definedName name="STR_RodolfoSanci_B_PR_20150112" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20150112\CSV\B-PR_out.csv"/>
+		<definedName name="STR_RodolfoSanci_C_GF_20150112" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20150112\CSV\C-GF_out.csv"/>
+		<definedName name="STR_RodolfoSanci_C_PR_20150112" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\RodolfoSancio\20150112\CSV\C-PR_out.csv"/>
+		<definedName name="STR_Landing_To_Plant_20150112" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\tables\250_FROM_LANDING_TO_APC_PLANT_out.csv"/>
+		<definedName name="STR_PR_100m_Postings_20140705" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\profiles\Al Majid\05072014\Prosperidade_100m_Postings.csv"/>
+
+		<definedName name="GEO_MPD_Seismic_Channel_P_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOPHYSICS\cad\MPD Intertidal Seismic Channel Positions - Prelim.dxf\Point"/>
+		<definedName name="GEO_MPD_Seismic_Channel_P_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOPHYSICS\cad\MPD Intertidal Seismic Channel Positions - Prelim.dxf\Polyline"/>
+		<definedName name="GEO_MPD_Seismic_Channel_P_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOPHYSICS\cad\MPD Intertidal Seismic Channel Positions - Prelim.dxf\Polygon"/>
+		<definedName name="GEO_MPD_Seismic_Channel_P_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\GEOPHYSICS\cad\MPD Intertidal Seismic Channel Positions - Prelim.dxf\MultiPatch"/>
+
+		<definedName name="BND_Duat_coordinates" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\tables\Duat_coordinates - Copy.xlsx\Sheet1$"/>
+		<definedName name="INF_Water_Wells_Heath_20130430" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\INFRASTRUCT\tables\Water_Wells_Heath_April3013.xlsx\Sheet1$"/>
+		<definedName name="WELL_Maturation_Wells_20150519" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WELL\tables\Golfinho_Atumdevelopment_wells_2014_09_23_DeliveredByEricS_20150519.xlsx\'2015GolfMaturationWellLoc$'"/>
+		<definedName name="WELL_Case130_Bathymetry_Routes" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WELL\tables\Well Case 130 Bathymetry Info.xlsx\'Bathymetry Routes$'"/>
+		<definedName name="WELL_Case130_Well_Network" path="L:\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\WELL\tables\Well Case 130 Bathymetry Info.xlsx\'130 Well Network$'"/> <!-- empty -->
+
+		<definedName name="STR_MOF_Heavy_Haul_Ref_Points" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\STRUCT\tables\MOF_Heavy_Haul_Ref_Points.xlsx\Sheet1$"/> <!-- empty -->
+
+		<definedName name="BND_CZ_FacLayout_20170822_PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Point"/>
+		<definedName name="BND_CZ_FacLayout_20170822_LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Polyline"/>
+		<definedName name="BND_CZ_FacLayout_20170822_PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\Polygon"/>
+		<definedName name="BND_CZ_FacLayout_20170822_PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder\185153-EA-MZ-FA0000-CCV-E04-00003-01.dgn\MultiPatch"/>
+		<definedName name="BND_CZ_FacLayout_20170822_2PT" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Point"/>
+		<definedName name="BND_CZ_FacLayout_20170822_2LN" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Polyline"/>
+		<definedName name="BND_CZ_FacLayout_20170822_2PLG" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\Polygon"/>
+		<definedName name="BND_CZ_FacLayout_20170822_2PCH" path="\\anadarko.com\world\SharedData\Houston\IntlDeepW\MOZAMBIQUE\MOZGIS\BOUND\cad\CZ_FacilitiesLayout_CAD_20170822\New folder (2)\185153-EA-MZ-FA0300-CCV-E04-00002-01merged.dwg\MultiPatch"/>
+
+	</definedNames>
+	<!--nameChanges scope="MOZGIS">
+		<nameChange old="HYD_RplcLand_RainMntr_Grid_1km2" new="HYD_RplcLand_RainMntr_1km2" type="word"/>
+		<nameChange old="BND_CCSJV_Priority_Areas_For_Rst" new="BND_CCSJV_Priority_Rst" type="word"/>
+	</nameChanges-->
+	<shortcuts>
+		<!-- GIS -->
+		<shortcut key="Bndy" name="Boundary" priority="A"/>
+		<shortcut key="Bnds" name="Bounds" priority="A"/>
+		<shortcut key="Buf" name="Buffer" priority="A"/>
+		<shortcut key="Clp" name="Clipped" priority="A"/>
+		<shortcut key="Coord" name="Coordinate" priority="A"/>
+		<shortcut key="Coord" name="Coordinates" priority="A"/>
+		<shortcut key="RefPt" name="ReferencePt" priority="A"/>
+		<shortcut key="RefPt" name="ReferencePts" priority="A"/>
+		<shortcut key="GeoRef" name="Georeferenced" priority="A"/>
+		<shortcut key="Otln" name="Outline" priority="A"/>
+		<shortcut key="Crdr" name="Corridor" priority="A"/>
+		<shortcut key="Ctd" name="centroids" priority="A"/>
+		<shortcut key="Ctd" name="centroid" priority="A"/>
+		<shortcut key="Ctr" name="center" priority="A"/>
+		<shortcut key="Ctur" name="Contour" priority="A"/>
+		<shortcut key="Ctur5m" name="Contours5m" priority="A"/>
+		<shortcut key="Ctur5m" name="Contour5m" priority="A"/>
+		<shortcut key="Ctur1m" name="Contours1m" priority="A"/>
+		<shortcut key="Ctur1m" name="Contour1m" priority="A"/>
+		<shortcut key="50cmCtur" name="50cmContours" priority="A"/>
+		<shortcut key="50mCtur" name="50mContours" priority="A"/>
+		<shortcut key="5mCtur" name="5mContours" priority="A"/>
+		<shortcut key="5mCtur" name="5mContour" priority="A"/>
+		<shortcut key="1mCtur" name="1mContours" priority="A"/>
+		<shortcut key="1mCtur" name="1mContour" priority="A"/>
+		<shortcut key="Pt" name="Point" priority="A"/>
+		<shortcut key="Pt" name="Points" priority="A"/>
+		<shortcut key="Ln" name="Line" priority="A"/>
+		<shortcut key="Ln" name="Lines" priority="A"/>
+		<shortcut key="Vtx" name="Vertex" priority="A"/>
+		<shortcut key="Vtx" name="Vertices" priority="A"/>
+		<shortcut key="" name="Area" priority="A"/> <!--omit-->
+		<shortcut key="" name="Areas" priority="A"/> <!--omit-->
+		<shortcut key="" name="Map" priority="A"/> <!--omit-->
+		<shortcut key="" name="Maps" priority="A"/> <!--omit-->
+		<shortcut key="" name="Label" priority="A"/> <!--omit-->
+		<shortcut key="" name="Labels" priority="A"/> <!--omit-->
+		<shortcut key="S" name="South" priority="A"/>
+		<shortcut key="N" name="North" priority="A"/>
+		<shortcut key="W" name="West" priority="A"/>
+		<shortcut key="E" name="East" priority="A"/>
+
+		<!-- Project -->
+		<shortcut key="Afg" name="Afungi" priority="B"/>
+		<shortcut key="GF" name="Golfinho" priority="B"/>
+		<shortcut key="PB" name="PalmaBay" priority="B"/>
+		<shortcut key="PR" name="Prosperidade" priority="B"/>
+		<shortcut key="MB" name="Mamba" priority="B"/>
+		<shortcut key="MZ" name="Mozambique" priority="B"/>
+		<shortcut key="GfnoPLN" name="GolfinhoPipeline" priority="B"/>
+		<shortcut key="MbaPLN" name="MambaPipeline" priority="B"/>
+		<shortcut key="PioCmp" name="PioneerCamp" priority="B"/>
+		<shortcut key="RnMntr" name="RainMonitoring" priority="B"/>
+		<shortcut key="Espm" name="Escarpment" priority="B"/>
+		<shortcut key="Rst" name="Resettlement" priority="B"/>
+		<shortcut key="Sec" name="Section" priority="B"/>
+		<shortcut key="TZA" name="Tanzania" priority="B"/>
+		<shortcut key="Rplc" name="Replacement" priority="B"/>
+		<shortcut key="RplLand" name="ReplacementLand" priority="B"/>
+		<shortcut key="RplVlg" name="ReplacementVillage" priority="B"/>
+		<shortcut key="VegClr" name="VegetationClearance" priority="B"/>
+		<shortcut key="Stg" name="Storage" priority="B"/>
+		<shortcut key="Mar" name="Marine" priority="B"/>
+		<shortcut key="Dem" name="DeminingAreas" priority="B"/>
+		<shortcut key="Dem" name="Demining" priority="B"/>
+		<shortcut key="Ste" name="Sites" priority="B"/>
+		<shortcut key="PowLn" name="Powerline" priority="B"/>
+		<shortcut key="AS" name="Airstrip" priority="B"/>
+		<shortcut key="Pfl" name="Profiler" priority="B"/>
+		<shortcut key="Pfl" name="Profile" priority="B"/>
+		<shortcut key="FLT" name="FAULTS" priority="B"/>
+		<shortcut key="GEOL" name="GEOLOGIC" priority="B"/>
+		<shortcut key="GeoPhy" name="Geophysical" priority="B"/>
+		<shortcut key="MAT" name="Material" priority="B"/>
+		<shortcut key="Fpt" name="Footprint" priority="B"/>
+		<shortcut key="SEIS" name="SEISMICITY" priority="B"/>
+
+		<!-- Ordinary -->
+		<shortcut key="AFR" name="AFRICA" priority="C"/>
+		<shortcut key="Archae" name="Archaelogical" priority="C"/>
+		<shortcut key="Aqua" name="Aquatic" priority="C"/>
+		<shortcut key="ADRO" name="Aerodrome" priority="C"/>
+		<shortcut key="Addl" name="Additional" priority="C"/>
+		<shortcut key="Act" name="Activity" priority="C"/>
+		<shortcut key="Act" name="Activities" priority="C"/>
+		<shortcut key="Cesn" name="Concession" priority="C"/>
+		<shortcut key="Const" name="Construction" priority="C"/>
+		<shortcut key="Compl" name="Completed" priority="C"/>
+		<shortcut key="Compl" name="Complete" priority="C"/>
+		<shortcut key="Compl" name="Completion" priority="C"/>
+		<shortcut key="Lyt" name="Layout" priority="C"/>
+		<shortcut key="Conti" name="Continental" priority="C"/>
+		<shortcut key="Charz" name="Characterization" priority="C"/>
+		<shortcut key="Ctlg" name="Catalog" priority="C"/>
+		<shortcut key="Drg" name="Dredge" priority="C"/>
+		<shortcut key="DrgDspo" name="DredgeDisposal" priority="C"/>
+		<shortcut key="Exp" name="Expansion" priority="C"/>
+		<shortcut key="Ext" name="EXTENSIONAL" priority="C"/>
+		<shortcut key="Fac" name="Facility" priority="C"/>
+		<shortcut key="Fac" name="Facilities" priority="C"/>
+		<shortcut key="" name="From" priority="C"/>
+		<shortcut key="" name="Extracted" priority="C"/>
+		<shortcut key="Exg" name="Existing" priority="C"/>
+		<shortcut key="Mtr" name="Monitor" priority="C"/>
+		<shortcut key="MOVE" name="MOVEMENTS" priority="C"/>
+		<shortcut key="Ofld" name="Offloading" priority="C"/>
+		<shortcut key="Opn" name="Operation" priority="C"/>
+		<shortcut key="Opt" name="Option" priority="C"/>
+		<shortcut key="Opt1" name="Option1" priority="C"/>
+		<shortcut key="PLN" name="Pipeline" priority="C"/>
+		<shortcut key="Prop" name="Proposed" priority="C"/>
+		<shortcut key="Prop" name="properties" priority="C"/>
+		<shortcut key="Prop" name="property" priority="C"/>
+		<shortcut key="Onsh" name="Onshore" priority="C"/>
+		<shortcut key="Ofsh" name="Offshore" priority="C"/>
+		<shortcut key="Alt" name="Alternate" priority="C"/>
+		<shortcut key="Bch" name="Beach" priority="C"/>
+		<shortcut key="Dev" name="Development" priority="C"/>
+		<shortcut key="Dply" name="Deployment" priority="C"/>
+		<shortcut key="Init" name="Initial" priority="C"/>
+		<shortcut key="Rev" name="Revised" priority="C"/>
+		<shortcut key="Ldg" name="Landing" priority="C"/>
+		<shortcut key="Loc" name="Location" priority="C"/>
+		<shortcut key="Loc" name="Locations" priority="C"/>
+		<shortcut key="Dspo" name="Disposal" priority="C"/>
+		<shortcut key="DspoArea" name="DisposalArea" priority="C"/>
+		<shortcut key="Pote" name="Potential" priority="C"/>
+		<shortcut key="Rd" name="Road" priority="C"/>
+		<shortcut key="Rd" name="Roads" priority="C"/>
+		<shortcut key="REFL" name="Reflection" priority="C"/>
+		<shortcut key="Sft" name="Shift" priority="C"/>
+		<shortcut key="Tot" name="Total" priority="C"/>
+		<shortcut key="Resid" name="Residential" priority="C"/>
+		<shortcut key="Struct" name="Structures" priority="C"/>
+		<shortcut key="Struct" name="Structure" priority="C"/>
+		<shortcut key="Term" name="Terminal" priority="C"/>
+		<shortcut key="Vlg" name="Village" priority="C"/>
+		<shortcut key="Prj" name="Project" priority="C"/>
+		<shortcut key="Indu" name="Industrial" priority="C"/>
+		<shortcut key="Intl" name="International" priority="C"/>
+		<shortcut key="Isl" name="Islands" priority="C"/>
+		<shortcut key="Isl" name="Island" priority="C"/>
+		<shortcut key="Lmt" name="Limits" priority="C"/>
+		<shortcut key="Lmt" name="Limit" priority="C"/>
+		<shortcut key="Svy" name="Surveys" priority="C"/>
+		<shortcut key="Svy" name="Survey" priority="C"/>
+		<shortcut key="Veg" name="Vegatation" priority="C"/>
+		<shortcut key="" name="Zone" priority="C"/>
+		<shortcut key="" name="Zones" priority="C"/>
+		<shortcut key="" name="for" priority="C"/>
+	</shortcuts>
+</config>
