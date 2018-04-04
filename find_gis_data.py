@@ -180,9 +180,8 @@ def get_source_type(lDrvPath):
 
 
 def get_sde_path(filePath, sdeDataList):
-    uncPath = path_md_2_unc(filePath)
     for sd in sdeDataList:
-        if uncPath == sd["Data Source"] or uncPath == get_alias_path(sd["Data Source"]):
+        if filePath == sd["Data Source"] or filePath == get_alias_path(sd["Data Source"]):
             return sd["SDE Path"]
     return None
 
@@ -203,91 +202,29 @@ def scan_data_in_LDrive(dataFolder, fileExts):
                 snapshotPath = os.path.join(root, fname)
                 print("Found: %s" % ascii(snapshotPath))
                 sourcePath = path_snapshot_2_source(snapshotPath)
+                sourceUncPath = path_md_2_unc(sourcePath)
+                snapshotUncPath = path_md_2_unc(snapshotPath)
                 dataFileList.append({
-                    "Source Type": srcType,
-                    "Data Source": sourcePath,
-                    "Snapshot Path": snapshotPath
+                    "Source Type": dsKey,
+                    "Data Source": sourceUncPath,
+                    "Snapshot Path": snapshotUncPath
                 })
 
-    return dataFileList
-
-
-def scan_data_in_LDrive_OS(dataFolder, fileExts):
-    dataFileList = []
-    for dsKey in DATA_SOURCES.keys():
-        ds = DATA_SOURCES[dsKey]
-        excludedDirs = [s["LDrv"] for s in ds if s["Mode"] == "exclude"]
-        addedDirs = [s["LDrv"] for s in ds if s["Mode"] == "add"]
-        for dirPath in addedDirs:
-            for root, dirs, files in os.walk(dirPath):
-                # skip the excluded directories
-                skipOrNo = False
-                for exclDir in excludedDirs:
-                    skipOrNo = (root.find(exclDir) == 0)
-                    if skipOrNo == True:
-                        break
-                if skipOrNo == False:
-                    for fname in files:
-                        fbase,fext = os.path.splitext(fname)
-                        if fext not in fileExts:
-                            continue
-                        snapshotPath = os.path.join(root, fname)
-                        print("Found: %s" % ascii(snapshotPath))
-                        sourcePath = path_snapshot_2_source(snapshotPath)
-                        dataFileList.append({
-                            "Source Type": dsKey,
-                            "Data Source": sourcePath,
-                            "Snapshot Path": snapshotPath
-                        })
-                else:
-                    print("Skip: %s" % root)
-
-    return dataFileList
-
-
-def scan_data_in_LDrive_Esri(dataFolder, fileExts):
-    dataFileList = []
-    for dsKey in DATA_SOURCES.keys():
-        ds = DATA_SOURCES[dsKey]
-        excludedDirs = [s["LDrv"] for s in ds if s["Mode"] == "exclude"]
-        addedDirs = [s["LDrv"] for s in ds if s["Mode"] == "add"]
-        for dirPath in addedDirs:
-            arcWalk = arcpy.da.Walk(dirPath, onerror=onWalkError, datatype=fileExts)
-            for root, dirs, files in arcWalk:
-                # skip the excluded directories
-                skipOrNo = False
-                for exclDir in excludedDirs:
-                    skipOrNo = (root.find(exclDir) == 0)
-                    if skipOrNo == True:
-                        break
-                if skipOrNo == False:
-                    for fname in files:
-                        snapshotPath = os.path.join(root, fname)
-                        print("Found: %s" % ascii(snapshotPath))
-                        sourcePath = path_snapshot_2_source(snapshotPath)
-                        dataFileList.append({
-                            "Source Type": dsKey,
-                            "Data Source": sourcePath,
-                            "Snapshot Path": snapshotPath
-                        })
-                else:
-                    print("Skip: %s" % root)
-
-
-    print('**** Completed scanning the directory [%s] for [%s]' % (dataFolder, str(fileExts)))
     return dataFileList
 
 
 def compile_data_with_SDE(dataFolder, fileExts, xlsOutput, xlsInput):
 
     dataFileList = scan_data_in_LDrive(dataFolder, fileExts)
+    if len(dataFileList) == 0:
+        print('#### No GIS data found: %s' % dataFolder)
+    else:
+        sdeDataList = read_from_workbook(xlsInput)
 
-    sdeDataList = read_from_workbook(xlsInput)
-
-    for df in dataFileList:
-        sdePath = get_sde_path(df["Data Source"], sdeDataList)
-        df["SDE Path"] = sdePath
-        df["Loaded In SDE?"] = ('No' if sdePath is None else 'Yes')
+        for df in dataFileList:
+            sdePath = get_sde_path(df["Data Source"], sdeDataList)
+            df["SDE Path"] = sdePath
+            df["Loaded In SDE?"] = ('No' if sdePath is None else 'Yes')
 
     outputDir = os.path.dirname(xlsOutput)
     if not os.path.exists(outputDir):
