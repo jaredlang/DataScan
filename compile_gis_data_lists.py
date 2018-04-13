@@ -1,10 +1,17 @@
 import os
 import argparse
 import pandas as pd
+import xlrd
 
 def combine_xls_files(xls_inputs, xls_output):
     # read them in
-    excels = [pd.ExcelFile(name) for name in xls_inputs]
+    #excels = [pd.ExcelFile(name) for name in xls_inputs]
+    excels = []
+    for fname in xls_inputs:
+        try:
+            excels.append(pd.ExcelFile(fname))
+        except xlrd.biffh.XLRDError as e:
+            print("#### Corrupted file: %s" % fname)
 
     # turn them into dataframes
     frames = [x.parse(x.sheet_names[0], header=None,index_col=None) for x in excels]
