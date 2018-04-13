@@ -4,7 +4,7 @@ import re
 import argparse
 from datetime import datetime
 
-SYS_DIRS = ['Thumbs\.db', "[A-Z0-9]+\.gdb"]
+SYS_DIRS = ['Thumbs\.db', "[A-Z0-9]+\.gdb", "\.zip", "\.doc", "\.docx", "\.pdf", "\.mxd"]
 
 SCAN_CMD = r"python C:\Users\kdb086\Documents\scan_all\find_gis_data.py "
 

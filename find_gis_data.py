@@ -199,7 +199,12 @@ def scan_data_in_LDrive(dataFolder, fileExts):
             arcWalk = arcpy.da.Walk(dataFolder, onerror=onWalkError, datatype=fileExts)
             for root, dirs, files in arcWalk:
             #for root, dirs, files in os.walk(dataFolder):
+                if root.endswith(".gdb"):
+                    continue    # don't go into a gdb folder
                 for fname in files:
+                    fbase,fext = os.path.splitext(fname)
+                    if fext in [".zip", ".doc", ".docx", ".pdf", ".mxd"]:
+                        continue    # skip non-related files
                     snapshotPath = os.path.join(root, fname)
                     print("Found: %s" % ascii(snapshotPath))
                     sourcePath = path_snapshot_2_source(snapshotPath)
