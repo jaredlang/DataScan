@@ -194,21 +194,24 @@ def scan_data_in_LDrive(dataFolder, fileExts):
     dataFileList = []
     srcType = get_source_type(dataFolder)
     if srcType is not None:
-        arcWalk = arcpy.da.Walk(dataFolder, onerror=None, datatype=fileExts)
-        #arcWalk = arcpy.da.Walk(dataFolder, onerror=onWalkError, datatype=fileExts)
-        for root, dirs, files in arcWalk:
-        #for root, dirs, files in os.walk(dataFolder):
-            for fname in files:
-                snapshotPath = os.path.join(root, fname)
-                print("Found: %s" % ascii(snapshotPath))
-                sourcePath = path_snapshot_2_source(snapshotPath)
-                sourceUncPath = path_md_2_unc(sourcePath)
-                snapshotUncPath = path_md_2_unc(snapshotPath)
-                dataFileList.append({
-                    "Source Type": dsKey,
-                    "Data Source": sourceUncPath,
-                    "Snapshot Path": snapshotUncPath
-                })
+        try:
+            #arcWalk = arcpy.da.Walk(dataFolder, onerror=None, datatype=fileExts)
+            arcWalk = arcpy.da.Walk(dataFolder, onerror=onWalkError, datatype=fileExts)
+            for root, dirs, files in arcWalk:
+            #for root, dirs, files in os.walk(dataFolder):
+                for fname in files:
+                    snapshotPath = os.path.join(root, fname)
+                    print("Found: %s" % ascii(snapshotPath))
+                    sourcePath = path_snapshot_2_source(snapshotPath)
+                    sourceUncPath = path_md_2_unc(sourcePath)
+                    snapshotUncPath = path_md_2_unc(snapshotPath)
+                    dataFileList.append({
+                        "Source Type": srcType,
+                        "Data Source": sourceUncPath,
+                        "Snapshot Path": snapshotUncPath
+                    })
+        except:
+            print "#### Unexpected error:", sys.exc_info()[0]
 
     return dataFileList
 
