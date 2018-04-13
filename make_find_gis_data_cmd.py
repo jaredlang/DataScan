@@ -4,7 +4,7 @@ import re
 import argparse
 from datetime import datetime
 
-SYS_DIRS = ['Thumbs\.db', "[A-Z0-9]+\.gdb", "\.zip", "\.doc", "\.docx", "\.pdf", "\.mxd"]
+SYS_DIRS = ['Thumbs\.db', ".*\.gdb", ".*\.zip", ".*\.doc", ".*\.docx", ".*\.pdf", ".*\.mxd"]
 
 SCAN_CMD = r"python C:\Users\kdb086\Documents\scan_all\find_gis_data.py "
 
@@ -34,20 +34,23 @@ def make_scan_cmd(srcFolder, xlsFolder, srcType):
                 continue
             for dirname2 in os.listdir(subdir):
                 if not is_sys_dir(dirname2):
+                    subdir2 = os.path.join(subdir, dirname2)
+                    if not os.path.isdir(subdir2):
+                        continue
                     if srcType == "MOZGIS":
                         # Two-level sub-directories are enough
                         xlsFileName = srcType + "_" + dirname + "_" + dirname2 + ".xlsx"
-                        cmdlines.append('%s -d "%s" -o "%s"\n' % (SCAN_CMD, os.path.join(subdir, dirname2), os.path.join(xlsFolder, xlsFileName)))
+                        cmdlines.append('%s -d "%s" -o "%s"\n' % (SCAN_CMD, subdir2, os.path.join(xlsFolder, xlsFileName)))
                     elif srcType == "MOZLNG":
                         # Go down one more level for MOZLNG
-                        subdir2 = os.path.join(subdir, dirname2)
-                        if not os.path.isdir(subdir2):
-                            continue
                         for dirname3 in os.listdir(subdir2):
+                            subdir3 = os.path.join(subdir2, dirname3)
+                            if not os.path.isdir(subdir3):
+                                continue
                             if not is_sys_dir(dirname3):
                                 # Two-level sub-directories are enough
                                 xlsFileName = srcType + "_" + dirname + "_" + dirname2 + "_" + dirname3 + ".xlsx"
-                                cmdlines.append('%s -d "%s" -o "%s"\n' % (SCAN_CMD, os.path.join(subdir2, dirname3), os.path.join(xlsFolder, xlsFileName)))
+                                cmdlines.append('%s -d "%s" -o "%s"\n' % (SCAN_CMD, subdir3, os.path.join(xlsFolder, xlsFileName)))
 
     return cmdlines
 
